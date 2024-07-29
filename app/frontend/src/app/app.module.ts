@@ -10,6 +10,7 @@ import { IndexComponent } from './components/index/index.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountStatusComponent } from './components/account-status/account-status.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     HeaderComponent,
     IndexComponent,
-    AdminComponent
+    AdminComponent,
+    AccountStatusComponent
   ],
   imports: [
     BrowserModule,

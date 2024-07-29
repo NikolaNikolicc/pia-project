@@ -3,6 +3,8 @@ import { SessionIDsharedService } from 'src/app/services/session-idshared.servic
 import * as CryptoJS from 'crypto-js';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { PhotoSendService } from 'src/app/services/photo-send.service';
+import { Router } from '@angular/router';
 
 declare var bootstrap: any;
 
@@ -31,7 +33,7 @@ export class RegistrationComponent implements OnInit{
   imageBlob!: Blob;
   imageName: string = "";
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService){
+  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoSendService, private router: Router){
 
   }
 
@@ -70,7 +72,7 @@ export class RegistrationComponent implements OnInit{
           return;
       }
 
-      this.imageName = extension;
+      this.imageName = files[i].name;
       const blob = new Blob([files[i]], { type: files[i].type });
       this.imageBlob = blob;
 
@@ -232,12 +234,21 @@ export class RegistrationComponent implements OnInit{
     user.phone = this.phone;
     user.email = this.email;
     user.creditCard = this.creditCard;
+    user.userType = 0;
     user.profilePicture = (this.imagePreview == "../../assets/defaultUser.jpg")? false : true;
-    user.pendingApproval  = true;
+    user.pendingApproval  = 0;
 
     this.userService.register(user).subscribe(
       data=>{
-        
+        if(data.message == "ok"){
+          if(user.profilePicture){
+            this.photoSendService.savePhoto(this.imageBlob, this.imageName, user.username).subscribe(
+              data=>{
+                this.router.navigate(["status"]);
+              }
+            );
+          }
+        }
       }
     )
   }

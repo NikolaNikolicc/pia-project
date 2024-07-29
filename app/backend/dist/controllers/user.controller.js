@@ -8,10 +8,9 @@ const user_1 = __importDefault(require("../models/user"));
 class UserController {
     constructor() {
         this.saveUser = (req, res) => {
-            console.log("uso u kontroler");
             let user = req.body;
-            console.log(user);
             new user_1.default(user).save().then(ok => {
+                console.log("User stored succesfully.");
                 res.json({ message: "ok" });
             }).catch(err => {
                 console.log(err);

@@ -11,5 +11,6 @@ export class User{
     profilePicture: boolean = false;
     creditCard: string = "";
     userType: number = 0;
-    pendingApproval: boolean = true;
+    pendingApproval: number = 0;
+    comment: string = "";
 }

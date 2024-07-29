@@ -38,3 +38,5 @@ Uputstvo za preuzimanje:
 3) ukljuci algoritam za enkripciju
 	1) npm install @types/crypto-js
 ==========================================================================================================================
+4) ukljuci multer da bi mogao da citas blobove
+	1) npm install @types/multer

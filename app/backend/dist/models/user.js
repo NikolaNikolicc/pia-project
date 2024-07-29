@@ -16,7 +16,8 @@ const userSchema = new mongoose_1.default.Schema({
     profilePicture: Boolean,
     creditCard: String,
     userType: Number,
-    pendingApproval: Boolean,
+    pendingApproval: Number,
+    comment: String,
 }, {
     versionKey: false
 });

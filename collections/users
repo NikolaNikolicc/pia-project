@@ -1,5 +1,5 @@
 {
-    _id: string = "";
+    _id: string = ""; // default by moongoose, not written in our model
     username: string = "";
     password: string = "";
     name: string = "";
@@ -8,8 +8,9 @@
     address: string = "";
     phone: string = "";
     email: string = "";
-    profilePicture: number = 0;
+    profilePicture: boolean = false; // false - we are using default photo, true - we are using uploaded photo
     creditCard: string = "";
-    userType: number = 0;
-    pendingApproval: boolean = true;
+    userType: number = 0; // 0 - normal user
+    pendingApproval: number = 0; // 0 - we are waiting for admin to approve our registration request, 1 - admin approved our request, 2 - admin dismissed our request
+    comment: string = ""; // this field is used in case admin dismissed our request or deleted our account
 }
