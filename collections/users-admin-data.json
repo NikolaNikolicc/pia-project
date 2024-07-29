@@ -1,0 +1,17 @@
+[
+  {
+    "username": "admin",
+    "password": "c068fb95b8e64b1d775313ed5902efbe32d207e4de7876f8caf838fec6f8d18a",
+    "name": "Admin",
+    "surname": "",
+    "gender": "",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "profilePicture": false,
+    "creditCard": "",
+    "userType": 1,
+    "pendingApproval": 1,
+    "comment": ""
+  }
+]

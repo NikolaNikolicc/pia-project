@@ -13,7 +13,7 @@ declare var bootstrap: any;
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit{
+export class RegistrationComponent implements OnInit {
 
   @ViewChild('errorModal') modalError!: ElementRef;
   error: string = "";
@@ -33,18 +33,27 @@ export class RegistrationComponent implements OnInit{
   imageBlob!: Blob;
   imageName: string = "";
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoSendService, private router: Router){
+  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoSendService, private router: Router) {
 
   }
 
-  triggerFileInputClick(){
+  showErrorModal(){
+    const modalNative: HTMLElement = this.modalError.nativeElement;
+      const modal = new bootstrap.Modal(modalNative, {
+        backdrop: 'static', // Prevents closing when clicking outside
+        keyboard: false, // Prevents closing with the escape key
+      });
+      modal.show();
+  }
+
+  triggerFileInputClick() {
     let fileInput = document.getElementById("photo-input") as HTMLInputElement;
     if (fileInput) {
       fileInput.click();
     }
   }
 
-  onFilesSelected(event: Event){
+  onFilesSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files == null) return;
     if (!input.files.length) return;
@@ -63,13 +72,13 @@ export class RegistrationComponent implements OnInit{
       if (!extension) continue;
       if (!allowedExtensions.includes(extension!)) {
         this.error = "Choosen photo format is not supported, please try with other formats (ex. jpg, png)";
-          const modalNative: HTMLElement = this.modalError.nativeElement;
-          const modal = new bootstrap.Modal(modalNative, {
-            backdrop: 'static', // Prevents closing when clicking outside
-            keyboard: false, // Prevents closing with the escape key
-          });
-          modal.show();
-          return;
+        const modalNative: HTMLElement = this.modalError.nativeElement;
+        const modal = new bootstrap.Modal(modalNative, {
+          backdrop: 'static', // Prevents closing when clicking outside
+          keyboard: false, // Prevents closing with the escape key
+        });
+        modal.show();
+        return;
       }
 
       this.imageName = files[i].name;
@@ -80,11 +89,11 @@ export class RegistrationComponent implements OnInit{
       const image = new Image();
       image.src = URL.createObjectURL(this.imageBlob);
 
-      image.onload = () =>{
+      image.onload = () => {
         const width = image.naturalWidth;
         const height = image.naturalHeight;
 
-        if(width < 100 || height < 100 || width > 300 || height > 300){
+        if (width < 100 || height < 100 || width > 300 || height > 300) {
           this.error = "Image dimensions must be within 100x100px and 300x300px";
           const modalNative: HTMLElement = this.modalError.nativeElement;
           const modal = new bootstrap.Modal(modalNative, {
@@ -96,7 +105,7 @@ export class RegistrationComponent implements OnInit{
           return;
         }
       }
-      
+
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;
@@ -105,7 +114,7 @@ export class RegistrationComponent implements OnInit{
     }
   }
 
-  setImageStyles(){
+  setImageStyles() {
     return {
       'margin': 'auto', /* Center the card horizontally */
       'overflow': 'hidden', /* Hide overflow to ensure the image fits within the card */
@@ -122,18 +131,18 @@ export class RegistrationComponent implements OnInit{
     this.showPassword = !this.showPassword;
   }
 
-  passwordCheck(){
+  passwordCheck() {
     const passwordRegex = /^(?=.*[A-Z])(?=(?:[^a-z]*[a-z]){3})(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z][A-Za-z\d!@#$%^&*(),.?":{}|<>]{5,9}$/;
     return passwordRegex.test(this.password);
 
   }
 
-  creditCardCheck(){
+  creditCardCheck() {
     const combinedRegex = /^(?:(300|301|302|303|36|38)\d{12}|(51|52|53|54|55)\d{14}|(4539|4556|4916|4532|4929|4485|4716)\d{12})$/;
     return combinedRegex.test(this.creditCard);
   }
 
-  creditCardTypeCheck(){
+  creditCardTypeCheck() {
     const dinersRegex = /^(?=^\d{0,15}$)(300|301|302|303|36|38)/;
     const masterCardRegex = /^(?=^\d{0,16}$)(51|52|53|54|55)/;
     const visaRegex = /^(?=^\d{0,16}$)(4539|4556|4916|4532|4929|4485|4716)/;
@@ -149,70 +158,107 @@ export class RegistrationComponent implements OnInit{
     }
   }
 
-  emailFormatCheck(){
+  emailFormatCheck() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(this.email);
   }
 
-  emailUniquenessCheck(){
-    return true;
+  emailUniquenessCheck(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.userService.getUserByEmail(this.email).subscribe(
+        data => {
+          if (data.message == "User with this email has not been found.") {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 
-  registerWrapper(){
+  usernameUniquenessCheck(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.userService.getUserByUsername(this.username).subscribe(
+        data => {
+          if (data.message == "User with this username has not been found.") {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async registerWrapper() {
     this.error = "";
 
-    if(!this.creditCardCheck()){
+    if (!this.creditCardCheck()) {
       this.error = "Invalid credit card number. The card must be one of the following types: Diners Club (15 digits), MasterCard (16 digits), or Visa (16 digits).";
     }
-    if(this.creditCard == ""){
+    if (this.creditCard == "") {
       this.error = "Credit card field is empty.";
     }
 
-    if(!this.emailUniquenessCheck()){
-      this.error = "This email has already been used.";
+    const isEmailUnique = await this.emailUniquenessCheck();
+    if (!isEmailUnique) {
+      this.error = "This email has already been used. Please try with another one.";
     }
 
-    if(!this.emailFormatCheck()){
+    if (!this.emailFormatCheck()) {
       this.error = "Invalid email address. Please ensure it contains an '@' character and a domain (e.g., example.com).";
     }
 
-    if(this.email == ""){
+    if (this.email == "") {
       this.error = "Email field is empty.";
     }
 
-    if(this.phone == ""){
+    if (this.phone == "") {
       this.error = "Phone field is empty.";
     }
 
-    if(this.address == ""){
+    if (this.address == "") {
       this.error = "Address field is empty.";
     }
 
-    if(this.surname == ""){
+    if (this.surname == "") {
       this.error = "Surname field is empty.";
     }
 
-    if(this.name == ""){
+    if (this.name == "") {
       this.error = "Name field is empty.";
     }
 
-    if(!this.passwordCheck()){
+    if (!this.passwordCheck()) {
       this.error = "Invalid password. It must be 6-10 characters long, start with a letter, and include at least one uppercase letter, three lowercase letters, one number, and one special character.";
     }
-    if(this.password == ""){
+    if (this.password == "") {
       this.error = "Password field is empty.";
     }
-    if(this.username == ""){
+
+    const isUsernameUnique = await this.usernameUniquenessCheck();
+    if (!isUsernameUnique) {
+      this.error = "This username has already been used. Please try with another one.";
+    }
+
+    // we need this check because our system is using default as directory name for storing default user photo
+    if(this.username == "default"){
+      this.error = "This username is forbiden for use. Please try with another one.";
+    }
+
+    if (this.username == "") {
       this.error = "Username field is empty.";
     }
 
-    if(this.error != ""){
-      const modalNative: HTMLElement = this.modalError.nativeElement;
-      const modal = new bootstrap.Modal(modalNative, {
-        backdrop: 'static', // Prevents closing when clicking outside
-        keyboard: false, // Prevents closing with the escape key
-      });
-      modal.show();
+    if (this.error != "") {
+      this.showErrorModal();
       return;
     }
     this.hashedPassword = this.hashSHA256(this.password);
@@ -223,7 +269,7 @@ export class RegistrationComponent implements OnInit{
     return CryptoJS.SHA256(value).toString(CryptoJS.enc.Hex);
   }
 
-  register(){
+  register() {
     let user = new User();
     user.username = this.username;
     user.password = this.hashedPassword;
@@ -235,18 +281,20 @@ export class RegistrationComponent implements OnInit{
     user.email = this.email;
     user.creditCard = this.creditCard;
     user.userType = 0;
-    user.profilePicture = (this.imagePreview == "../../assets/defaultUser.jpg")? false : true;
-    user.pendingApproval  = 0;
+    user.profilePicture = (this.imagePreview == "../../assets/defaultUser.jpg") ? false : true;
+    user.pendingApproval = 0;
 
     this.userService.register(user).subscribe(
-      data=>{
-        if(data.message == "ok"){
-          if(user.profilePicture){
+      data => {
+        if (data.message == "ok") {
+          if (user.profilePicture) {
             this.photoSendService.savePhoto(this.imageBlob, this.imageName, user.username).subscribe(
-              data=>{
+              data => {
                 this.router.navigate(["status"]);
               }
             );
+          }else{
+            this.router.navigate(["status"]); // in case user doesn't want to set profile picture
           }
         }
       }

@@ -7,10 +7,11 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { IndexComponent } from './components/index/index.component';
-import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountStatusComponent } from './components/account-status/account-status.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { AdminIndexComponent } from './components/admin-index/admin-index.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { AccountStatusComponent } from './components/account-status/account-stat
     LoginComponent,
     HeaderComponent,
     IndexComponent,
-    AdminComponent,
-    AccountStatusComponent
+    AccountStatusComponent,
+    AdminLoginComponent,
+    AdminIndexComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,2 @@
+0 - registration session, login session
+-1 - admin login session

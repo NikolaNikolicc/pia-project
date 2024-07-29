@@ -1,12 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
 
+declare var bootstrap: any;
+
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class AdminComponent implements OnInit{
+export class AdminLoginComponent implements OnInit{
 
   @ViewChild('errorModal') modalError!: ElementRef;
   error: string = "";
@@ -23,6 +25,15 @@ export class AdminComponent implements OnInit{
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
+  }
+
+  showErrorModal(){
+    const modalNative: HTMLElement = this.modalError.nativeElement;
+      const modal = new bootstrap.Modal(modalNative, {
+        backdrop: 'static', // Prevents closing when clicking outside
+        keyboard: false, // Prevents closing with the escape key
+      });
+      modal.show();
   }
 
 

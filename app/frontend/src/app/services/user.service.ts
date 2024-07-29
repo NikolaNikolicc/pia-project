@@ -7,6 +7,20 @@ import { Message } from '../models/message';
   providedIn: 'root'
 })
 export class UserService {
+  getUserByUsername(username: string) {
+    const data ={
+      username: username,
+    }
+    return this.http.post<Message>("http://localhost:4000/users/getUserByUsername",
+      data);
+  }
+  getUserByEmail(email: string) {
+    const data ={
+      email: email,
+    }
+    return this.http.post<Message>("http://localhost:4000/users/getUserByEmail",
+      data);
+  }
 
   constructor(private http: HttpClient) { }
 

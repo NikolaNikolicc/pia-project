@@ -24,13 +24,22 @@ export class LoginComponent implements OnInit{
     this.sessionService.sessionID = '0';
   }
 
+  showErrorModal(){
+    const modalNative: HTMLElement = this.modalError.nativeElement;
+      const modal = new bootstrap.Modal(modalNative, {
+        backdrop: 'static', // Prevents closing when clicking outside
+        keyboard: false, // Prevents closing with the escape key
+      });
+      modal.show();
+  }
+
   passwordCheck(){
     const passwordRegex = /^(?=.*[A-Z])(?=(?:[^a-z]*[a-z]){3})(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z][A-Za-z\d!@#$%^&*(),.?":{}|<>]{5,9}$/;
     return passwordRegex.test(this.password);
 
   }
 
-  login(){
+  loginWrapper(){
     this.error = "";
 
     if(!this.passwordCheck()){
@@ -44,12 +53,7 @@ export class LoginComponent implements OnInit{
     }
 
     if(this.error != ""){
-      const modalNative: HTMLElement = this.modalError.nativeElement;
-      const modal = new bootstrap.Modal(modalNative, {
-        backdrop: 'static', // Prevents closing when clicking outside
-        keyboard: false, // Prevents closing with the escape key
-      });
-      modal.show();
+      this.showErrorModal();
       return;
     }
 
