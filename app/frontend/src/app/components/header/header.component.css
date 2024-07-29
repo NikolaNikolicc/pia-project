@@ -1,0 +1,18 @@
+/* Sticky navbar */
+nav.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgb(222, 131, 34);
+    color: white;
+    flex-grow: 1;
+    display: flex; /* Use flex display for the navbar */
+    justify-content: space-between; /* Align items to the start */
+    align-items: center; /* Align items vertically */
+    padding-left: 10px; /* Add padding to the left */
+    padding-right: 10px; /* Add padding to the right */
+}
+
+.btn{
+    color:white;
+}

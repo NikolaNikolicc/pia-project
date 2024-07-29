@@ -1,0 +1,80 @@
+/* Custom style for the radio button when it is checked */
+.form-check-input:checked {
+    accent-color: rgb(222, 131, 34); /* Using the 'accent-color' property */
+  }
+  
+  /* General style for radio buttons */
+  .form-check-input {
+    accent-color: rgb(222, 131, 34); /* Default Bootstrap primary color for unchecked state */
+  }
+  
+  /* radio button select */
+  
+  /* Style for the label when the associated radio button is selected */
+  .form-check-input:checked + .form-check-label {
+    color: white; /* For text color */
+    background-color: rgb(222, 131, 34); /* Bootstrap 'btn-danger' background color */
+    padding: .375rem .75rem; /* Bootstrap padding for buttons */
+    border-radius: .25rem; /* Bootstrap border-radius for buttons */
+    cursor: pointer; /* Cursor style */
+  }
+  
+  /* Style for the label to make it look more like a button */
+  .form-check-label {
+    display: inline-block;
+    padding: .375rem .75rem; /* Bootstrap padding for buttons */
+    margin-bottom: 0; /* Bootstrap style */
+    vertical-align: top;
+    cursor: pointer;
+    border-radius: .25rem; /* Bootstrap border-radius for buttons */
+    border: 1px solid ; /* Transparent border, takes up space for layout */
+    border-color: rgb(222, 131, 34);
+    color: rgb(222, 131, 34);
+  }
+  
+  /* Ensure the input (radio button) is not displayed */
+  .form-check-input {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .btn{
+    background-color: rgb(222, 131, 34);
+    border-color: rgb(222, 131, 34);
+  }
+
+  .form-group small {
+    font-size: 0.5rem;
+}
+
+/* credit card icons edit */
+
+.credit-card-icon {
+  display: flex;
+  align-items: center;
+}
+
+.credit-card-icon i {
+  height: 100%;
+  font-size: 1.5em; /* Adjust as needed to fit the height */
+}
+
+.card {
+  width: 300px; /* Fixed width for the card */
+  height: 300px; /* Fixed height for the card */
+  margin: auto; /* Center the card horizontally */
+  overflow: hidden; /* Hide overflow to ensure the image fits within the card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.card-img-top {
+  width: 100%; /* Make the image take the full width of the card */
+  height: 100%; /* Make the image take the full height of the card */
+  object-fit: contain; /* Ensures the image scales down to fit within the card */
+  background-color: gray;
+}
+
+

@@ -1,0 +1,19 @@
+<nav class="navbar fixed-top">
+    <div class="container-fluid">
+        <!-- Logo on the left -->
+        <a class="navbar-brand" href="#">
+            <img src="../../../assets/Logo1.jpg" alt="Mašta Bašta Logo" width="100">
+        </a>
+        <div class="mx-auto d-none d-md-block">
+            <h2 class="text-white text-center">Vaša Mašta - Vaša Bašta</h2>
+        </div>
+        <div *ngIf='sessionService.sessionID == "0"'>
+            <button class="btn btn-transparent" (click)="login()">Login</button> 
+            / 
+            <button class="btn btn-transparent" (click)="register()">Register</button>
+        </div>
+        <div *ngIf='sessionService.sessionID != "0"  && sessionService.sessionID != "-1"'>
+            <button class="btn btn-transparent" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</nav>

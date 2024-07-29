@@ -1,0 +1,131 @@
+<div class="flex-container d-flex overflow-auto justify-content-center">
+
+    <div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{this.error}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <form>
+            <br>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required [(ngModel)]="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label><br>
+                <div class="input-group">
+                    <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" placeholder="Enter password" name="password" required [(ngModel)]="password">
+                    <div class="input-group-append">
+                        <span class="input-group-text" (click)="togglePasswordVisibility()" style="cursor: pointer;">
+                            <i [class]="showPassword ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+                        </span>
+                    </div>
+                </div>
+                <small class="form-text text-muted">Password must be 6-10 characters long, start with a letter, and include at least one uppercase letter, three lowercase letters, one number, and one special character.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required [(ngModel)]="name">
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname:</label>
+                <input type="text" class="form-control" id="surname" placeholder="Enter surname" name="surname" required [(ngModel)]="surname">
+            </div>
+            <br>
+            <div class="form-group row justify-content-center">
+                <div class="col-sm-12 text-center">
+                    <label class="col-form-label pt-0">Gender:</label>
+                </div>
+                <div class="col-sm-12 text-center" >
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked [(ngModel)]="gender">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" [(ngModel)]="gender">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" required [(ngModel)]="address">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" id="phone" placeholder="Enter phone number" name="phone" required [(ngModel)]="phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required [(ngModel)]="email">
+            </div>
+            <div class="form-group">
+                <label for="credit-card">Credit Card Number:</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="credit-card"
+                    placeholder="Enter credit card number"
+                    name="credit-card"
+                    required
+                    [(ngModel)]="creditCard"
+                    (ngModelChange)="creditCardTypeCheck()"
+                  >
+                
+                  <div class="input-group-append">
+                    <span class="input-group-text credit-card-icon">
+                      <i *ngIf="creditCardType === 'visa'" class="fab fa-cc-visa"></i>
+                      <i *ngIf="creditCardType === 'master'" class="fab fa-cc-mastercard"></i>
+                      <i *ngIf="creditCardType === 'diners'" class="fab fa-cc-diners-club"></i>
+                      <i *ngIf="creditCardType === 'unknown'" class="fas fa-question-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <br>
+            <div class="card">
+                <br>
+                <h5 class="card-title">Profile picture</h5>
+                <!-- photo preview -->
+                <img [src]="imagePreview" class="card-img-top" [style]="setImageStyles()">
+                <div class="card-body text-center">
+                    <!-- button -->
+                    <button type="button" class="btn btn-danger"
+                        id="profile-picture"
+                        (click)="triggerFileInputClick()">
+                        <span>CHANGE PHOTO</span>
+                    </button>
+                    <!-- hidden photo input -->
+                    <input type="file" name=""
+                        id="photo-input" hidden
+                        (change)="onFilesSelected($event)">
+                </div>
+            </div>
+            
+            <br>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary" (click)="registerWrapper()">Register</button>
+            </div>
+            <br>
+        </form>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
