@@ -11,6 +11,6 @@
     profilePicture: boolean = false; // false - we are using default photo, true - we are using uploaded photo
     creditCard: string = "";
     userType: number = 0; // 0 - normal user, 1 - admin
-    pendingApproval: number = 0; // 0 - we are waiting for admin to approve our registration request, 1 - admin approved our request, 2 - admin dismissed our request
-    comment: string = ""; // this field is used in case admin dismissed our request or deleted our account
+    pendingApproval: number = 0; // 0 - we are waiting for admin to approve our registration request, 1 - admin approved our request, 2 - admin suspended our request
+    comment: string = ""; // this field is used in case admin suspended your accountor dismissed your request
 }

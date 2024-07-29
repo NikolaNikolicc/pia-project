@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountStatusComponent } from './components/account-status/account-status.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { AdminIndexComponent } from './components/admin-index/admin-index.component';
+import { UserIndexComponent } from './components/user-index/user-index.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AdminIndexComponent } from './components/admin-index/admin-index.compon
     IndexComponent,
     AccountStatusComponent,
     AdminLoginComponent,
-    AdminIndexComponent
+    AdminIndexComponent,
+    UserIndexComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

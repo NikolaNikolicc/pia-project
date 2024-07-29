@@ -7,6 +7,12 @@ import { Message } from '../models/message';
   providedIn: 'root'
 })
 export class UserService {
+  changePassword(user: User) {
+    return this.http.post<Message>("http://localhost:4000/users/changePassword", user);
+  }
+  login(user: User) {
+    return this.http.post<Message>("http://localhost:4000/users/login", user);
+  }
   getUserByUsername(username: string) {
     const data ={
       username: username,

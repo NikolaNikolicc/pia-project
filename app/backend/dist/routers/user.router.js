@@ -9,4 +9,6 @@ const userRouter = express_1.default.Router();
 userRouter.route('/saveUser').post((req, res) => new user_controller_1.UserController().saveUser(req, res));
 userRouter.route('/getUserByEmail').post((req, res) => new user_controller_1.UserController().getUserByEmail(req, res));
 userRouter.route('/getUserByUsername').post((req, res) => new user_controller_1.UserController().getUserByUsername(req, res));
+userRouter.route('/login').post((req, res) => new user_controller_1.UserController().login(req, res));
+userRouter.route('/changePassword').post((req, res) => new user_controller_1.UserController().changePassword(req, res));
 exports.default = userRouter;

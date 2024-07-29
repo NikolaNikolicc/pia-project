@@ -1,0 +1,24 @@
+.flex-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .content-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  h3 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+  h4 {
+    font-family: 'Arial', sans-serif;
+    color: #6c757d;
+  }
+
+  .btn{
+    background-color: rgb(222, 131, 34);
+    border-color: rgb(222, 131, 34);
+  }

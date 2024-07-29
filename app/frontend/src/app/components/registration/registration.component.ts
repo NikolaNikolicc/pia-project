@@ -283,10 +283,12 @@ export class RegistrationComponent implements OnInit {
     user.userType = 0;
     user.profilePicture = (this.imagePreview == "../../assets/defaultUser.jpg") ? false : true;
     user.pendingApproval = 0;
+    user.comment = "Our team is inspecting the data you provided. Please be patient. You will be informed about your registration request via this form. Please try to log in later. Sincerely, Your Vaša Bašta - Vaša Mašta team."
 
     this.userService.register(user).subscribe(
       data => {
         if (data.message == "ok") {
+          localStorage.setItem("user", JSON.stringify(user));
           if (user.profilePicture) {
             this.photoSendService.savePhoto(this.imageBlob, this.imageName, user.username).subscribe(
               data => {

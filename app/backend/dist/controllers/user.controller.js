@@ -8,6 +8,28 @@ const user_1 = __importDefault(require("../models/user"));
 const photo_controller_1 = require("./photo.controller");
 class UserController {
     constructor() {
+        this.changePassword = (req, res) => {
+            let user = req.body;
+            user_1.default.updateOne({ username: user.username }, { $set: { password: user.password } }).then(ok => res.json({ message: "ok" })).catch(err => {
+                console.log(err);
+                res.json({ message: "error" });
+            });
+        };
+        this.login = (req, res) => {
+            let user = req.body;
+            console.log(user);
+            user_1.default.findOne({ username: user.username, password: user.password, userType: user.userType }).then(user => {
+                if (user) {
+                    res.json({ message: JSON.stringify(user) });
+                }
+                else {
+                    res.json({ message: "User with this username has not been found." });
+                }
+            }).catch(err => {
+                console.log(err);
+                res.json({ message: "User with this username has not been found." });
+            });
+        };
         this.getUserByUsername = (req, res) => {
             let username = req.body.username;
             user_1.default.findOne({ username: username }).then(user => {

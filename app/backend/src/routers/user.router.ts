@@ -15,4 +15,12 @@ userRouter.route('/getUserByUsername').post(
     (req, res)=> new UserController().getUserByUsername(req, res)
 );
 
+userRouter.route('/login').post(
+    (req, res)=> new UserController().login(req, res)
+);
+
+userRouter.route('/changePassword').post(
+    (req, res)=> new UserController().changePassword(req, res)
+);
+
 export default userRouter;
