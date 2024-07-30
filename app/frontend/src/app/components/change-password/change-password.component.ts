@@ -35,7 +35,7 @@ export class ChangePasswordComponent {
   }
 
   showErrorModal(){
-    const modalNative: HTMLElement = this.modalSuccess.nativeElement;
+    const modalNative: HTMLElement = this.modalError.nativeElement;
       const modal = new bootstrap.Modal(modalNative, {
         backdrop: 'static', // Prevents closing when clicking outside
         keyboard: false, // Prevents closing with the escape key
@@ -45,7 +45,7 @@ export class ChangePasswordComponent {
 
   showSuccessModal(msg: string){
     this.message = msg;
-    const modalNative: HTMLElement = this.modalError.nativeElement;
+    const modalNative: HTMLElement = this.modalSuccess.nativeElement;
       const modal = new bootstrap.Modal(modalNative, {
         backdrop: 'static', // Prevents closing when clicking outside
         keyboard: false, // Prevents closing with the escape key
