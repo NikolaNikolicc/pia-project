@@ -5,6 +5,8 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { PhotoSendService } from 'src/app/services/photo-send.service';
 import { Router } from '@angular/router';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var bootstrap: any;
 
@@ -32,9 +34,19 @@ export class RegistrationComponent implements OnInit {
   imagePreview: string = "../../assets/defaultUser.jpg";
   imageBlob!: Blob;
   imageName: string = "";
+  // reCaptcha
+  protected aFormGroup!: FormGroup;
+  siteKey: string = "6LcyjBsqAAAAAFbqUUCAI5YwnK5tZ6kB1WBEBOj5";
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoSendService, private router: Router) {
+  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoSendService, private router: Router, private formBuilder: FormBuilder) {
 
+  }
+
+  ngOnInit(): void {
+    this.sessionService.sessionID = '0';
+    this.aFormGroup = this.formBuilder.group({
+      recaptcha: ['', Validators.required]
+    });
   }
 
   showErrorModal(){
@@ -123,10 +135,6 @@ export class RegistrationComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
-    this.sessionService.sessionID = '0';
-  }
-
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
@@ -199,6 +207,10 @@ export class RegistrationComponent implements OnInit {
 
   async registerWrapper() {
     this.error = "";
+
+    if(!this.aFormGroup.valid){
+      this.error = "You need to confirm that you are not robot. (reCaptcha field)";
+    }
 
     if (!this.creditCardCheck()) {
       this.error = "Invalid credit card number. The card must be one of the following types: Diners Club (15 digits), MasterCard (16 digits), or Visa (16 digits).";
