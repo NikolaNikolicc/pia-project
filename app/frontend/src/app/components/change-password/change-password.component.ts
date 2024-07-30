@@ -59,6 +59,14 @@ export class ChangePasswordComponent {
 
   }
 
+  backToLogin(){
+    if(this.sessionService.sessionID == '0'){
+      this.router.navigate(["login"])
+    }else{
+      this.router.navigate(["admin"])
+    }
+  }
+
   changePassword(){
     this.error = "";
 
