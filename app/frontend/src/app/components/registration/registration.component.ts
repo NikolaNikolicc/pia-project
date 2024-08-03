@@ -93,7 +93,8 @@ export class RegistrationComponent implements OnInit {
         return;
       }
 
-      this.imageName = files[i].name;
+      // this.imageName = "profile_picture." + extension;
+      this.imageName = extension;
       const blob = new Blob([files[i]], { type: files[i].type });
       this.imageBlob = blob;
 

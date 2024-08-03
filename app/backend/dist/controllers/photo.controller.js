@@ -43,7 +43,7 @@ class PhotoController {
             if (!fs.existsSync(userDirectory)) {
                 fs.mkdirSync(userDirectory, { recursive: true });
             }
-            const imagePath = path.join(userDirectory, imageName);
+            const imagePath = path.join(userDirectory, 'profile_picture.' + imageName);
             fs.writeFile(imagePath, imageBlob, (err) => {
                 if (err) {
                     console.error("Error saving image:", err);

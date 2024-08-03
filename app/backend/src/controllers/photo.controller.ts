@@ -52,7 +52,7 @@ export class PhotoController {
             fs.mkdirSync(userDirectory, { recursive: true });
         }
 
-        const imagePath = path.join(userDirectory, imageName);
+        const imagePath = path.join(userDirectory, 'profile_picture.' + imageName);
 
         fs.writeFile(imagePath, imageBlob, (err) => {
             if (err) {
