@@ -22,3 +22,22 @@
     background-color: rgb(222, 131, 34);
     border-color: rgb(222, 131, 34);
   }
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
+  .content-box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  .content-box h3 {
+    color: #343a40;
+  }
+  .content-box h4 {
+    color: #6c757d;
+  }

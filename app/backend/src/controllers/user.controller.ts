@@ -5,6 +5,23 @@ import { Request, Response } from 'express-serve-static-core';
 import { ParsedQs } from 'qs';
 
 export class UserController{
+    getAllPendingUsers = (req: express.Request, res: express.Response)=> {
+        UserM.find({pendingApproval: 0}).then(
+            ok=>res.json({message: JSON.stringify(ok)})
+        )
+    }
+
+    updateUserStatus = (req: express.Request, res: express.Response)=> {
+        const user = JSON.parse(req.body.user);
+        UserM.updateOne({username: user.username},
+            {$set: {pendingApproval: user.pendingApproval, comment: user.comment}}
+        ).then(
+            ok=>res.json({message: "ok"})
+        ).catch(err=>{
+            console.log(err);
+            res.json({message: "error"});
+        })
+    }
 
     constructor(){
         new PhotoController(); // in case first user doesn't want to upload photo we need to create default directory by creating photo controller and its constructor

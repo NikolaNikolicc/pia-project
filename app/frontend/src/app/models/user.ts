@@ -1,3 +1,5 @@
+import { SafeUrl } from "@angular/platform-browser";
+
 export class User{
     // _id: string = "";
     username: string = "";
@@ -13,4 +15,5 @@ export class User{
     userType: number = 0;
     pendingApproval: number = 0;
     comment: string = "";
+    imgPath: SafeUrl = "";
 }

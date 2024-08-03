@@ -1,0 +1,79 @@
+<br>
+
+<div class="container">
+    <div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{this.error}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="declineModal" #declineModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h3 class="modal-title">Decline Request</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+    
+                <div class="modal-body text-start">
+                    <p>Put reason of your decision</p>
+                    <textarea class="form-control" id="declineReason" rows="4" placeholder="Type reason here..." [(ngModel)]="reason"></textarea>
+                </div>
+    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="updateUser()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="requests.length == 0" class="text-center">
+        <h3 class="my-4 text-center">There is no pending registration requests!</h3>
+    </div>
+    <div *ngIf="requests.length != 0" class="text-center">
+        <h3 class="my-4 text-center"><h3 class="my-4 text-center">Registration Requests</h3></h3>
+    </div>
+    <div class="row justify-content-center">
+        <div *ngFor="let usr of requests" class="col-12 col-md-8 col-lg-6 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 100%;" id="{{usr.username}}">
+                <div class="row no-gutters">
+                    <div class="col-4 d-flex align-items-center justify-content-center" *ngIf="usr.imgPath != 'default'">
+                        <img src="{{usr.imgPath}}" class="card-img img-fluid" alt="User Picture" style="width: 100px; height: 100px;">
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center" *ngIf="usr.imgPath == 'default'">
+                        <img src="{{this.defaultUrl}}" class="card-img img-fluid" alt="User Picture" style="width: 100px; height: 100px;">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{usr.name}} {{usr.surname}}</h5>
+                            <p class="card-text">Username: {{usr.username}}</p>
+                            <p class="card-text">Address: {{usr.address}}</p>
+                            <p class="card-text">Phone: {{usr.phone}}</p>
+                            <p class="card-text"><small class="text-muted">{{usr.email}}</small></p>
+                            <div class="d-flex justify-content-end mt-3">
+                                <button class="btn btn-success me-2" (click)="approveRequest(usr)">
+                                    Approve <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn btn-danger" (click)="declineRequest(usr)">
+                                    Decline <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

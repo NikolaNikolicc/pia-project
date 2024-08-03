@@ -8,6 +8,16 @@ const user_1 = __importDefault(require("../models/user"));
 const photo_controller_1 = require("./photo.controller");
 class UserController {
     constructor() {
+        this.getAllPendingUsers = (req, res) => {
+            user_1.default.find({ pendingApproval: 0 }).then(ok => res.json({ message: JSON.stringify(ok) }));
+        };
+        this.updateUserStatus = (req, res) => {
+            const user = JSON.parse(req.body.user);
+            user_1.default.updateOne({ username: user.username }, { $set: { pendingApproval: user.pendingApproval, comment: user.comment } }).then(ok => res.json({ message: "ok" })).catch(err => {
+                console.log(err);
+                res.json({ message: "error" });
+            });
+        };
         this.changePassword = (req, res) => {
             let user = req.body;
             user_1.default.updateOne({ username: user.username }, { $set: { password: user.password } }).then(ok => res.json({ message: "ok" })).catch(err => {

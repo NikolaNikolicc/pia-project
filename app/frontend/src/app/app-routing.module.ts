@@ -8,6 +8,8 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { AdminIndexComponent } from './components/admin-index/admin-index.component';
 import { UserIndexComponent } from './components/user-index/user-index.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { OwnerProfilePreviewComponent } from './components/owner-profile-preview/owner-profile-preview.component';
+import { RegistrationRequestsComponent } from './components/registration-requests/registration-requests.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'admin-index', component: AdminIndexComponent},
   {path: 'user-index', component: UserIndexComponent},
   {path: 'change-password', component: ChangePasswordComponent},
+  {path: 'profile-preview', component: OwnerProfilePreviewComponent},
+  {path: 'list-registration-requests', component: RegistrationRequestsComponent},
 ];
 
 @NgModule({

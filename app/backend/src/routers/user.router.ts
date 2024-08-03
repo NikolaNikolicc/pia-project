@@ -23,4 +23,12 @@ userRouter.route('/changePassword').post(
     (req, res)=> new UserController().changePassword(req, res)
 );
 
+userRouter.route('/getAllPendingUsers').post(
+    (req, res)=> new UserController().getAllPendingUsers(req, res)
+);
+
+userRouter.route('/updateUserStatus').post(
+    (req, res)=> new UserController().updateUserStatus(req, res)
+);
+
 export default userRouter;

@@ -7,31 +7,40 @@ import { Message } from '../models/message';
   providedIn: 'root'
 })
 export class UserService {
+  
+  apiUrl: string = "http://localhost:4000";
+  
+  updateUserStatus(tmpUser: User) {
+    return this.http.post<Message>(`${this.apiUrl}/users/updateUserStatus`, {user: JSON.stringify(tmpUser)});
+  }
+  getAllPendingUsers(){
+    return this.http.post<Message>(`${this.apiUrl}/users/getAllPendingUsers`, null);
+  }
   changePassword(user: User) {
-    return this.http.post<Message>("http://localhost:4000/users/changePassword", user);
+    return this.http.post<Message>(`${this.apiUrl}/users/changePassword`, user);
   }
   login(user: User) {
-    return this.http.post<Message>("http://localhost:4000/users/login", user);
+    return this.http.post<Message>(`${this.apiUrl}/users/login`, user);
   }
   getUserByUsername(username: string) {
     const data ={
       username: username,
     }
-    return this.http.post<Message>("http://localhost:4000/users/getUserByUsername",
+    return this.http.post<Message>(`${this.apiUrl}/users/getUserByUsername`,
       data);
   }
   getUserByEmail(email: string) {
     const data ={
       email: email,
     }
-    return this.http.post<Message>("http://localhost:4000/users/getUserByEmail",
+    return this.http.post<Message>(`${this.apiUrl}/users/getUserByEmail`,
       data);
   }
 
   constructor(private http: HttpClient) { }
 
   register(user: User){
-    return this.http.post<Message>("http://localhost:4000/users/saveUser",
+    return this.http.post<Message>(`${this.apiUrl}/users/saveUser`,
       user);
   }
 }

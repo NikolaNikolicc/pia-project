@@ -11,4 +11,6 @@ userRouter.route('/getUserByEmail').post((req, res) => new user_controller_1.Use
 userRouter.route('/getUserByUsername').post((req, res) => new user_controller_1.UserController().getUserByUsername(req, res));
 userRouter.route('/login').post((req, res) => new user_controller_1.UserController().login(req, res));
 userRouter.route('/changePassword').post((req, res) => new user_controller_1.UserController().changePassword(req, res));
+userRouter.route('/getAllPendingUsers').post((req, res) => new user_controller_1.UserController().getAllPendingUsers(req, res));
+userRouter.route('/updateUserStatus').post((req, res) => new user_controller_1.UserController().updateUserStatus(req, res));
 exports.default = userRouter;

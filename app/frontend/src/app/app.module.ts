@@ -15,6 +15,8 @@ import { AdminIndexComponent } from './components/admin-index/admin-index.compon
 import { UserIndexComponent } from './components/user-index/user-index.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { OwnerProfilePreviewComponent } from './components/owner-profile-preview/owner-profile-preview.component';
+import { RegistrationRequestsComponent } from './components/registration-requests/registration-requests.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AdminLoginComponent,
     AdminIndexComponent,
     UserIndexComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    OwnerProfilePreviewComponent,
+    RegistrationRequestsComponent
   ],
   imports: [
     BrowserModule,

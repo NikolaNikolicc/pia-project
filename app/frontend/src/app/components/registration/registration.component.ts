@@ -3,10 +3,10 @@ import { SessionIDsharedService } from 'src/app/services/session-idshared.servic
 import * as CryptoJS from 'crypto-js';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
-import { PhotoSendService } from 'src/app/services/photo-send.service';
 import { Router } from '@angular/router';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PhotoService } from 'src/app/services/photo.service';
 
 declare var bootstrap: any;
 
@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
   protected aFormGroup!: FormGroup;
   siteKey: string = "6LcyjBsqAAAAAFbqUUCAI5YwnK5tZ6kB1WBEBOj5";
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoSendService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoService, private router: Router, private formBuilder: FormBuilder) {
 
   }
 
