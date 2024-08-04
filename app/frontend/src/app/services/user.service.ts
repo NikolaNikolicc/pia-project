@@ -10,6 +10,9 @@ export class UserService {
   
   apiUrl: string = "http://localhost:4000";
   
+  saveProfileUpdate(tmpUser: User) {
+    return this.http.post<Message>(`${this.apiUrl}/users/saveProfileUpdate`, {user: JSON.stringify(tmpUser)});
+  }
   updateUserStatus(tmpUser: User) {
     return this.http.post<Message>(`${this.apiUrl}/users/updateUserStatus`, {user: JSON.stringify(tmpUser)});
   }

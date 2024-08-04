@@ -31,4 +31,8 @@ userRouter.route('/updateUserStatus').post(
     (req, res)=> new UserController().updateUserStatus(req, res)
 );
 
+userRouter.route('/saveProfileUpdate').post(
+    (req, res)=> new UserController().saveProfileUpdate(req, res)
+);
+
 export default userRouter;

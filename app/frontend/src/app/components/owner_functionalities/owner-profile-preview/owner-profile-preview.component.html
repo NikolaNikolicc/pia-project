@@ -1,0 +1,86 @@
+<br>
+
+<div class="container">
+    <div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{this.error}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h3 class="my-4 text-center">Owner profile preview</h3>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card" style="width: 100%;" id="{{usr.username}}">
+            <div class="row no-gutters">
+                <div class="col-4 d-flex align-items-center justify-content-center" *ngIf="usr.imgPath != 'default'">
+                    <img src="{{usr.imgPath}}" class="card-img img-fluid" alt="User Picture" style="width: 100px; height: 100px;">
+                </div>
+                <div class="col-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Name: <span *ngIf="!editMode.name">{{usr.name}}</span>
+                            <input *ngIf="editMode.name" type="text" [(ngModel)]="editName" />
+                            <i class="bi bi-pencil" *ngIf="!editMode.name" (click)="toggleEdit('name')"></i>
+                            <i class="bi bi-check" *ngIf="editMode.name" (click)="saveWrapper('name')"></i>
+                            <i class="bi bi-x" *ngIf="editMode.name" (click)="cancelEdit('name')"></i>
+
+                            Surname: <span *ngIf="!editMode.surname">{{usr.surname}}</span>
+                            <input *ngIf="editMode.surname" type="text" [(ngModel)]="editSurname" />
+                            <i class="bi bi-pencil" *ngIf="!editMode.surname" (click)="toggleEdit('surname')"></i>
+                            <i class="bi bi-check" *ngIf="editMode.surname" (click)="saveWrapper('surname')"></i>
+                            <i class="bi bi-x" *ngIf="editMode.surname" (click)="cancelEdit('surname')"></i>
+                        </h5>
+                        <p class="card-text">
+                            Address: <span *ngIf="!editMode.address">{{usr.address}}</span>
+                            <input *ngIf="editMode.address" type="text" [(ngModel)]="editAddress" />
+                            <i class="bi bi-pencil" *ngIf="!editMode.address" (click)="toggleEdit('address')"></i>
+                            <i class="bi bi-check" *ngIf="editMode.address" (click)="saveWrapper('address')"></i>
+                            <i class="bi bi-x" *ngIf="editMode.address" (click)="cancelEdit('address')"></i>
+                        </p>
+                        <p class="card-text">
+                            Phone: <span *ngIf="!editMode.phone">{{usr.phone}}</span>
+                            <input *ngIf="editMode.phone" type="text" [(ngModel)]="editPhone" />
+                            <i class="bi bi-pencil" *ngIf="!editMode.phone" (click)="toggleEdit('phone')"></i>
+                            <i class="bi bi-check" *ngIf="editMode.phone" (click)="saveWrapper('phone')"></i>
+                            <i class="bi bi-x" *ngIf="editMode.phone" (click)="cancelEdit('phone')"></i>
+                        </p>
+                        <p class="card-text">
+                            Email: <span *ngIf="!editMode.email">{{usr.email}}</span>
+                            <input *ngIf="editMode.email" type="text" [(ngModel)]="editEmail" />
+                            <i class="bi bi-pencil" *ngIf="!editMode.email" (click)="toggleEdit('email')"></i>
+                            <i class="bi bi-check" *ngIf="editMode.email" (click)="saveWrapper('email')"></i>
+                            <i class="bi bi-x" *ngIf="editMode.email" (click)="cancelEdit('email')"></i>
+                        </p>
+                        <p class="card-text">
+                            Credit card: <span *ngIf="!editMode.creditCard">{{usr.creditCard}}</span>
+                            <input *ngIf="editMode.creditCard" type="text" [(ngModel)]="editCreditCard" (ngModelChange)="creditCardTypeCheck()"/>
+                            <i class="bi bi-pencil" *ngIf="!editMode.creditCard" (click)="toggleEdit('creditCard')"></i>
+                            <i class="bi bi-check" *ngIf="editMode.creditCard" (click)="saveWrapper('creditCard')"></i>
+                            <i class="bi bi-x" *ngIf="editMode.creditCard" (click)="cancelEdit('creditCard')"></i>
+                            <span class="credit-card-icon ms-2">
+                                <i *ngIf="creditCardType === 'visa'" class="fab fa-cc-visa"></i>
+                                <i *ngIf="creditCardType === 'master'" class="fab fa-cc-mastercard"></i>
+                                <i *ngIf="creditCardType === 'diners'" class="fab fa-cc-diners-club"></i>
+                                <i *ngIf="creditCardType === 'unknown'" class="fas fa-question-circle"></i>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

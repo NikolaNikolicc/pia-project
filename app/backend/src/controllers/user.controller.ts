@@ -23,6 +23,18 @@ export class UserController{
         })
     }
 
+    saveProfileUpdate = (req: express.Request, res: express.Response)=> {
+        const user = JSON.parse(req.body.user);
+        UserM.updateOne({username: user.username},
+            {$set: {name: user.name, surname: user.surname, address: user.address, phone: user.phone, email: user.email, creditCard: user.creditCard}}
+        ).then(
+            ok=>res.json({message: "ok"})
+        ).catch(err=>{
+            console.log(err);
+            res.json({message: "error"});
+        })
+    }
+
     constructor(){
         new PhotoController(); // in case first user doesn't want to upload photo we need to create default directory by creating photo controller and its constructor
     }
