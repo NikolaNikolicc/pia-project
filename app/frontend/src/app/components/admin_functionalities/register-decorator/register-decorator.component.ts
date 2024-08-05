@@ -1,24 +1,24 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
 import * as CryptoJS from 'crypto-js';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { NgxCaptchaModule } from 'ngx-captcha';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PhotoService } from 'src/app/services/photo.service';
+import { DecoratorService } from 'src/app/services/decorator.service';
 
 declare var bootstrap: any;
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-register-decorator',
+  templateUrl: './register-decorator.component.html',
+  styleUrls: ['./register-decorator.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegisterDecoratorComponent {
 
   @ViewChild('errorModal') modalError!: ElementRef;
+  @ViewChild('successModal') modalSuccess!: ElementRef;
   error: string = "";
+  success: string = "";
   username: string = "";
   password: string = "";
   hashedPassword: string = "";
@@ -28,29 +28,27 @@ export class RegistrationComponent implements OnInit {
   address: string = "";
   phone: string = "";
   email: string = "";
-  creditCard: string = "";
-  creditCardType: string = "unknown";
   showPassword: boolean = false;
   imagePreview: string = "../../assets/defaultUser.jpg";
   imageBlob!: Blob;
   imageName: string = "";
-  // reCaptcha
-  protected aFormGroup!: FormGroup;
-  siteKey: string = "6LcyjBsqAAAAAFbqUUCAI5YwnK5tZ6kB1WBEBOj5";
+  
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private photoSendService: PhotoService, private router: Router, private decoratorService: DecoratorService) {
 
-  }
-
-  ngOnInit(): void {
-    this.sessionService.sessionID = '0';
-    this.aFormGroup = this.formBuilder.group({
-      recaptcha: ['', Validators.required]
-    });
   }
 
   showErrorModal(){
     const modalNative: HTMLElement = this.modalError.nativeElement;
+      const modal = new bootstrap.Modal(modalNative, {
+        backdrop: 'static', // Prevents closing when clicking outside
+        keyboard: false, // Prevents closing with the escape key
+      });
+      modal.show();
+  }
+
+  showSuccessModal(){
+    const modalNative: HTMLElement = this.modalSuccess.nativeElement;
       const modal = new bootstrap.Modal(modalNative, {
         backdrop: 'static', // Prevents closing when clicking outside
         keyboard: false, // Prevents closing with the escape key
@@ -148,27 +146,6 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  creditCardCheck() {
-    const combinedRegex = /^(?:(300|301|302|303|36|38)\d{12}|(51|52|53|54|55)\d{14}|(4539|4556|4916|4532|4929|4485|4716)\d{12})$/;
-    return combinedRegex.test(this.creditCard);
-  }
-
-  creditCardTypeCheck() {
-    const dinersRegex = /^(?=^\d{0,15}$)(300|301|302|303|36|38)/;
-    const masterCardRegex = /^(?=^\d{0,16}$)(51|52|53|54|55)/;
-    const visaRegex = /^(?=^\d{0,16}$)(4539|4556|4916|4532|4929|4485|4716)/;
-
-    if (dinersRegex.test(this.creditCard)) {
-      this.creditCardType = 'diners';
-    } else if (masterCardRegex.test(this.creditCard)) {
-      this.creditCardType = 'master';
-    } else if (visaRegex.test(this.creditCard)) {
-      this.creditCardType = 'visa';
-    } else {
-      this.creditCardType = 'unknown';
-    }
-  }
-
   emailFormatCheck() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(this.email);
@@ -215,17 +192,6 @@ export class RegistrationComponent implements OnInit {
 
   async registerWrapper() {
     this.error = "";
-
-    if(!this.aFormGroup.valid){
-      this.error = "You need to confirm that you are not robot. (reCaptcha field)";
-    }
-
-    if (!this.creditCardCheck()) {
-      this.error = "Invalid credit card number. The card must be one of the following types: Diners Club (15 digits), MasterCard (16 digits), or Visa (16 digits).";
-    }
-    if (this.creditCard == "") {
-      this.error = "Credit card field is empty.";
-    }
 
     const isEmailUnique = await this.emailUniquenessCheck();
     if (!isEmailUnique) {
@@ -303,28 +269,49 @@ export class RegistrationComponent implements OnInit {
     user.address = this.address;
     user.phone = this.phone;
     user.email = this.email;
-    user.creditCard = this.creditCard;
-    user.userType = 0;
+    user.creditCard = "";
+    user.userType = 2; // decorator code
     user.profilePicture = (this.imagePreview == "../../assets/defaultUser.jpg") ? false : true;
-    user.pendingApproval = 0;
-    user.comment = "Our team is inspecting the data you provided. Please be patient. You will be informed about your registration request via this form. Please try to log in later. Sincerely, Your Vaša Bašta - Vaša Mašta team."
+    user.pendingApproval = 1; // approved
+    user.comment = "All rights reserved.";
 
     this.userService.register(user).subscribe(
       data => {
         if (data.message == "ok") {
           localStorage.setItem("user", JSON.stringify(user));
-          if (user.profilePicture) {
-            this.photoSendService.savePhoto(this.imageBlob, this.imageName, user.username).subscribe(
-              data => {
-                this.router.navigate(["status"]);
+          // save decorator infos (company = "", userId = "this.username")
+          this.decoratorService.saveDecorator(this.username).subscribe(
+            data=>{
+              if(data.message == "ok"){
+                if (user.profilePicture) {
+                  this.photoSendService.savePhoto(this.imageBlob, this.imageName, user.username).subscribe(
+                    data => {
+                      // redirect to admin index
+                      this.success = "You have succesfully added decorator.";
+                      this.showSuccessModal();
+                      this.router.navigate(["admin-index"]);
+                    }
+                  );
+                }else{
+                  // redirect to admin index
+                  this.success = "You have succesfully added decorator.";
+                  this.showSuccessModal();
+                  
+                }
+              }else{
+                this.error = "Something went wrong, please try again."
+                this.showErrorModal();
               }
-            );
-          }else{
-            this.router.navigate(["status"]); // in case user doesn't want to set profile picture
-          }
+            }
+          )
+          
         }
       }
     )
+  }
+
+  goToAdminIndex(){
+    this.router.navigate(["admin-index"]);
   }
 
 }

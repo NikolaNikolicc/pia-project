@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Message } from '../models/message';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoService {
 
-  apiUrl = "http://localhost:4000";
+  apiUrl = "http://localhost:4000/photos";
 
   getUserPhoto(username: string) {
-    return this.http.post<Blob>(`${this.apiUrl}/photos/getUserPhoto`, { username: username }, { responseType: 'blob' as 'json' });
+    return this.http.post<Blob>(`${this.apiUrl}/getUserPhoto`, { username: username }, { responseType: 'blob' as 'json' });
   }
 
   savePhoto(imageBlob: Blob, imageName: string, username: string) {
@@ -20,7 +19,7 @@ export class PhotoService {
     formData.append('imageName', imageName);
     formData.append('username', username);
 
-    return this.http.post<Message>(`${this.apiUrl}/photos/savePhoto`, formData);
+    return this.http.post<Message>(`${this.apiUrl}/savePhoto`, formData);
   }
 
   constructor(private http: HttpClient) { }

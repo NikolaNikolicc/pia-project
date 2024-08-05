@@ -1,0 +1,113 @@
+<div class="flex-container d-flex overflow-auto justify-content-center">
+
+    <div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{this.error}}
+                </div>
+                <div class="modal-footer"
+                    *ngIf="error == 'There is no enough unemployed decorators in system, please add more.'">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal"
+                        (click)="goToAddDecorators()">Add new decorators</button>
+                </div>
+                <div class="modal-footer"
+                    *ngIf="error != 'There is no enough unemployed decorators in system, please add more.'">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="successModal" #successModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Success</h3>
+                </div>
+                <div class="modal-body text-start">
+                    {{this.success}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal"
+                        (click)="goToAdminIndex()">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <h3 class="my-4 text-center">
+            <h3 class="my-4 text-center">Register new company</h3>
+        </h3>
+        <br>
+        <form (ngSubmit)="registerCompany()">
+            <div class="mb-3">
+                <label for="companyName" class="form-label">Company Name</label>
+                <input type="text" id="companyName" [(ngModel)]="companyName" name="companyName" class="form-control"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" id="address" [(ngModel)]="address" name="address" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="map" class="form-label">Map Preview</label>
+                <div class="ratio ratio-16x9">
+                  <iframe id="map" [src]="mapUrl" class="border" allowfullscreen></iframe>
+                </div>
+              </div>
+            <div class="mb-3">
+                <label for="contactPerson" class="form-label">Contact Person</label>
+                <input type="text" id="contactPerson" [(ngModel)]="contactPerson" name="contactPerson"
+                    class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="vacationPeriodStart" class="form-label">Vacation Period Start</label>
+                <input type="date" id="vacationPeriodStart" [(ngModel)]="vacationPeriodStart" name="vacationPeriodStart"
+                    class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="vacationPeriodEnd" class="form-label">Vacation Period End</label>
+                <input type="date" id="vacationPeriodEnd" [min]="getMinVacationEndDate()"
+                    [(ngModel)]="vacationPeriodEnd" name="vacationPeriodEnd" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="decorators" class="form-label">Decorators: &nbsp;</label>
+                <div *ngFor="let decorator of chosenDecorators; let i = index" class="input-group mb-2">
+                    <button type="button" class="btn btn-danger" (click)="removeDecorator(i)"
+                        [disabled]="chosenDecorators.length <= 2">Remove</button>
+                    <select [(ngModel)]="chosenDecorators[i]" name="decorator{{i}}" class="form-control" required>
+                        <option *ngFor="let dec of freeDecorators" [ngValue]="dec" [disabled]="checkValue(dec.userId)">
+                            {{ dec.userId }} <!-- Assuming decorator has a 'name' property -->
+                        </option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary orng-btn" (click)="addDecorator()">Add Decorator</button>
+            </div>
+            <div class="mb-3">
+                <label for="services" class="form-label">Services: &nbsp;</label>
+                <div *ngFor="let service of services; let i = index" class="input-group mb-2">
+                    <input type="text" [(ngModel)]="service.name" name="serviceName{{i}}" class="form-control"
+                        placeholder="Service Name" required>
+                    <input type="number" [(ngModel)]="service.price" name="servicePrice{{i}}" class="form-control"
+                        placeholder="Price" required>
+                    <button type="button" class="btn btn-danger" (click)="removeService(i)">Remove</button>
+                </div>
+                <button type="button" class="btn btn-primary orng-btn" (click)="addService()">Add Service</button>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success orng-btn">Register Company</button>
+            </div>
+            <br><br><br>
+        </form>
+
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>

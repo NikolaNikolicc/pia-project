@@ -1,8 +1,6 @@
 import express from 'express'
 import UserM from '../models/user'
 import { PhotoController } from './photo.controller';
-import { Request, Response } from 'express-serve-static-core';
-import { ParsedQs } from 'qs';
 
 export class UserController{
     getAllPendingUsers = (req: express.Request, res: express.Response)=> {

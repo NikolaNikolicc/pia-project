@@ -8,42 +8,41 @@ import { Message } from '../models/message';
 })
 export class UserService {
   
-  apiUrl: string = "http://localhost:4000";
+  apiUrl: string = "http://localhost:4000/users";
   
   saveProfileUpdate(tmpUser: User) {
-    return this.http.post<Message>(`${this.apiUrl}/users/saveProfileUpdate`, {user: JSON.stringify(tmpUser)});
+    return this.http.post<Message>(`${this.apiUrl}/saveProfileUpdate`, {user: JSON.stringify(tmpUser)});
   }
   updateUserStatus(tmpUser: User) {
-    return this.http.post<Message>(`${this.apiUrl}/users/updateUserStatus`, {user: JSON.stringify(tmpUser)});
+    return this.http.post<Message>(`${this.apiUrl}/updateUserStatus`, {user: JSON.stringify(tmpUser)});
   }
   getAllPendingUsers(){
-    return this.http.post<Message>(`${this.apiUrl}/users/getAllPendingUsers`, null);
+    return this.http.post<Message>(`${this.apiUrl}/getAllPendingUsers`, null);
   }
   changePassword(user: User) {
-    return this.http.post<Message>(`${this.apiUrl}/users/changePassword`, user);
+    return this.http.post<Message>(`${this.apiUrl}/changePassword`, user);
   }
   login(user: User) {
-    return this.http.post<Message>(`${this.apiUrl}/users/login`, user);
+    return this.http.post<Message>(`${this.apiUrl}/login`, user);
   }
   getUserByUsername(username: string) {
     const data ={
       username: username,
     }
-    return this.http.post<Message>(`${this.apiUrl}/users/getUserByUsername`,
+    return this.http.post<Message>(`${this.apiUrl}/getUserByUsername`,
       data);
   }
   getUserByEmail(email: string) {
     const data ={
       email: email,
     }
-    return this.http.post<Message>(`${this.apiUrl}/users/getUserByEmail`,
+    return this.http.post<Message>(`${this.apiUrl}/getUserByEmail`,
       data);
+  }
+  register(user: User){
+    return this.http.post<Message>(`${this.apiUrl}/saveUser`,
+      user);
   }
 
   constructor(private http: HttpClient) { }
-
-  register(user: User){
-    return this.http.post<Message>(`${this.apiUrl}/users/saveUser`,
-      user);
-  }
 }

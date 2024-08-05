@@ -18,6 +18,9 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { OwnerProfilePreviewComponent } from './components/owner_functionalities/owner-profile-preview/owner-profile-preview.component';
 import { RegistrationRequestsComponent } from './components/admin_functionalities/registration-requests/registration-requests.component';
 import { CompaniesComponent } from './components/owner_functionalities/companies/companies.component';
+import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
+import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
+import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { CompaniesComponent } from './components/owner_functionalities/companies
     ChangePasswordComponent,
     OwnerProfilePreviewComponent,
     RegistrationRequestsComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    RegisterDecoratorComponent,
+    AssignCompanyToDecoratorComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,8 @@ import { UserIndexComponent } from './components/user-index/user-index.component
 import { ChangePasswordComponent } from './components/login_and_registration/change-password/change-password.component';
 import { OwnerProfilePreviewComponent } from './components/owner_functionalities/owner-profile-preview/owner-profile-preview.component';
 import { RegistrationRequestsComponent } from './components/admin_functionalities/registration-requests/registration-requests.component';
+import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
+import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path: 'change-password', component: ChangePasswordComponent},
   {path: 'owner-profile-preview', component: OwnerProfilePreviewComponent},
   {path: 'list-registration-requests', component: RegistrationRequestsComponent},
+  {path: 'register-decorator', component: RegisterDecoratorComponent},
+  {path: 'register-company', component: RegisterCompanyComponent},
 ];
 
 @NgModule({
