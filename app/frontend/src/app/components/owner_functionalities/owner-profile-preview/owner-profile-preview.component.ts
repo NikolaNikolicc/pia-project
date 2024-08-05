@@ -173,13 +173,13 @@ export class OwnerProfilePreviewComponent implements OnInit{
     }
 
     if(field == "name"){
-      if(this.editAddress == ""){
+      if(this.editName == ""){
         this.error = "Name field is empty.";
       }
     }
 
     if(field == "surname"){
-      if(this.editAddress == ""){
+      if(this.editSurname == ""){
         this.error = "Surname field is empty.";
       }
     }
