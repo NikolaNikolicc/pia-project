@@ -13,4 +13,5 @@ userRouter.route('/login').post((req, res) => new user_controller_1.UserControll
 userRouter.route('/changePassword').post((req, res) => new user_controller_1.UserController().changePassword(req, res));
 userRouter.route('/getAllPendingUsers').post((req, res) => new user_controller_1.UserController().getAllPendingUsers(req, res));
 userRouter.route('/updateUserStatus').post((req, res) => new user_controller_1.UserController().updateUserStatus(req, res));
+userRouter.route('/saveProfileUpdate').post((req, res) => new user_controller_1.UserController().saveProfileUpdate(req, res));
 exports.default = userRouter;

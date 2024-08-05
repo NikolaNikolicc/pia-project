@@ -119,11 +119,13 @@ export class RegistrationComponent implements OnInit {
         }
       }
 
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imagePreview = e.target.result;
-      };
-      reader.readAsDataURL(blob);
+      this.imagePreview = URL.createObjectURL(this.imageBlob);
+
+      // const reader = new FileReader();
+      // reader.onload = (e: any) => {
+      //   this.imagePreview = e.target.result;
+      // };
+      // reader.readAsDataURL(blob);
     }
   }
 

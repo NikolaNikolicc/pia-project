@@ -18,6 +18,13 @@ class UserController {
                 res.json({ message: "error" });
             });
         };
+        this.saveProfileUpdate = (req, res) => {
+            const user = JSON.parse(req.body.user);
+            user_1.default.updateOne({ username: user.username }, { $set: { name: user.name, surname: user.surname, address: user.address, phone: user.phone, email: user.email, creditCard: user.creditCard } }).then(ok => res.json({ message: "ok" })).catch(err => {
+                console.log(err);
+                res.json({ message: "error" });
+            });
+        };
         this.changePassword = (req, res) => {
             let user = req.body;
             user_1.default.updateOne({ username: user.username }, { $set: { password: user.password } }).then(ok => res.json({ message: "ok" })).catch(err => {

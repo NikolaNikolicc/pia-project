@@ -17,6 +17,7 @@ export class OwnerProfilePreviewComponent implements OnInit{
   usr: User = new User();
   error: string = "";
   imageBlob!: Blob;
+  imageName: string = "";
   imageUrl!: SafeUrl;
   // credit card validation 
   creditCardType: string = "";
@@ -220,6 +221,82 @@ export class OwnerProfilePreviewComponent implements OnInit{
 
   capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  triggerFileInputClick() {
+    let fileInput = document.getElementById("photo-input") as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+
+  onFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files == null) return;
+    if (!input.files.length) return;
+
+    const files = input.files;
+
+    const allowedExtensions = [
+      'jpg',
+      'jpeg',
+      'png',
+    ];
+
+    for (let i = 0; i < files.length; i++) {
+
+      const extension = files[i].name.split('.').pop()?.toLocaleLowerCase();
+      if (!extension) continue;
+      if (!allowedExtensions.includes(extension!)) {
+        this.error = "Choosen photo format is not supported, please try with other formats (ex. jpg, png)";
+        const modalNative: HTMLElement = this.modalError.nativeElement;
+        const modal = new bootstrap.Modal(modalNative, {
+          backdrop: 'static', // Prevents closing when clicking outside
+          keyboard: false, // Prevents closing with the escape key
+        });
+        modal.show();
+        return;
+      }
+
+      // this.imageName = "profile_picture." + extension;
+      this.imageName = extension;
+      const blob = new Blob([files[i]], { type: files[i].type });
+      this.imageBlob = blob;
+
+
+      const image = new Image();
+      image.src = URL.createObjectURL(this.imageBlob);
+
+      image.onload = () => {
+        const width = image.naturalWidth;
+        const height = image.naturalHeight;
+
+        if (width < 100 || height < 100 || width > 300 || height > 300) {
+          this.error = "Image dimensions must be within 100x100px and 300x300px";
+          const modalNative: HTMLElement = this.modalError.nativeElement;
+          const modal = new bootstrap.Modal(modalNative, {
+            backdrop: 'static', // Prevents closing when clicking outside
+            keyboard: false, // Prevents closing with the escape key
+          });
+          modal.show();
+          this.imageUrl = "../../assets/defaultUser.jpg";
+          return;
+        }
+      }
+
+      this.usr.imgPath = URL.createObjectURL(this.imageBlob);
+
+      this.photoService.savePhoto(this.imageBlob, this.imageName, this.usr.username).subscribe(
+        data=>{
+          if(data.message == "ok"){
+
+          }else{
+            this.error = "Something went wrong, please update photo once again.";
+            this.showErrorModal();
+          }
+        }
+      )
+    }
   }
 
 }
