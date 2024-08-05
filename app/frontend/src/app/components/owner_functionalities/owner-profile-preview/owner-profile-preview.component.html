@@ -33,61 +33,58 @@
         <h3 class="my-4 text-center">Owner profile preview</h3>
     </div>
     <div class="row justify-content-center">
-        <div class="card" style="width: 100%;" id="{{usr.username}}">
-            <div class="row no-gutters">
-                <div class="col-4 d-flex align-items-center justify-content-center flex-column" *ngIf="usr.imgPath != 'default'">
-                    <img src="{{usr.imgPath}}" class="card-img img-fluid" alt="User Picture"
-                        style="width: 100px; height: 100px;">
+        <div class="card w-100" id="{{usr.username}}">
+            <div class="row g-0">
+                <div class="col-12 col-sm-4 d-flex align-items-center justify-content-center flex-column" *ngIf="usr.imgPath != 'default'">
+                    <img src="{{usr.imgPath}}" class="card-img img-fluid" alt="User Picture" style="width: 100px; height: 100px;">
                     <div class="mt-2">
                         <!-- button -->
-                        <button type="button" class="btn btn-danger" id="profile-picture"
-                            (click)="triggerFileInputClick()">
+                        <button type="button" class="btn btn-danger" id="profile-picture" (click)="triggerFileInputClick()">
                             <span>CHANGE PHOTO</span>
                         </button>
                     </div>
                     <!-- hidden photo input -->
                     <input type="file" name="" id="photo-input" hidden (change)="onFilesSelected($event)">
                 </div>
-                <div class="col-8">
+                <div class="col-12 col-sm-8">
                     <div class="card-body">
                         <h5 class="card-title">
                             Name: <span *ngIf="!editMode.name">{{usr.name}}</span>
-                            <input *ngIf="editMode.name" type="text" [(ngModel)]="editName" />
+                            <input *ngIf="editMode.name" type="text" [(ngModel)]="editName" class="form-control" />
                             <i class="bi bi-pencil" *ngIf="!editMode.name" (click)="toggleEdit('name')"></i>
                             <i class="bi bi-check" *ngIf="editMode.name" (click)="saveWrapper('name')"></i>
                             <i class="bi bi-x" *ngIf="editMode.name" (click)="cancelEdit('name')"></i>
-
+                            <br>
                             Surname: <span *ngIf="!editMode.surname">{{usr.surname}}</span>
-                            <input *ngIf="editMode.surname" type="text" [(ngModel)]="editSurname" />
+                            <input *ngIf="editMode.surname" type="text" [(ngModel)]="editSurname" class="form-control" />
                             <i class="bi bi-pencil" *ngIf="!editMode.surname" (click)="toggleEdit('surname')"></i>
                             <i class="bi bi-check" *ngIf="editMode.surname" (click)="saveWrapper('surname')"></i>
                             <i class="bi bi-x" *ngIf="editMode.surname" (click)="cancelEdit('surname')"></i>
                         </h5>
                         <p class="card-text">
                             Address: <span *ngIf="!editMode.address">{{usr.address}}</span>
-                            <input *ngIf="editMode.address" type="text" [(ngModel)]="editAddress" />
+                            <input *ngIf="editMode.address" type="text" [(ngModel)]="editAddress" class="form-control" />
                             <i class="bi bi-pencil" *ngIf="!editMode.address" (click)="toggleEdit('address')"></i>
                             <i class="bi bi-check" *ngIf="editMode.address" (click)="saveWrapper('address')"></i>
                             <i class="bi bi-x" *ngIf="editMode.address" (click)="cancelEdit('address')"></i>
                         </p>
                         <p class="card-text">
                             Phone: <span *ngIf="!editMode.phone">{{usr.phone}}</span>
-                            <input *ngIf="editMode.phone" type="text" [(ngModel)]="editPhone" />
+                            <input *ngIf="editMode.phone" type="text" [(ngModel)]="editPhone" class="form-control" />
                             <i class="bi bi-pencil" *ngIf="!editMode.phone" (click)="toggleEdit('phone')"></i>
                             <i class="bi bi-check" *ngIf="editMode.phone" (click)="saveWrapper('phone')"></i>
                             <i class="bi bi-x" *ngIf="editMode.phone" (click)="cancelEdit('phone')"></i>
                         </p>
                         <p class="card-text">
                             Email: <span *ngIf="!editMode.email">{{usr.email}}</span>
-                            <input *ngIf="editMode.email" type="text" [(ngModel)]="editEmail" />
+                            <input *ngIf="editMode.email" type="text" [(ngModel)]="editEmail" class="form-control" />
                             <i class="bi bi-pencil" *ngIf="!editMode.email" (click)="toggleEdit('email')"></i>
                             <i class="bi bi-check" *ngIf="editMode.email" (click)="saveWrapper('email')"></i>
                             <i class="bi bi-x" *ngIf="editMode.email" (click)="cancelEdit('email')"></i>
                         </p>
                         <p class="card-text">
                             Credit card: <span *ngIf="!editMode.creditCard">{{usr.creditCard}}</span>
-                            <input *ngIf="editMode.creditCard" type="text" [(ngModel)]="editCreditCard"
-                                (ngModelChange)="creditCardTypeCheck()" />
+                            <input *ngIf="editMode.creditCard" type="text" [(ngModel)]="editCreditCard" class="form-control" (ngModelChange)="creditCardTypeCheck()" />
                             <i class="bi bi-pencil" *ngIf="!editMode.creditCard" (click)="toggleEdit('creditCard')"></i>
                             <i class="bi bi-check" *ngIf="editMode.creditCard" (click)="saveWrapper('creditCard')"></i>
                             <i class="bi bi-x" *ngIf="editMode.creditCard" (click)="cancelEdit('creditCard')"></i>
