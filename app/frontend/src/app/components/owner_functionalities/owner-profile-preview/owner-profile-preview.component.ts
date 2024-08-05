@@ -14,6 +14,7 @@ declare var bootstrap: any;
 export class OwnerProfilePreviewComponent implements OnInit{
 
   @ViewChild('errorModal') modalError!: ElementRef;
+  @ViewChild('successModal') modalSuccess!: ElementRef;
   usr: User = new User();
   error: string = "";
   imageBlob!: Blob;
@@ -21,6 +22,7 @@ export class OwnerProfilePreviewComponent implements OnInit{
   imageUrl!: SafeUrl;
   // credit card validation 
   creditCardType: string = "";
+  success: string = "";
 
   editMode = { 
     name: false,
@@ -44,6 +46,15 @@ export class OwnerProfilePreviewComponent implements OnInit{
 
   showErrorModal(){
     const modalNative: HTMLElement = this.modalError.nativeElement;
+      const modal = new bootstrap.Modal(modalNative, {
+        backdrop: 'static', // Prevents closing when clicking outside
+        keyboard: false, // Prevents closing with the escape key
+      });
+      modal.show();
+  }
+
+  showSuccessModal(){
+    const modalNative: HTMLElement = this.modalSuccess.nativeElement;
       const modal = new bootstrap.Modal(modalNative, {
         backdrop: 'static', // Prevents closing when clicking outside
         keyboard: false, // Prevents closing with the escape key
@@ -200,7 +211,8 @@ export class OwnerProfilePreviewComponent implements OnInit{
     this.userService.saveProfileUpdate(this.usr).subscribe(
       data=>{
         if(data.message == "ok"){
-
+          this.success = "You succesfully updated your profile's " + field;
+          this.showSuccessModal();
         }else{
           this.error = "Something went wrong, please try update once again.";
           this.showErrorModal();
@@ -289,7 +301,8 @@ export class OwnerProfilePreviewComponent implements OnInit{
       this.photoService.savePhoto(this.imageBlob, this.imageName, this.usr.username).subscribe(
         data=>{
           if(data.message == "ok"){
-
+            this.success = "You succesfully updated your profile photo.";
+            this.showSuccessModal();
           }else{
             this.error = "Something went wrong, please update photo once again.";
             this.showErrorModal();
