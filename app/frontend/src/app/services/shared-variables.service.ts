@@ -4,9 +4,13 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MapAddressService {
+export class SharedVariablesService {
+
+  sessionID: string = "";
   private addressSource = new BehaviorSubject<string>(''); // Default value can be empty or any initial address
   address$ = this.addressSource.asObservable();
+
+  constructor() { }
 
   get address(): string {
     return this.addressSource.value;
@@ -15,4 +19,5 @@ export class MapAddressService {
   set address(newAddress: string) {
     this.addressSource.next(newAddress);
   }
+
 }

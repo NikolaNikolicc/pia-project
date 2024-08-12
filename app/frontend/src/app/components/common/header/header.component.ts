@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, public sessionService: SessionIDsharedService){}
+  constructor(private router: Router, public sharedVariablesService: SharedVariablesService){}
   ngOnInit(): void {
 
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
   selector: 'app-account-status',
@@ -12,10 +12,10 @@ export class AccountStatusComponent implements OnInit{
 
   user: User = new User();
 
-  constructor(private router: Router, public sessionService: SessionIDsharedService){}
+  constructor(private router: Router, public sharedVariablesService: SharedVariablesService){}
 
   ngOnInit(): void {
-    this.sessionService.sessionID = "0";
+    this.sharedVariablesService.sessionID = "0";
     let u = localStorage.getItem("user");
     if(u != null){
       this.user = JSON.parse(u);

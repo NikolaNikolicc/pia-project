@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
 import { UserService } from 'src/app/services/user.service';
 import * as CryptoJS from 'crypto-js';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 declare var bootstrap: any;
 
@@ -21,11 +21,11 @@ export class AdminLoginComponent implements OnInit{
   hashedPassword: string = "";
   showPassword: boolean = false;
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private router: Router){
+  constructor(public sharedVariablesService: SharedVariablesService, private userService: UserService, private router: Router){
 
   }
   ngOnInit(): void {
-    this.sessionService.sessionID = '-1';
+    this.sharedVariablesService.sessionID = '-1';
   }
 
   togglePasswordVisibility() {

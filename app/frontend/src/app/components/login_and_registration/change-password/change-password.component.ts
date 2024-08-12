@@ -1,9 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
 import { UserService } from 'src/app/services/user.service';
 import * as CryptoJS from 'crypto-js';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 declare var bootstrap: any;
 
@@ -27,7 +27,7 @@ export class ChangePasswordComponent {
   user: User = new User();
   message: string = "You have succesfully changed password!";
 
-  constructor(private router: Router, private userService: UserService, private sessionService: SessionIDsharedService){
+  constructor(private router: Router, private userService: UserService, public sharedVariablesService: SharedVariablesService){
 
   }
 
@@ -60,7 +60,7 @@ export class ChangePasswordComponent {
   }
 
   backToLogin(){
-    if(this.sessionService.sessionID == '0'){
+    if(this.sharedVariablesService.sessionID == '0'){
       this.router.navigate(["login"])
     }else{
       this.router.navigate(["admin"])
@@ -112,7 +112,7 @@ export class ChangePasswordComponent {
     this.user = new User();
     this.user.username = this.username;
     this.user.password = this.hashedPassword;
-    this.user.userType = (this.sessionService.sessionID == "0")? 0 : 1;
+    this.user.userType = (this.sharedVariablesService.sessionID == "0")? 0 : 1;
     this.userService.login(this.user).subscribe(
       data=>{
         if(data.message != "User with this username has not been found."){

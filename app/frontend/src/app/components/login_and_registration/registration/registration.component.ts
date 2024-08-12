@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
 import * as CryptoJS from 'crypto-js';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -7,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PhotoService } from 'src/app/services/photo.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 declare var bootstrap: any;
 
@@ -38,12 +38,12 @@ export class RegistrationComponent implements OnInit {
   protected aFormGroup!: FormGroup;
   siteKey: string = "6LcyjBsqAAAAAFbqUUCAI5YwnK5tZ6kB1WBEBOj5";
 
-  constructor(public sessionService: SessionIDsharedService, private userService: UserService, private photoSendService: PhotoService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(public sharedVariablesService: SharedVariablesService, private userService: UserService, private photoSendService: PhotoService, private router: Router, private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit(): void {
-    this.sessionService.sessionID = '0';
+    this.sharedVariablesService.sessionID = '0';
     this.aFormGroup = this.formBuilder.group({
       recaptcha: ['', Validators.required]
     });

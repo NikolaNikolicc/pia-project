@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Decorator } from 'src/app/models/decorator';
 import { Service } from 'src/app/models/service';
 import { DecoratorService } from 'src/app/services/decorator.service';
-import { MapAddressService } from 'src/app/services/map-address.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 declare var bootstrap: any;
 
@@ -29,7 +29,7 @@ export class RegisterCompanyComponent implements OnInit{
   freeDecorators: Decorator[] = [];
   chosenDecorators: Decorator[] = [];
 
-  constructor(private router: Router, private decoratorService: DecoratorService, public mapAddressService: MapAddressService) { }
+  constructor(private router: Router, private decoratorService: DecoratorService, public sharedVariablesService: SharedVariablesService) { }
 
   ngOnInit(): void {
     this.decoratorService.getAllUnemployedDecorators().subscribe(
@@ -64,7 +64,7 @@ export class RegisterCompanyComponent implements OnInit{
   }
 
   changeAddress(){
-    this.mapAddressService.address = this.address;
+    this.sharedVariablesService.address = this.address;
   }
 
   goToAddDecorators(){

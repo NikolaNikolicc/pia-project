@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { MapAddressService } from 'src/app/services/map-address.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
   selector: 'app-map-preview',
@@ -13,10 +13,10 @@ export class MapPreviewComponent implements OnInit{
   mapUrl: SafeUrl = "";
   private addressSubscription!: Subscription;
 
-  constructor(private mapAddressService: MapAddressService, private sanitizer: DomSanitizer) { }
+  constructor(public sharedVariablesService: SharedVariablesService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.addressSubscription = this.mapAddressService.address$.subscribe(newAddress => {
+    this.addressSubscription = this.sharedVariablesService.address$.subscribe(newAddress => {
       this.initialize(newAddress);
     });
   }

@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
 import * as CryptoJS from 'crypto-js';
 import { User } from 'src/app/models/user';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 import { UserService } from 'src/app/services/user.service';
 
 declare var bootstrap: any;
@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit{
   hashedPassword: string = "";
   showPassword: boolean = false;
 
-  constructor(private router: Router, public sessionService: SessionIDsharedService, private userService: UserService){
+  constructor(private router: Router, public sharedVariablesService: SharedVariablesService, private userService: UserService){
 
   }
 
   ngOnInit(): void {
-    this.sessionService.sessionID = '0';
+    this.sharedVariablesService.sessionID = '0';
   }
 
   showErrorModal(){

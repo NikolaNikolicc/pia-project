@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionIDsharedService } from 'src/app/services/session-idshared.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
   selector: 'app-index',
@@ -8,11 +8,11 @@ import { SessionIDsharedService } from 'src/app/services/session-idshared.servic
 })
 export class IndexComponent implements OnInit{
 
-  constructor(public sessionService: SessionIDsharedService){
+  constructor(public sharedVariablesService: SharedVariablesService){
 
   }
   ngOnInit(): void {
-    this.sessionService.sessionID = '0';
+    this.sharedVariablesService.sessionID = '0';
   }
 
 }
