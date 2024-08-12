@@ -84,6 +84,7 @@ export class RegisterCompanyComponent implements OnInit{
   }
 
   addDecorator() {
+    if(this.chosenDecorators.length == this.freeDecorators.length)return;
     const newDecorator = new Decorator();
     this.chosenDecorators.push(newDecorator);
   }

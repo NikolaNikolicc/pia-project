@@ -85,7 +85,7 @@
                         </option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-primary orng-btn" (click)="addDecorator()">Add Decorator</button>
+                <button type="button" class="btn btn-primary orng-btn" (click)="addDecorator()" [disabled]="chosenDecorators.length == freeDecorators.length">Add Decorator</button>
             </div>
             <div class="mb-3">
                 <label for="services" class="form-label">Services: &nbsp;</label>
@@ -98,8 +98,9 @@
                 </div>
                 <button type="button" class="btn btn-primary orng-btn" (click)="addService()">Add Service</button>
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-success orng-btn">Register Company</button>
+            <div class="text-center d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary orng-btn flex-fill mx-1" (click)="goToAdminIndex()">Back to Admin</button>
+                <button type="submit" class="btn btn-success orng-btn flex-fill mx-1">Register Company</button>
             </div>
             <br><br><br>
         </form>
