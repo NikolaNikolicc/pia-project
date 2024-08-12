@@ -10,4 +10,4 @@ const decoratorSchema = new mongoose_1.default.Schema({
 }, {
     versionKey: false
 });
-exports.default = mongoose_1.default.model("DecoratorModel", decoratorSchema, 'decorators');
+exports.default = mongoose_1.default.model("DecoratorModel", decoratorSchema, 'decorators'); // Default export for the model

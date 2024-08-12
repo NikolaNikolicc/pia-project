@@ -9,4 +9,4 @@ const decoratorSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.model("DecoratorModel", decoratorSchema, 'decorators');
+export default mongoose.model("DecoratorModel", decoratorSchema, 'decorators'); // Default export for the model

@@ -3,7 +3,8 @@ import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/models/company';
 import { Decorator } from 'src/app/models/decorator';
-import { Service } from 'src/app/models/service';
+import { Service } from 'src/app/models/helper/service';
+import { CompanyService } from 'src/app/services/company.service';
 import { DecoratorService } from 'src/app/services/decorator.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
@@ -31,7 +32,7 @@ export class RegisterCompanyComponent implements OnInit{
   freeDecorators: Decorator[] = [];
   chosenDecorators: Decorator[] = [];
 
-  constructor(private router: Router, private decoratorService: DecoratorService, public sharedVariablesService: SharedVariablesService) { }
+  constructor(private router: Router, private decoratorService: DecoratorService, public sharedVariablesService: SharedVariablesService, private companyService: CompanyService) { }
 
   ngOnInit(): void {
     this.decoratorService.getAllUnemployedDecorators().subscribe(
@@ -130,6 +131,9 @@ export class RegisterCompanyComponent implements OnInit{
       if(decorator.userId == ""){
         this.error = "Decorator field is empty.";
       }
+      if(decorator.companyId == ""){
+        decorator.companyId = this.companyName;
+      }
     });
     
     if(this.chosenDecorators.length < 2){
@@ -176,9 +180,20 @@ export class RegisterCompanyComponent implements OnInit{
     company.contactPerson.phone = this.phone;
     company.vacationPeriodStart = new Date(this.vacationPeriodStart);
     company.vacationPeriodEnd = new Date(this.vacationPeriodEnd);
-    
-    this.success = "Company registered successfully!";
-    // this.showSuccessModal();
+    company.services = this.services;
+    company.decorators = this.chosenDecorators;
+
+    this.companyService.saveCompany(company).subscribe(
+      data=>{
+        if(data.message == "ok"){
+          this.success = "Company registered successfully!";
+          this.showSuccessModal();
+        }else{
+          this.error = "Something went wrong, please try again.";
+          this.showErrorModal();
+        }
+      }
+    )
   }
 
 }

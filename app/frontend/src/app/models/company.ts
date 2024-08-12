@@ -1,11 +1,10 @@
-import { contactPerson } from "./contact-person";
+import { contactPerson } from "./helper/contact-person";
 import { Decorator } from "./decorator";
-import { Service } from "./service";
+import { Service } from "./helper/service";
 
 export class Company{
     name: string = "";
     address: string = "";
-    location: string = "";
     contactPerson: contactPerson = new contactPerson();
     vacationPeriodStart: Date = new Date();
     vacationPeriodEnd: Date = new Date();
