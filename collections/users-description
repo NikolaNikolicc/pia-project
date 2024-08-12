@@ -20,7 +20,6 @@ companies: {
     "name": "string",
     "address": "string",
     "location": "string",
-    "phone": "string",
     "services": [
         {
             "name": "string",
@@ -29,8 +28,7 @@ companies: {
     ],
     "contactPerson": {
         "name": "string",
-        "phone": "string",
-        "email": "string"
+        "phone": "string"
     },
     "annualLeavePeriod": {
         "startDate": "Date",

@@ -50,15 +50,9 @@ Uputstvo za preuzimanje:
 Uputstvo za preuzimanje:
 	1) npm i ngx-captcha
 ==========================================================================================================================
-6) mape
+6) 
 ==========================================================================================================================
 Uputstvo za preuzimanje:
-	1) npm install @types/leaflet
-	2) In your angular.json file, add the Leaflet CSS to the styles array:
-	"styles": [
-	  "node_modules/leaflet/dist/leaflet.css",
-	  "src/styles.css"
-	]
 
 
 

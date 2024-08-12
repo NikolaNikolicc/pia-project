@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Company } from 'src/app/models/company';
 import { Decorator } from 'src/app/models/decorator';
 import { Service } from 'src/app/models/service';
 import { DecoratorService } from 'src/app/services/decorator.service';
@@ -22,9 +23,10 @@ export class RegisterCompanyComponent implements OnInit{
   companyName: string = '';
   address: string = '';
   mapLocation: string = '';
-  contactPerson: string = '';
+  contactPersonName: string = '';
   vacationPeriodStart: string = '';
   vacationPeriodEnd: string = '';
+  phone: string = '';
   services: Service[] = [];
   freeDecorators: Decorator[] = [];
   chosenDecorators: Decorator[] = [];
@@ -107,14 +109,76 @@ export class RegisterCompanyComponent implements OnInit{
     return this.vacationPeriodStart ? this.vacationPeriodStart : '';
   }
 
-  registerCompany() {
-    if (this.companyName && this.address && this.mapLocation && this.contactPerson && this.chosenDecorators.length >= 2) {
-      this.success = "Company registered successfully!";
-      this.showSuccessModal();
-    } else {
-      this.error = "Please fill in all required fields and add at least two decorators.";
-      this.showErrorModal();
+  validatePhone(phone: string): boolean {
+    const phoneRegex = /^[0-9+\-\/\s]*$/;
+    return phoneRegex.test(phone);
+  }
+
+  registerCompanyWrapper() {
+    this.error = "";
+
+    this.services.forEach(service => {
+      if(service.price <= 0){
+        this.error = "Service price field must be greater than 0.";
+      }
+      if(service.name == ""){
+        this.error = "Service name field is empty, fill it or delete that service.";
+      }
+    });
+    
+    this.chosenDecorators.forEach(decorator => {
+      if(decorator.userId == ""){
+        this.error = "Decorator field is empty.";
+      }
+    });
+    
+    if(this.chosenDecorators.length < 2){
+      this.error = "At least two Decorators must work at company."
     }
+    if(this.vacationPeriodEnd == ""){
+      this.error = "Vacation end is not chosen.";
+    }
+    if(this.vacationPeriodStart == ""){
+      this.error = "Vacation start is not chosen.";
+    }
+    if(!this.validatePhone(this.phone)){
+      this.error = "Phone number can only contain digits and the following special symbols: \\ - / and space"
+    }
+    if(this.phone == ""){
+      this.error = "Contact person phone field is empty.";
+    }
+    if(this.contactPersonName == ""){
+      this.error = "Contact person field is empty.";
+    }
+    if(this.address == ""){
+      this.error = "Address field is empty.";
+    }
+    // const isUsernameUnique = await this.usernameUniquenessCheck();
+    // if (!isUsernameUnique) {
+    //   this.error = "This username has already been used. Please try with another one.";
+    // }
+    if(this.companyName == ""){
+      this.error = "Company name field is empty.";
+    }
+    if(this.error != ""){
+      this.showErrorModal();
+      return;
+    }
+
+    this.registerCompany();
+  }
+
+  registerCompany(){
+    let company = new Company();
+    company.name = this.companyName;
+    company.address = this.address;
+    company.contactPerson.name = this.contactPersonName;
+    company.contactPerson.phone = this.phone;
+    company.vacationPeriodStart = new Date(this.vacationPeriodStart);
+    company.vacationPeriodEnd = new Date(this.vacationPeriodEnd);
+    
+    this.success = "Company registered successfully!";
+    // this.showSuccessModal();
   }
 
 }
