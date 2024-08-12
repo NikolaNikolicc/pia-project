@@ -99,6 +99,10 @@ export class RegisterCompanyComponent implements OnInit{
     }
   }
 
+  getMaxVacationStartDate(): string {
+    return this.vacationPeriodEnd ? this.vacationPeriodEnd : '';
+  }
+
   getMinVacationEndDate(): string {
     return this.vacationPeriodStart ? this.vacationPeriodStart : '';
   }

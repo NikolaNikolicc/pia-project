@@ -66,7 +66,7 @@
             </div>
             <div class="mb-3">
                 <label for="vacationPeriodStart" class="form-label">Vacation Period Start</label>
-                <input type="date" id="vacationPeriodStart" [(ngModel)]="vacationPeriodStart" name="vacationPeriodStart"
+                <input type="date" id="vacationPeriodStart" [max]="getMaxVacationStartDate()" [(ngModel)]="vacationPeriodStart" name="vacationPeriodStart"
                     class="form-control">
             </div>
             <div class="mb-3">
