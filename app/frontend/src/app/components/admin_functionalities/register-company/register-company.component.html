@@ -81,7 +81,7 @@
                         [disabled]="chosenDecorators.length <= 2">Remove</button>
                     <select [(ngModel)]="chosenDecorators[i]" name="decorator{{i}}" class="form-control" required>
                         <option *ngFor="let dec of freeDecorators" [ngValue]="dec" [disabled]="checkValue(dec.userId)">
-                            {{ dec.userId }} <!-- Assuming decorator has a 'name' property -->
+                            {{ dec.userId }}
                         </option>
                     </select>
                 </div>
