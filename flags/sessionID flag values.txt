@@ -1,2 +1,5 @@
 0 - registration session, login session
 -1 - admin login session
+1 - admin logged
+2 - owner logged
+3 - decorator logged

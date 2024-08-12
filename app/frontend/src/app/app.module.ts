@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/login_and_registration/registration/registration.component';
 import { LoginComponent } from './components/login_and_registration/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { IndexComponent } from './components/index/index.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { IndexComponent } from './components/common/index/index.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountStatusComponent } from './components/login_and_registration/account-status/account-status.component';
@@ -21,6 +21,7 @@ import { CompaniesComponent } from './components/owner_functionalities/companies
 import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
 import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
 import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
+import { MapPreviewComponent } from './components/common/map-preview/map-preview.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RegisterCompanyComponent } from './components/admin_functionalities/reg
     CompaniesComponent,
     RegisterDecoratorComponent,
     AssignCompanyToDecoratorComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    MapPreviewComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login_and_registration/login/login.component';
 import { RegistrationComponent } from './components/login_and_registration/registration/registration.component';
-import { IndexComponent } from './components/index/index.component';
+import { IndexComponent } from './components/common/index/index.component';
 import { AccountStatusComponent } from './components/login_and_registration/account-status/account-status.component';
 import { AdminLoginComponent } from './components/login_and_registration/admin-login/admin-login.component';
 import { AdminIndexComponent } from './components/admin_functionalities/admin-index/admin-index.component';

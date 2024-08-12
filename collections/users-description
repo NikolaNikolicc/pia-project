@@ -1,4 +1,4 @@
-{
+users: {
     _id: string = ""; // default by moongoose, not written in our model
     username: string = "";
     password: string = "";
@@ -10,7 +10,80 @@
     email: string = "";
     profilePicture: boolean = false; // false - we are using default photo, true - we are using uploaded photo
     creditCard: string = "";
-    userType: number = 0; // 0 - normal user, 1 - admin
+    userType: number = 0; // 0 - owner, 1 - admin, 2 - decorator
     pendingApproval: number = 0; // 0 - we are waiting for admin to approve our registration request, 1 - admin approved our request, 2 - admin suspended our request
     comment: string = ""; // this field is used in case admin suspended your accountor dismissed your request
+}
+
+companies: {
+    "_id": "ObjectId",
+    "name": "string",
+    "address": "string",
+    "location": "string",
+    "phone": "string",
+    "services": [
+        {
+            "name": "string",
+            "price": "number"
+        }
+    ],
+    "contactPerson": {
+        "name": "string",
+        "phone": "string",
+        "email": "string"
+    },
+    "annualLeavePeriod": {
+        "startDate": "Date",
+        "endDate": "Date"
+    },
+    "appointments": [
+        {
+            "appointmentId": "ObjectId",
+            "ownerId": "ObjectId", // username - owner
+            "status": "string", // pending, confirmed, rejected, canceled - from owner
+            "decoratorComment": "string", // from decorator
+            "ownerCOmment": "string", // from owner
+            "score": "number", // 1-5 from owner, 0 if not given
+            "datetimeScheduled": "Date",
+            "decoratorID": "string", // username - decorator
+            "datetimeFinished": "Date",
+            "datetimeLastTimeServices": "Date",
+            "garden": {
+                "gardenId": "ObjectId",
+                "squareMeters": "number",
+                "gardenType": "string" // private, restaurant
+                "poolFountainArea": "number", // if (gardenType == private) then (area = pool) else (area = fountain)
+                "greenArea": "number", // green area in both cases
+                "furnitureArea": "number", // if (gardenType == private) then (area = furniture) else (area = quantity of chairs)
+                "tablesCount": "number", // if (gardenType == restaurant) then (count = quantity of tables) else NONE
+                "description": "string",
+                "services": [] // service names
+                "design": "string" // JSON file for garden design, how you will implement it?
+            },
+            "maintenanceTasks": [
+            {
+                "decoratorId": "ObjectId", // username - decoratorsId
+                "estimatedCompletionTime": "Date",
+                "status": "string", // pending, in-progress, completed, rejected
+                "comment": "string" // decorator description why maintenance request is rejected
+            }
+    ]
+        }
+    ],
+}
+
+owners: {
+    "_id": "string", // default by mongoose, not written in our model
+    "userId": "string", // username - reference to the user collection
+    "appointments": [
+        {
+            "companyId": "ObjectId", // name of company
+        }
+    ]
+}
+
+decorators: {
+    "_id": "ObjectId", // default by mongoose, not written in our model
+    "userId": "username", // reference to the user collection
+    "companyId": "name", // reference to the company
 }

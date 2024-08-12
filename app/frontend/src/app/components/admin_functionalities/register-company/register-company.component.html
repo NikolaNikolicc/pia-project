@@ -54,14 +54,11 @@
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" id="address" [(ngModel)]="address" name="address" class="form-control" required>
+                <input type="text" id="address" [(ngModel)]="address" name="address" class="form-control" required (ngModelChange)="changeAddress()">
             </div>
-            <div class="mb-3">
-                <label for="map" class="form-label">Map Preview</label>
-                <div class="ratio ratio-16x9">
-                  <iframe id="map" [src]="mapUrl" class="border" allowfullscreen></iframe>
-                </div>
-              </div>
+            <div class="mb-3" *ngIf="mapAddressService.address != ''">
+                <app-map-preview></app-map-preview>
+            </div>
             <div class="mb-3">
                 <label for="contactPerson" class="form-label">Contact Person</label>
                 <input type="text" id="contactPerson" [(ngModel)]="contactPerson" name="contactPerson"

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Decorator } from 'src/app/models/decorator';
 import { Service } from 'src/app/models/service';
 import { DecoratorService } from 'src/app/services/decorator.service';
+import { MapAddressService } from 'src/app/services/map-address.service';
 
 declare var bootstrap: any;
 
@@ -27,9 +28,8 @@ export class RegisterCompanyComponent implements OnInit{
   services: Service[] = [];
   freeDecorators: Decorator[] = [];
   chosenDecorators: Decorator[] = [];
-  mapUrl: string = 'https://www.google.com/maps/place/%D0%A0%D0%BE%D1%81%D0%BF%D0%B8+%D0%8B%D1%83%D0%BF%D1%80%D0%B8%D1%98%D0%B0+21,+%D0%92%D0%B8%D1%88%D1%9A%D0%B8%D1%86%D0%B0/@44.8157961,20.5225679,17z/data=!3m1!4b1!4m6!3m5!1s0x475a7a5c5f44108d:0x8aa48352c8d368c4!8m2!3d44.8157961!4d20.5225679!16s%2Fg%2F11y1kdtrmb?entry=ttu';
 
-  constructor(private router: Router, private decoratorService: DecoratorService) { }
+  constructor(private router: Router, private decoratorService: DecoratorService, public mapAddressService: MapAddressService) { }
 
   ngOnInit(): void {
     this.decoratorService.getAllUnemployedDecorators().subscribe(
@@ -61,6 +61,10 @@ export class RegisterCompanyComponent implements OnInit{
         keyboard: false, // Prevents closing with the escape key
       });
       modal.show();
+  }
+
+  changeAddress(){
+    this.mapAddressService.address = this.address;
   }
 
   goToAddDecorators(){
