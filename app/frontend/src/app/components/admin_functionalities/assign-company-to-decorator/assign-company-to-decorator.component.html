@@ -1,1 +1,66 @@
-<p>assign-company-to-decorator works!</p>
+<br>
+
+<div class="container">
+    <div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{this.error}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="successModal" #successModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Success</h3>
+                </div>
+                <div class="modal-body text-start">
+                    {{this.success}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal"
+                        >Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-center">
+        <h3 class="my-4 text-center"><h3 class="my-4 text-center">Assign Company to Decorator</h3></h3>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-4">
+            <label for="decoratorSelect" class="form-label">Select Decorator:</label>
+            <select id="decoratorSelect" class="form-select" [(ngModel)]="selectedDecoratorId">
+                <option *ngFor="let decorator of decorators" [value]="decorator.userId">
+                    {{ decorator.userId }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="companySelect" class="form-label">Select Company:</label>
+            <select id="companySelect" class="form-select" [(ngModel)]="selectedCompanyId">
+                <option *ngFor="let company of companies" [value]="company.name">
+                    {{ company.name }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="text-center d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary orng-btn flex-fill mx-1" (click)="goToAdminIndex()">Back to Admin</button>
+        <button type="button" class="btn btn-primary orng-btn flex-fill mx-1" (click)="assignCompany()">Assign</button>
+    </div>
+</div>

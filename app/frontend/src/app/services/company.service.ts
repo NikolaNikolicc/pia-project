@@ -18,6 +18,10 @@ export class CompanyService {
     return this.http.post<Message>(`${this.apiUrl}/getCompanyByName`,
       {companyName: companyName});
   }
+  getAllCompanies(){
+    return this.http.post<Message>(`${this.apiUrl}/getAllCompanies`,
+      null);
+  }
 
   constructor(private http: HttpClient) { }
 }

@@ -13,6 +13,12 @@ export class CompanyController{
             })
     }
 
+    getAllCompanies = (req: express.Request, res: express.Response)=>{
+        CompanyM.find().then(
+            ok => res.json({message: JSON.stringify(ok)})
+        ).catch(err=>console.log("Something went wrong, can't find companies."));
+    }
+
     getCompanyByName = (req: express.Request, res: express.Response)=>{
         let companyName = req.body.companyName;
         CompanyM.findOne({name: companyName}).then(

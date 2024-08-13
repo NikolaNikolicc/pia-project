@@ -286,14 +286,11 @@ export class RegisterDecoratorComponent {
                 if (user.profilePicture) {
                   this.photoSendService.savePhoto(this.imageBlob, this.imageName, user.username).subscribe(
                     data => {
-                      // redirect to admin index
                       this.success = "You have succesfully added decorator.";
                       this.showSuccessModal();
-                      this.router.navigate(["admin-index"]);
                     }
                   );
                 }else{
-                  // redirect to admin index
                   this.success = "You have succesfully added decorator.";
                   this.showSuccessModal();
                   

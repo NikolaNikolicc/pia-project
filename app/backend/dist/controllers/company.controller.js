@@ -16,6 +16,9 @@ class CompanyController {
                 console.log(err);
             });
         };
+        this.getAllCompanies = (req, res) => {
+            company_1.default.find().then(ok => res.json({ message: JSON.stringify(ok) })).catch(err => console.log("Something went wrong, can't find companies."));
+        };
         this.getCompanyByName = (req, res) => {
             let companyName = req.body.companyName;
             company_1.default.findOne({ name: companyName }).then(company => {

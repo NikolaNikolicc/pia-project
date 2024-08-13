@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
@@ -8,8 +9,21 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
 })
 export class AdminIndexComponent implements OnInit{
 
-  constructor(public sharedVariablesService: SharedVariablesService){
+  constructor(public sharedVariablesService: SharedVariablesService, private router: Router){
 
+  }
+
+  goToRegisterNewDecorator(){
+    this.router.navigate(["register-decorator"]);
+  }
+  goToRegisterNewCompany(){
+    this.router.navigate(["register-company"]);
+  }
+  goToAssign(){
+    this.router.navigate(["assign-company-decorator"]);
+  }
+  goToRegistrationRequests(){
+    this.router.navigate(["list-registration-requests"]);
   }
 
   ngOnInit(): void {

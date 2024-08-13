@@ -205,7 +205,6 @@ export class RegisterCompanyComponent implements OnInit{
           company.vacationPeriodStart = new Date(this.vacationPeriodStart);
           company.vacationPeriodEnd = new Date(this.vacationPeriodEnd);
           company.services = this.services;
-          company.decorators = this.chosenDecorators;
       
           this.companyService.saveCompany(company).subscribe(
             data=>{

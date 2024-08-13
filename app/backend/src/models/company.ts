@@ -2,15 +2,6 @@ import mongoose from "mongoose";
 import serviceSchema  from "./helper/service";
 import contactPersonSchema from "./helper/contact-person";
 
-const decoratorSchema = new mongoose.Schema(
-    {
-        userId: String,
-        companyId: String
-    },{
-        versionKey:false  
-    }
-);
-
 const companySchema = new mongoose.Schema(
     {
         name: String,
@@ -18,7 +9,6 @@ const companySchema = new mongoose.Schema(
         contactPerson: contactPersonSchema,
         vacationPeriodStart: Date,
         vacationPeriodEnd: Date,
-        decorators: [decoratorSchema],
         services: [serviceSchema]
     },{
         versionKey:false  

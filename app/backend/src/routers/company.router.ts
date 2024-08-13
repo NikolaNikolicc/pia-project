@@ -9,5 +9,8 @@ companyRouter.route('/saveCompany').post(
 companyRouter.route('/getCompanyByName').post(
     (req, res)=> new CompanyController().getCompanyByName(req, res)
 );
+companyRouter.route('/getAllCompanies').post(
+    (req, res)=> new CompanyController().getAllCompanies(req, res)
+);
 
 export default companyRouter;

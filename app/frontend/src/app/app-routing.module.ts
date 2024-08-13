@@ -12,6 +12,7 @@ import { OwnerProfilePreviewComponent } from './components/owner_functionalities
 import { RegistrationRequestsComponent } from './components/admin_functionalities/registration-requests/registration-requests.component';
 import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
 import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
+import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'list-registration-requests', component: RegistrationRequestsComponent},
   {path: 'register-decorator', component: RegisterDecoratorComponent},
   {path: 'register-company', component: RegisterCompanyComponent},
+  {path: 'assign-company-decorator', component: AssignCompanyToDecoratorComponent},
 ];
 
 @NgModule({

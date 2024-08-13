@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { PhotoService } from 'src/app/services/photo.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,7 +22,7 @@ export class RegistrationRequestsComponent implements OnInit{
   tmpUser: User = new User();
   error: string = "";
 
-  constructor(private userService: UserService, private photoService: PhotoService, private renderer: Renderer2){}
+  constructor(private userService: UserService, private photoService: PhotoService, private renderer: Renderer2, private router: Router){}
   
   ngOnInit(): void {
     this.userService.getAllPendingUsers().subscribe(
@@ -77,6 +78,10 @@ export class RegistrationRequestsComponent implements OnInit{
   declineRequest(usr: User){
     this.tmpUser = usr;
     this.showDeclineModal();
+  }
+
+  goToAdminIndex(){
+    this.router.navigate(["admin-index"]);
   }
 
   updateUser(){
