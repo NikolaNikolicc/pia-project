@@ -23,5 +23,10 @@ export class DecoratorService {
       null);
   }
 
+  setCompanyForDecorators(decoratorNames: string[], companyName: string){
+    return this.http.post<Message>(`${this.apiUrl}/setCompanyForDecorators`,
+      {decoratorNames: decoratorNames, companyName: companyName});
+  }
+
   constructor(private http: HttpClient) { }
 }

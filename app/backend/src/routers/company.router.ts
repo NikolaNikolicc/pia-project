@@ -6,6 +6,8 @@ const companyRouter = express.Router();
 companyRouter.route('/saveCompany').post(
     (req, res)=> new CompanyController().saveCompany(req, res)
 );
-
+companyRouter.route('/getCompanyByName').post(
+    (req, res)=> new CompanyController().getCompanyByName(req, res)
+);
 
 export default companyRouter;

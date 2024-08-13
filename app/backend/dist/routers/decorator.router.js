@@ -8,4 +8,5 @@ const decorator_controller_1 = require("../controllers/decorator.controller");
 const decoratorRouter = express_1.default.Router();
 decoratorRouter.route('/saveDecorator').post((req, res) => new decorator_controller_1.DecoratorController().saveDecorator(req, res));
 decoratorRouter.route('/getAllUnemployedDecorators').post((req, res) => new decorator_controller_1.DecoratorController().getAllUnemployedDecorators(req, res));
+decoratorRouter.route('/setCompanyForDecorators').post((req, res) => new decorator_controller_1.DecoratorController().setCompanyForDecorators(req, res));
 exports.default = decoratorRouter;

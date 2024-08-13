@@ -115,7 +115,24 @@ export class RegisterCompanyComponent implements OnInit{
     return phoneRegex.test(phone);
   }
 
-  registerCompanyWrapper() {
+  usernameUniquenessCheck(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.companyService.getCompanyByName(this.companyName).subscribe(
+        data => {
+          if (data.message == "Company with this name has not been found.") {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async registerCompanyWrapper() {
     this.error = "";
 
     this.services.forEach(service => {
@@ -130,9 +147,6 @@ export class RegisterCompanyComponent implements OnInit{
     this.chosenDecorators.forEach(decorator => {
       if(decorator.userId == ""){
         this.error = "Decorator field is empty.";
-      }
-      if(decorator.companyId == ""){
-        decorator.companyId = this.companyName;
       }
     });
     
@@ -157,10 +171,10 @@ export class RegisterCompanyComponent implements OnInit{
     if(this.address == ""){
       this.error = "Address field is empty.";
     }
-    // const isUsernameUnique = await this.usernameUniquenessCheck();
-    // if (!isUsernameUnique) {
-    //   this.error = "This username has already been used. Please try with another one.";
-    // }
+    const isUsernameUnique = await this.usernameUniquenessCheck();
+    if (!isUsernameUnique) {
+      this.error = "This company name has already been used. Please try with another one.";
+    }
     if(this.companyName == ""){
       this.error = "Company name field is empty.";
     }
@@ -173,27 +187,46 @@ export class RegisterCompanyComponent implements OnInit{
   }
 
   registerCompany(){
-    let company = new Company();
-    company.name = this.companyName;
-    company.address = this.address;
-    company.contactPerson.name = this.contactPersonName;
-    company.contactPerson.phone = this.phone;
-    company.vacationPeriodStart = new Date(this.vacationPeriodStart);
-    company.vacationPeriodEnd = new Date(this.vacationPeriodEnd);
-    company.services = this.services;
-    company.decorators = this.chosenDecorators;
 
-    this.companyService.saveCompany(company).subscribe(
+    let decoratorNames: string[] = [];
+    this.chosenDecorators.forEach(decorator => {
+      decoratorNames.push(decorator.userId)
+      decorator.companyId = this.companyName;
+    });
+
+    this.decoratorService.setCompanyForDecorators(decoratorNames, this.companyName).subscribe(
       data=>{
         if(data.message == "ok"){
-          this.success = "Company registered successfully!";
-          this.showSuccessModal();
+          let company = new Company();
+          company.name = this.companyName;
+          company.address = this.address;
+          company.contactPerson.name = this.contactPersonName;
+          company.contactPerson.phone = this.phone;
+          company.vacationPeriodStart = new Date(this.vacationPeriodStart);
+          company.vacationPeriodEnd = new Date(this.vacationPeriodEnd);
+          company.services = this.services;
+          company.decorators = this.chosenDecorators;
+      
+          this.companyService.saveCompany(company).subscribe(
+            data=>{
+              if(data.message == "ok"){
+                this.success = "Company registered successfully!";
+                this.showSuccessModal();
+              }else{
+                this.error = "Something went wrong, please try again.";
+                this.showErrorModal();
+              }
+            }
+          )
         }else{
-          this.error = "Something went wrong, please try again.";
+          this.error = "Something went wrong, please try again."
           this.showErrorModal();
+          return;
         }
       }
     )
+
+
   }
 
 }

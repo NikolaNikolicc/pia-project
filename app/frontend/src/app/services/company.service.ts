@@ -14,6 +14,10 @@ export class CompanyService {
     return this.http.post<Message>(`${this.apiUrl}/saveCompany`,
       {company: company});
   }
+  getCompanyByName(companyName: string){
+    return this.http.post<Message>(`${this.apiUrl}/getCompanyByName`,
+      {companyName: companyName});
+  }
 
   constructor(private http: HttpClient) { }
 }

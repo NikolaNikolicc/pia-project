@@ -15,7 +15,6 @@ const decoratorSchema = new mongoose_1.default.Schema({
 const companySchema = new mongoose_1.default.Schema({
     name: String,
     address: String,
-    location: String,
     contactPerson: contact_person_1.default,
     vacationPeriodStart: Date,
     vacationPeriodEnd: Date,
