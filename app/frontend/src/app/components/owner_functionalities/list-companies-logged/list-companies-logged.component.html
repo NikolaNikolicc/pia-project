@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <h3 class="mb-3 text-center">List all companies</h3>
+    <!-- Search Form -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input 
+          [(ngModel)]="searchName" 
+          placeholder="Search by name" 
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-4">
+        <input 
+          [(ngModel)]="searchAddress" 
+          placeholder="Search by address" 
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-4">
+        <button 
+          (click)="search()" 
+          class="btn btn-primary w-100"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  
+    <!-- Companies Table -->
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th (click)="toggleSort('name')" class="sortable">
+              Company Name 
+              <span [class]="sortDirection === 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'"></span>
+            </th>
+            <th (click)="toggleSort('address')" class="sortable">
+              Address 
+              <span [class]="sortDirection === 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'"></span>
+            </th>
+            <th>Decorators</th>
+            <th>Average Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of companies">
+            <td>
+            {{company.name}} <br>
+            <a class="link" (click)="goToPage(company.name)" target="_blank">
+                Visit page
+              </a>
+            </td>
+            <td>{{ company.address }}</td>
+            <td>
+              <ul class="list-unstyled mb-0">
+                <li *ngFor="let decorator of company.decs">
+                  {{ decorator.user.name }} {{ decorator.user.surname }}
+                </li>
+              </ul>
+            </td>
+            <td>
+              {{ company.companyAvgScore }} <br>
+              <span *ngFor="let j of stars">
+                <i class="bi" [ngClass]="{
+                    'bi-star-fill': j < company.companyAvgScore,
+                    'bi-star-half': j >= company.companyAvgScore - 0.5 && j < company.companyAvgScore,
+                    'bi-star': j >= company.companyAvgScore
+                  }"></i>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

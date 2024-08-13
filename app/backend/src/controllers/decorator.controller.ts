@@ -22,6 +22,14 @@ export class DecoratorController{
         ).catch(err=>console.log(err));
     }
 
+    getAllEmployedDecorators = (req: express.Request, res: express.Response)=>{
+        DecoratorM.find({companyId: {$ne:""}}).then(
+            decorators=>{
+                res.json({ message: JSON.stringify(decorators) });
+            }
+        ).catch(err=>console.log(err));
+    }
+
     setCompanyForDecorators = async (req: express.Request, res: express.Response) => {
         try {
             const decoratorNames: string[] = req.body.decoratorNames;

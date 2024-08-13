@@ -15,4 +15,8 @@ decoratorRouter.route('/setCompanyForDecorators').post(
     (req, res)=> new DecoratorController().setCompanyForDecorators(req, res)
 );
 
+decoratorRouter.route('/getAllEmployedDecorators').post(
+    (req, res)=> new DecoratorController().getAllEmployedDecorators(req, res)
+);
+
 export default decoratorRouter;

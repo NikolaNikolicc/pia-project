@@ -31,6 +31,11 @@ class DecoratorController {
                 res.json({ message: JSON.stringify(decorators) });
             }).catch(err => console.log(err));
         };
+        this.getAllEmployedDecorators = (req, res) => {
+            decorator_1.default.find({ companyId: { $ne: "" } }).then(decorators => {
+                res.json({ message: JSON.stringify(decorators) });
+            }).catch(err => console.log(err));
+        };
         this.setCompanyForDecorators = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const decoratorNames = req.body.decoratorNames;

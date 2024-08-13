@@ -10,6 +10,9 @@ export class UserService {
   
   apiUrl: string = "http://localhost:4000/users";
   
+  getInfoForThisUsernames(usernames: string[]) {
+    return this.http.post<Message>(`${this.apiUrl}/getInfoForThisUsernames`, {usernames: JSON.stringify(usernames)});
+  }
   saveProfileUpdate(tmpUser: User) {
     return this.http.post<Message>(`${this.apiUrl}/saveProfileUpdate`, {user: JSON.stringify(tmpUser)});
   }

@@ -35,4 +35,8 @@ userRouter.route('/saveProfileUpdate').post(
     (req, res)=> new UserController().saveProfileUpdate(req, res)
 );
 
+userRouter.route('/getInfoForThisUsernames').post(
+    (req, res)=> new UserController().getInfoForThisUsernames(req, res)
+);
+
 export default userRouter;

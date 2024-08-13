@@ -1,0 +1,44 @@
+.btn{
+    background-color: rgb(222, 131, 34);
+    border-color: rgb(222, 131, 34);
+  }
+
+btn:active {
+    background-color: rgb(255, 193, 7); /* Warm gold color */
+    border-color: rgb(255, 193, 7);
+    color: white; /* Keep text color consistent */
+}
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.active .circle {
+  background-color: #95002d;
+  color: #fff;
+  box-shadow: 0 0 10px #95002d;
+}
+
+.active .label {
+  font-weight: bold;
+  color: #95002d;
+}

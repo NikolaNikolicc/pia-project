@@ -13,6 +13,9 @@ import { RegistrationRequestsComponent } from './components/admin_functionalitie
 import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
 import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
 import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
+import { GardenBookingComponent } from './components/owner_functionalities/garden-booking/garden-booking.component';
+import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
+import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -28,6 +31,9 @@ const routes: Routes = [
   {path: 'register-decorator', component: RegisterDecoratorComponent},
   {path: 'register-company', component: RegisterCompanyComponent},
   {path: 'assign-company-decorator', component: AssignCompanyToDecoratorComponent},
+  {path: 'garden-booking', component: GardenBookingComponent},
+  {path: 'company-preview', component: CompanyPreviewComponent},
+  {path: 'list-all-companies-owner', component: ListCompaniesLoggedComponent}
 ];
 
 @NgModule({

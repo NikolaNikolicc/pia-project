@@ -22,6 +22,10 @@ import { RegisterDecoratorComponent } from './components/admin_functionalities/r
 import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
 import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
 import { MapPreviewComponent } from './components/common/map-preview/map-preview.component';
+import { GardenBookingComponent } from './components/owner_functionalities/garden-booking/garden-booking.component';
+import { ListCompaniesComponent } from './components/common/list-companies/list-companies.component';
+import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
+import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { MapPreviewComponent } from './components/common/map-preview/map-preview
     RegisterDecoratorComponent,
     AssignCompanyToDecoratorComponent,
     RegisterCompanyComponent,
-    MapPreviewComponent
+    MapPreviewComponent,
+    GardenBookingComponent,
+    ListCompaniesComponent,
+    ListCompaniesLoggedComponent,
+    CompanyPreviewComponent
   ],
   imports: [
     BrowserModule,

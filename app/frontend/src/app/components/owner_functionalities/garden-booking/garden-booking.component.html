@@ -1,0 +1,115 @@
+<div class="container mt-4">
+    <h3 class="mb-3 text-center">Garden Booking Form</h3>
+  
+    <!-- Progress Indicators -->
+    <div class="d-flex justify-content-center mb-4">
+      <div class="step-indicator text-center mx-2" [class.active]="currentStep === 1">
+        <div class="circle">1</div>
+        <div class="label">Details</div>
+      </div>
+      <div class="step-indicator text-center mx-2" [class.active]="currentStep === 2">
+        <div class="circle">2</div>
+        <div class="label">Options</div>
+      </div>
+      <div class="step-indicator text-center mx-2" [class.active]="currentStep === 3">
+        <div class="circle">3</div>
+        <div class="label">Canvas</div>
+      </div>
+    </div>
+  
+    <form (ngSubmit)="onSubmit()" #gardenForm="ngForm">
+      <!-- Step 1: Date, Time, Area, and Type -->
+      <div *ngIf="currentStep === 1">
+        <div class="mb-3">
+          <label for="dateTime" class="form-label">Step 1: Date and Time</label>
+          <input type="datetime-local" id="dateTime" class="form-control" [(ngModel)]="booking.dateTime" name="dateTime" required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="gardenArea" class="form-label">Garden Area (in square meters)</label>
+          <input type="number" id="gardenArea" class="form-control" [(ngModel)]="booking.gardenArea" name="gardenArea" required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="gardenType" class="form-label">Choose Garden Type</label>
+          <select id="gardenType" class="form-select" [(ngModel)]="booking.gardenType" name="gardenType" required>
+            <option value="" disabled selected>Select garden type</option>
+            <option value="private">Private Garden</option>
+            <option value="restaurant">Restaurant Garden</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Step 2: Additional Options and Description -->
+      <div *ngIf="currentStep === 2">
+        <!-- Additional Options based on Garden Type -->
+        <div *ngIf="booking.gardenType === 'private'" class="mb-3">
+          <label class="form-label">Private Garden Options</label>
+          <div class="form-check">
+            <input type="checkbox" id="pool" class="form-check-input" [(ngModel)]="booking.hasPool" name="hasPool">
+            <label for="pool" class="form-check-label">Includes Pool</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="greenery" class="form-check-input" [(ngModel)]="booking.hasGreenery" name="hasGreenery">
+            <label for="greenery" class="form-check-label">Includes Greenery</label>
+          </div>
+        </div>
+  
+        <div *ngIf="booking.gardenType === 'restaurant'" class="mb-3">
+          <label class="form-label">Restaurant Garden Options</label>
+          <div class="form-check">
+            <input type="checkbox" id="fountain" class="form-check-input" [(ngModel)]="booking.hasFountain" name="hasFountain">
+            <label for="fountain" class="form-check-label">Includes Fountain</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="greeneryRestaurant" class="form-check-input" [(ngModel)]="booking.hasGreenery" name="hasGreenery">
+            <label for="greeneryRestaurant" class="form-check-label">Includes Greenery</label>
+          </div>
+          <div class="mb-3">
+            <label for="numTables" class="form-label">Number of Tables</label>
+            <input type="number" id="numTables" class="form-control" [(ngModel)]="booking.numTables" name="numTables">
+          </div>
+          <div class="mb-3">
+            <label for="numChairs" class="form-label">Number of Chairs</label>
+            <input type="number" id="numChairs" class="form-control" [(ngModel)]="booking.numChairs" name="numChairs">
+          </div>
+        </div>
+  
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="additionalRequirements" class="form-label">Step 2: Additional Requirements</label>
+          <textarea id="additionalRequirements" class="form-control" [(ngModel)]="booking.additionalRequirements" name="additionalRequirements" rows="3"></textarea>
+        </div>
+  
+        <!-- Select from services (mocked for now) -->
+        <div class="mb-3">
+          <label for="services" class="form-label">Select Services</label>
+          <select id="services" class="form-select" [(ngModel)]="booking.selectedService" name="selectedService">
+            <option value="" disabled selected>Select a service</option>
+            <option value="service1">Service 1</option>
+            <option value="service2">Service 2</option>
+            <option value="service3">Service 3</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Step 3: Canvas for Drawing -->
+      <div *ngIf="currentStep === 3">
+        <div class="mb-3">
+          <label for="drawingCanvas" class="form-label">Step 3: Canvas (Optional)</label>
+          <div id="drawingCanvas" class="border" style="width: 100%; height: 300px; background-color: #f0f0f0;">
+            <!-- Canvas area for drawing, implementation depends on your needs (e.g., using a library) -->
+            <p class="text-center pt-5">Canvas area for drawing (optional)</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Navigation Buttons -->
+      <div class="d-flex justify-content-between mt-4">
+        <button type="button" class="btn btn-secondary" (click)="previousStep()">Back</button>
+        <button *ngIf="currentStep < 3" type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+        <button *ngIf="currentStep === 3" type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </form>
+  </div>
+  

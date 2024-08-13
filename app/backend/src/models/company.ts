@@ -9,6 +9,7 @@ const companySchema = new mongoose.Schema(
         contactPerson: contactPersonSchema,
         vacationPeriodStart: Date,
         vacationPeriodEnd: Date,
+        companyAvgScore: Number,
         services: [serviceSchema]
     },{
         versionKey:false  

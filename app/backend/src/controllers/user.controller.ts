@@ -80,6 +80,31 @@ export class UserController{
         ).catch(err=>console.log(err));
     }
 
+    getInfoForThisUsernames = async (req: express.Request, res: express.Response)=>{
+        try {
+            const usernames: string[] = JSON.parse(req.body.usernames);
+            const users = await Promise.all(
+                usernames.map(async (username) => {
+                    try {
+                        const user = await UserM.findOne({ username: username });
+                        return user ? user : null;
+                    } catch (err) {
+                        console.log(`User ${username} not found in database.`);
+                        return null;
+                    }
+                })
+            );
+    
+            // Filter out null values in case some users were not found
+            const filteredUsers = users.filter(user => user !== null);
+    
+            res.json({ message: JSON.stringify(filteredUsers) });
+        } catch (err) {
+            console.error("An error occurred:", err);
+            res.status(500).json({ message: "An error occurred while fetching users." });
+        }
+    }
+
     getUserByEmail = (req: express.Request, res: express.Response)=>{
         let email = req.body.email;
         UserM.findOne({email: email}).then(

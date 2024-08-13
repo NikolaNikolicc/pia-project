@@ -23,6 +23,11 @@ export class DecoratorService {
       null);
   }
 
+  getAllEmployedDecorators(){
+    return this.http.post<Message>(`${this.apiUrl}/getAllEmployedDecorators`,
+      null);
+  }
+
   setCompanyForDecorators(decoratorNames: string[], companyName: string){
     return this.http.post<Message>(`${this.apiUrl}/setCompanyForDecorators`,
       {decoratorNames: decoratorNames, companyName: companyName});
