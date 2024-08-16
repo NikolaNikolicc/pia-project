@@ -124,7 +124,7 @@
               <tbody>
                 <tr *ngFor="let appointment of myAppointments; let i = index">
                   <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)"><strong>{{ myCompanyName[i] }}</strong></td>
-                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.datetimeFinished | date:'short' }}</td>
+                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.datetimeFinished | date:'yyyy-MM-dd' }}</td>
                   <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.ownerComment || 'No comment provided' }}</td>
                   <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.score || 'No rating provided' }}</td>
                   <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">
