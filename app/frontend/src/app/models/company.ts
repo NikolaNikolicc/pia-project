@@ -1,4 +1,5 @@
 import { Decorator } from "./decorator";
+import { Appointment } from "./helper/appointment";
 import { contactPerson } from "./helper/contact-person";
 import { Service } from "./helper/service";
 
@@ -10,6 +11,7 @@ export class Company{
     vacationPeriodEnd: Date = new Date();
     companyAvgScore: number = 0;
     services: Service[] = [];
+    apppointments: Appointment[] = [];
     // helpers
     decs: Decorator[] = [];
 }

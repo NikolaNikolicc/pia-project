@@ -1,0 +1,18 @@
+[
+  {
+    "type": "square",
+    "x": 100,
+    "y": 150,
+    "color": "green",
+    "width": 50,
+    "height": 50
+  },
+  {
+    "type": "rectangle",
+    "x": 200,
+    "y": 250,
+    "color": "blue",
+    "width": 200,
+    "height": 100
+  }
+]

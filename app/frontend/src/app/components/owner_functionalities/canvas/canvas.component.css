@@ -1,0 +1,10 @@
+.btn{
+    background-color: rgb(222, 131, 34);
+    border-color: rgb(222, 131, 34);
+  }
+
+btn:active {
+    background-color: rgb(255, 193, 7); /* Warm gold color */
+    border-color: rgb(255, 193, 7);
+    color: white; /* Keep text color consistent */
+}

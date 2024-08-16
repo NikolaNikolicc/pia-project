@@ -1,2 +1,32 @@
-<p>company-preview works!</p>
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3>{{ company.name }}</h3>
+        <p>{{ company.address }}</p>
+        <p><strong>Phone:</strong> {{company.contactPerson.name}} {{ company.contactPerson.phone }}</p>
+      </div>
+      <div class="card-body">
+        <h5>Services Offered</h5>
+        <ul class="list-group mb-4">
+          <li class="list-group-item" *ngFor="let service of company.services">
+            <strong>{{ service.name }}</strong> - ${{ service.price }}
+          </li>
+        </ul>
+  
+        <h5>Comments</h5>
+        <!-- <ul class="list-group mb-4">
+          <li class="list-group-item" *ngFor="let appointment of company.appointments">
+            {{ appointment.ownerComment }}
+          </li>
+        </ul> -->
+  
+        <h5>Location</h5>
+        <div class="embed-responsive embed-responsive-16by9 mb-4">
+          <app-map-preview></app-map-preview>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
 <app-garden-booking></app-garden-booking>

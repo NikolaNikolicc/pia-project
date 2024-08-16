@@ -26,6 +26,8 @@ import { GardenBookingComponent } from './components/owner_functionalities/garde
 import { ListCompaniesComponent } from './components/common/list-companies/list-companies.component';
 import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
 import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
+import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
+import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { CompanyPreviewComponent } from './components/owner_functionalities/comp
     GardenBookingComponent,
     ListCompaniesComponent,
     ListCompaniesLoggedComponent,
-    CompanyPreviewComponent
+    CompanyPreviewComponent,
+    OwnerIndexComponent,
+    CanvasComponent
   ],
   imports: [
     BrowserModule,

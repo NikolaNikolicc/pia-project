@@ -16,6 +16,8 @@ import { AssignCompanyToDecoratorComponent } from './components/admin_functional
 import { GardenBookingComponent } from './components/owner_functionalities/garden-booking/garden-booking.component';
 import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
 import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
+import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
+import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -31,9 +33,10 @@ const routes: Routes = [
   {path: 'register-decorator', component: RegisterDecoratorComponent},
   {path: 'register-company', component: RegisterCompanyComponent},
   {path: 'assign-company-decorator', component: AssignCompanyToDecoratorComponent},
-  {path: 'garden-booking', component: GardenBookingComponent},
   {path: 'company-preview', component: CompanyPreviewComponent},
-  {path: 'list-all-companies-owner', component: ListCompaniesLoggedComponent}
+  {path: 'list-all-companies-owner', component: ListCompaniesLoggedComponent},
+  {path: 'owner-index', component: OwnerIndexComponent},
+  {path: 'canvas', component: CanvasComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,51 @@
+<div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Error</h3>
+            </div>
+
+            <div class="modal-body text-start">
+                {{this.error}}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Understand</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <h3 class="mb-3 text-center">Draw your own Garden!</h3>
+    <div class="row mb-3 justify-content-center">
+      <div class="col-12 col-md-6">
+        <label for="shape" class="form-label">Select Action Which You Want to Perform:</label>
+        <select id="shape" class="form-select" [(ngModel)]="selectedAction">
+          <option value="square">Green Square (Greenery)</option>
+          <option value="rectangle">Blue Rectangle (Pool)</option>
+          <option value="circle">Blue Circle (Fountain)</option>
+          <option value="small-circle">Brown Circle (Table)</option>
+          <option value="small-rectangle">Gray Rectangle (Chairs/Loungers)</option>
+          <option value="rotate">Rotate Object</option>
+          <option value="remove">Remove Object</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 text-center">
+        <canvas #gardenCanvas width="800" height="600" class="border border-dark"
+                (mousedown)="onMouseDown($event)"
+                (mouseup)="onMouseUp($event)">
+        </canvas>
+      </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-12 col-md-6 text-center">
+          <button class="btn btn-danger" (click)="loadJsonConfig()">Insert</button>
+          <input type="file" id="fileInput" accept=".json" (change)="onFileSelected($event)" style="display:none;">
+        </div>
+    </div>
+  </div>
+  

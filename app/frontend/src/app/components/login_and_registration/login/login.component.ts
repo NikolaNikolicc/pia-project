@@ -77,6 +77,12 @@ export class LoginComponent implements OnInit{
       data=>{
         if(data.message != "User with this username has not been found."){
           user = JSON.parse(data.message);
+          // in case database is not working
+          if(user.username != this.username){
+            this.error = "Invalid credentials. Please try with another user.";
+            this.showErrorModal();
+            return;
+          }
           localStorage.setItem("user", JSON.stringify(user));
           if(user.pendingApproval == 1){
             this.router.navigate(["user-index"]);

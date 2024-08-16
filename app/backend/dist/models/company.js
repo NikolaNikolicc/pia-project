@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const service_1 = __importDefault(require("./helper/service"));
 const contact_person_1 = __importDefault(require("./helper/contact-person"));
+const appointment_1 = __importDefault(require("./helper/appointment"));
 const companySchema = new mongoose_1.default.Schema({
     name: String,
     address: String,
@@ -13,7 +14,8 @@ const companySchema = new mongoose_1.default.Schema({
     vacationPeriodStart: Date,
     vacationPeriodEnd: Date,
     companyAvgScore: Number,
-    services: [service_1.default]
+    services: [service_1.default],
+    appointments: [appointment_1.default]
 }, {
     versionKey: false
 });
