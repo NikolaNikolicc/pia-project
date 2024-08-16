@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
   username: string = "";
   password: string = "";
   hashedPassword: string = "";
+  userType: string = "";
   showPassword: boolean = false;
 
   constructor(private router: Router, public sharedVariablesService: SharedVariablesService, private userService: UserService){
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit{
     let user = new User();
     user.username = this.username;
     user.password = this.hashedPassword;
-    user.userType = 0;
+    user.userType = parseInt(this.userType);
     this.userService.login(user).subscribe(
       data=>{
         if(data.message != "User with this username has not been found."){
@@ -85,6 +86,14 @@ export class LoginComponent implements OnInit{
           }
           localStorage.setItem("user", JSON.stringify(user));
           if(user.pendingApproval == 1){
+            if(user.userType == 0){
+              // owner logged
+              this.sharedVariablesService.sessionID = "2";
+            }
+            if(user.userType == 2){
+              // decorator logged
+              this.sharedVariablesService.sessionID = "3";
+            }
             this.router.navigate(["user-index"]);
           }else{
             this.router.navigate(["status"]);

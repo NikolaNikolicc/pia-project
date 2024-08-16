@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { User } from 'src/app/models/user';
 import { PhotoService } from 'src/app/services/photo.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 import { UserService } from 'src/app/services/user.service';
 
 declare var bootstrap: any;
@@ -40,7 +41,7 @@ export class OwnerProfilePreviewComponent implements OnInit{
   editEmail: string = '';
   editCreditCard: string = '';
 
-  constructor(private photoService: PhotoService, private userService: UserService){
+  constructor(private photoService: PhotoService, private userService: UserService, public sharedVariablesService: SharedVariablesService){
 
   }
 

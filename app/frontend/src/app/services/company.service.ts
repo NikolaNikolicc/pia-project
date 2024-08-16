@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Company } from '../models/company';
 import { Message } from '../models/helper/message';
 import { HttpClient } from '@angular/common/http';
+import { Appointment } from '../models/helper/appointment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class CompanyService {
   getAllCompanies(){
     return this.http.post<Message>(`${this.apiUrl}/getAllCompanies`,
       null);
+  }
+  updateAppointment(app: Appointment, comp: string){
+    return this.http.post<Message>(`${this.apiUrl}/updateAppointment`,
+      {appointment: JSON.stringify(app), company: comp});
   }
 
   constructor(private http: HttpClient) { }

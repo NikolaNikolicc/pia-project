@@ -103,6 +103,11 @@ export class GardenBookingComponent implements OnInit{
           this.error = "Date and Time field is empty or chosen date and time are in the past.";
         }
       }
+      let startDate = this.company.vacationPeriodEnd.toString().split("T")[0];
+      let endDate = this.company.vacationPeriodEnd.toString().split("T")[0];
+      if(dateTimeChosen[0] >= startDate && dateTimeChosen[0] <= endDate){
+        this.error = "Can't book on this date because this is company's vacation period.";
+      }
       // garden area check
       if(this.garden.squareMeters <= 0){
         this.error = "Garden area must be positive number.";

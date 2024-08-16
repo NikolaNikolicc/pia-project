@@ -11,7 +11,7 @@ export class Company{
     vacationPeriodEnd: Date = new Date();
     companyAvgScore: number = 0;
     services: Service[] = [];
-    apppointments: Appointment[] = [];
+    appointments: Appointment[] = [];
     // helpers
     decs: Decorator[] = [];
 }

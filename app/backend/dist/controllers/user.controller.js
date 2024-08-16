@@ -43,7 +43,6 @@ class UserController {
         };
         this.login = (req, res) => {
             let user = req.body;
-            console.log(user);
             user_1.default.findOne({ username: user.username, password: user.password, userType: user.userType }).then(user => {
                 if (user) {
                     res.json({ message: JSON.stringify(user) });

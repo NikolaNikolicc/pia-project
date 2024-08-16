@@ -82,7 +82,7 @@
                             <i class="bi bi-check" *ngIf="editMode.email" (click)="saveWrapper('email')"></i>
                             <i class="bi bi-x" *ngIf="editMode.email" (click)="cancelEdit('email')"></i>
                         </p>
-                        <p class="card-text">
+                        <p class="card-text" *ngIf="sharedVariablesService.sessionID == '2'">
                             Credit card: <span *ngIf="!editMode.creditCard">{{usr.creditCard}}</span>
                             <input *ngIf="editMode.creditCard" type="text" [(ngModel)]="editCreditCard" class="form-control" (ngModelChange)="creditCardTypeCheck()" />
                             <i class="bi bi-pencil" *ngIf="!editMode.creditCard" (click)="toggleEdit('creditCard')"></i>

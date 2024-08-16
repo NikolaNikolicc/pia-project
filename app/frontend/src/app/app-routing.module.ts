@@ -18,6 +18,7 @@ import { CompanyPreviewComponent } from './components/owner_functionalities/comp
 import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
 import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
 import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
+import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -36,7 +37,7 @@ const routes: Routes = [
   {path: 'company-preview', component: CompanyPreviewComponent},
   {path: 'list-all-companies-owner', component: ListCompaniesLoggedComponent},
   {path: 'owner-index', component: OwnerIndexComponent},
-  {path: 'canvas', component: CanvasComponent},
+  {path: 'list-appointments', component: ListAppointmentsComponent},
 ];
 
 @NgModule({

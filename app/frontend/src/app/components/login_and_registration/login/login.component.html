@@ -37,6 +37,13 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="userType">User Type:</label>
+                <select class="form-control" id="userType" name="userType" required [(ngModel)]="userType">
+                    <option [value]="0">Owner</option>
+                    <option [value]="2">Decorator</option>
+                </select>
+            </div>
             <a class="link" (click)="changePassword()">Change your password</a>
             <br>
             <div class="d-flex justify-content-center">

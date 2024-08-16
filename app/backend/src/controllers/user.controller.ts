@@ -51,7 +51,6 @@ export class UserController{
 
     login = (req: express.Request, res: express.Response)=>{
         let user = req.body;
-        console.log(user);
 
         UserM.findOne({username: user.username, password: user.password, userType: user.userType}).then(
             user=>{

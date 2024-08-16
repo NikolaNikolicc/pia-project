@@ -131,9 +131,14 @@ export class CanvasComponent implements OnInit {
     this.sharedVariableService.shapes.forEach(shape => {
         if (shape.type !== 'circle' && x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height) {
             // Type assertion to allow swapping width and height
-            const temp = (shape as Rectangle).width;
+            const tempWidth = (shape as Rectangle).width;
+            const tempHeight = (shape as Rectangle).height;
             (shape as Rectangle).width = (shape as Rectangle).height;
-            (shape as Rectangle).height = temp;
+            (shape as Rectangle).height = tempWidth;
+            if(this.isOverlapping(shape)){
+              (shape as Rectangle).width = tempWidth;
+              (shape as Rectangle).height = tempHeight;
+            }
         }
     });
 
@@ -257,7 +262,8 @@ export class CanvasComponent implements OnInit {
   }
 
   isOverlapping(newShape: GardenShape): boolean {
-    return this.sharedVariableService.shapes.some(existingShape => {
+    let filteredShapes = this.sharedVariableService.shapes.filter(shape=>shape !== newShape)
+    return filteredShapes.some(existingShape => {
       if (newShape.type === 'circle' && existingShape.type === 'circle') {
         const dx = newShape.x - existingShape.x;
         const dy = newShape.y - existingShape.y;

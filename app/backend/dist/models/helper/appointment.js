@@ -7,6 +7,7 @@ const mongoose_1 = require("mongoose");
 const garden_1 = __importDefault(require("./garden"));
 const maintenance_task_1 = __importDefault(require("./maintenance-task"));
 const appointmentSchema = new mongoose_1.Schema({
+    appointmentId: { type: Number },
     ownerId: { type: String, required: true },
     status: { type: String, default: "pending" },
     decoratorComment: { type: String, default: "" },
@@ -15,6 +16,7 @@ const appointmentSchema = new mongoose_1.Schema({
     decoratorID: { type: String, default: "" },
     datetimeScheduled: { type: Date, default: new Date() },
     datetimeFinished: { type: Date, default: new Date() },
+    datetimeCreated: { type: Date, default: new Date() },
     datetimeLastTimeServiced: { type: Date, default: new Date() },
     garden: { type: garden_1.default, default: () => ({}) },
     maintenanceTasks: { type: [maintenance_task_1.default], default: [] } // Assuming MaintenanceTaskSchema is defined elsewhere

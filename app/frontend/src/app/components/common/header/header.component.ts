@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+    this.sharedVariablesService.sessionID = "0";
     this.router.navigate([""]);
   }
 

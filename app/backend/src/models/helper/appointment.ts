@@ -4,6 +4,7 @@ import maintenanceTaskSchema from "./maintenance-task";
 
 const appointmentSchema = new Schema(
   {
+    appointmentId: {type: Number},
     ownerId: { type: String, required: true },
     status: { type: String, default: "pending" },
     decoratorComment: { type: String, default: "" },
@@ -12,6 +13,7 @@ const appointmentSchema = new Schema(
     decoratorID: { type: String, default: "" },
     datetimeScheduled: { type: Date, default: new Date() },
     datetimeFinished: { type: Date, default: new Date() },
+    datetimeCreated: { type: Date, default: new Date() },
     datetimeLastTimeServiced: { type: Date, default: new Date() },
     garden: { type: gardenSchema, default: () => ({}) }, // Assuming GardenSchema is defined elsewhere
     maintenanceTasks: { type: [maintenanceTaskSchema], default: [] } // Assuming MaintenanceTaskSchema is defined elsewhere
