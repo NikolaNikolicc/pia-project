@@ -1,0 +1,94 @@
+.appointments-page {
+    padding: 15px;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .appointments-container {
+    padding: 15px;
+  }
+  
+  .appointment-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .no-appointments {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #888;
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
+  .input-group {
+    flex-grow: 1;
+  }
+  
+  .btn-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .row {
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 576px) {
+    .page-title {
+      font-size: 1.5rem;
+    }
+  
+    .appointment-card {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .orng-btn {
+    background-color: rgb(222, 131, 34);
+    border-color: rgb(222, 131, 34);
+  }
+  
+  .orng-btn:active {
+    background-color: rgb(255, 193, 7); /* Warm gold color */
+    border-color: rgb(255, 193, 7);
+    color: white; /* Keep text color consistent */
+  }
+  
+
+  .rating {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+  }
+  
+  .rating i {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .rating i.filled {
+    color: #ffc107; /* Gold color for filled stars */
+  }
+  
+
+  .requirement-text {
+    font-size: 0.9rem;
+    color: rgb(222, 131, 34); /* Bootstrap's danger color (red) */
+    font-weight: bold;
+    margin-top: 10px;
+    background-color: #f8ecd7; /* Light red background for emphasis */
+    border-left: 4px solid rgb(222, 131, 34); /* Red left border */
+    padding: 8px;
+    border-radius: 4px;
+  }

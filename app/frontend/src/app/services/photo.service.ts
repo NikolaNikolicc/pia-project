@@ -22,5 +22,21 @@ export class PhotoService {
     return this.http.post<Message>(`${this.apiUrl}/savePhoto`, formData);
   }
 
+  savePhotos(imageBlobs: Blob[], imageNames: string[], company: string, username: string, appointmentId: number) {
+    const formData = new FormData();
+
+    imageBlobs.forEach((blob, index) => {
+      formData.append('images', blob, imageNames[index]);
+    });
+
+    formData.append('imageNames', JSON.stringify(imageNames)); // Ensure this is correctly serialized if it's an array
+    formData.append('company', company);
+    formData.append('username', username);
+    formData.append('appointmentId', appointmentId.toString());
+
+    return this.http.post<Message>(`${this.apiUrl}/savePhotos`, formData);
+
+  }
+
   constructor(private http: HttpClient) { }
 }

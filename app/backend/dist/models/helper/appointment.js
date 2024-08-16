@@ -19,7 +19,8 @@ const appointmentSchema = new mongoose_1.Schema({
     datetimeCreated: { type: Date, default: new Date() },
     datetimeLastTimeServiced: { type: Date, default: new Date() },
     garden: { type: garden_1.default, default: () => ({}) },
-    maintenanceTasks: { type: [maintenance_task_1.default], default: [] } // Assuming MaintenanceTaskSchema is defined elsewhere
+    maintenanceTasks: { type: [maintenance_task_1.default], default: [] },
+    photosUploaded: { type: Boolean },
 }, {
     versionKey: false,
     _id: false // Prevents Mongoose from creating an _id field for this subdocument

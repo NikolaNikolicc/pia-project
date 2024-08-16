@@ -25,13 +25,13 @@ const path = __importStar(require("path"));
 const CURRENT_WORKING_DIRECTORY = process.cwd();
 const PARENT_DIRECTORY = path.resolve(CURRENT_WORKING_DIRECTORY, "..");
 const PHOTOS_DIRECTORY = path.join(PARENT_DIRECTORY, 'uploads');
-const DEFAULT_FOLDER = path.join(PHOTOS_DIRECTORY, 'default');
+const DEFAULT_FOLDER = path.join(PHOTOS_DIRECTORY, 'users', 'default');
 const DEFAULT_PROFILE_PICTURE = path.join(DEFAULT_FOLDER, 'profile_picture.jpg');
 class PhotoController {
     constructor() {
         this.getUserPhoto = (req, res) => {
             const username = req.body.username;
-            const userDirectory = path.join(PHOTOS_DIRECTORY, username);
+            const userDirectory = path.join(PHOTOS_DIRECTORY, 'users', username);
             if (!fs.existsSync(userDirectory)) {
                 console.error(`User directory not found: ${userDirectory}`);
                 return res.status(404).json({ message: 'User not found' });
@@ -50,6 +50,48 @@ class PhotoController {
             });
             res.end(imageBlob, 'binary');
         };
+        this.savePhotos = (req, res) => {
+            const imageBlobs = req.files; // Array of files
+            const imageNames = JSON.parse(req.body.imageNames);
+            const company = req.body.company;
+            const username = req.body.username;
+            const appointmentId = req.body.appointmentId;
+            // Check if all required fields are present
+            if (!imageBlobs || !imageNames || !company || !username || !appointmentId) {
+                console.log('Missing required fields');
+                return res.status(400).json({ message: 'Missing required fields' });
+            }
+            // Adjust the path to include company, username, and appointmentId
+            const userDirectory = path.join(PHOTOS_DIRECTORY, 'companies', company, username, appointmentId);
+            // Create the directory if it doesn't exist
+            if (!fs.existsSync(userDirectory)) {
+                fs.mkdirSync(userDirectory, { recursive: true });
+            }
+            // Save each image
+            const saveImagePromises = imageBlobs.map((file, index) => {
+                const imagePath = path.join(userDirectory, imageNames[index]);
+                return new Promise((resolve, reject) => {
+                    fs.writeFile(imagePath, file.buffer, (err) => {
+                        if (err) {
+                            console.error("Error saving image:", err);
+                            reject(err);
+                        }
+                        else {
+                            console.log("Image saved successfully at:", imagePath);
+                            resolve();
+                        }
+                    });
+                });
+            });
+            // Wait for all images to be saved
+            Promise.all(saveImagePromises)
+                .then(() => {
+                res.json({ message: "All images saved successfully." });
+            })
+                .catch((err) => {
+                res.status(500).json({ message: "Error while saving images.", error: err });
+            });
+        };
         this.savePhoto = (req, res) => {
             var _a;
             console.log(DEFAULT_PROFILE_PICTURE);
@@ -60,7 +102,7 @@ class PhotoController {
                 console.log('Missing required fields');
                 return res.status(400).json({ message: 'Missing required fields' });
             }
-            const userDirectory = path.join(PHOTOS_DIRECTORY, username);
+            const userDirectory = path.join(PHOTOS_DIRECTORY, 'users', username);
             if (!fs.existsSync(userDirectory)) {
                 fs.mkdirSync(userDirectory, { recursive: true });
             }

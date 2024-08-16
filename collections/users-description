@@ -38,14 +38,14 @@ companies: {
         {
             "appointmentId": "ObjectId",
             "ownerId": "ObjectId", // username - owner
-            "status": "string", // pending, confirmed, rejected, canceled - from owner, finished - if datetimeFinished <= today()
+            "status": "string", // pending, confirmed, rejected - from decorator, canceled - from owner, finished - if datetimeFinished <= today()
             "decoratorComment": "string", // from decorator
             "ownerComment": "string", // from owner
             "score": "number", // 1-5 from owner, 0 if not given
             "datetimeScheduled": "Date",
             "decoratorID": "string", // username - decorator
             "datetimeFinished": "Date",
-            "datetimeLastTimeServices": "Date",
+            "datetimeLastTimeServiced": "Date",
             "datetimeCreated" : "Date",
             "garden": {
                 "gardenId": "ObjectId",

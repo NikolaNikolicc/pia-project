@@ -29,6 +29,7 @@ import { CompanyPreviewComponent } from './components/owner_functionalities/comp
 import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
 import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
+import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ListAppointmentsComponent } from './components/decorator_functionalitie
     CompanyPreviewComponent,
     OwnerIndexComponent,
     CanvasComponent,
-    ListAppointmentsComponent
+    ListAppointmentsComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,

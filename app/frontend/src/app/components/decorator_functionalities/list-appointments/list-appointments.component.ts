@@ -5,6 +5,7 @@ import { Appointment } from 'src/app/models/helper/appointment';
 import { User } from 'src/app/models/user';
 import { CompanyService } from 'src/app/services/company.service';
 import { DecoratorService } from 'src/app/services/decorator.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 declare var bootstrap: any;
 
@@ -25,7 +26,7 @@ export class ListAppointmentsComponent implements OnInit{
   success: string = "";
   date!: Date;
 
-  constructor(private companyService: CompanyService, private decoratorService: DecoratorService){}
+  constructor(private companyService: CompanyService, private decoratorService: DecoratorService, private photoService: PhotoService){}
 
   ngOnInit(): void {
     const u = localStorage.getItem("user")
@@ -98,6 +99,12 @@ export class ListAppointmentsComponent implements OnInit{
       data=>{
         if(data.message == "ok"){
           this.success = "Your task has been successfully accepted."
+          for(let i = 0; i < this.company.appointments.length; i++){
+            if(this.company.appointments[i].appointmentId == appointment.appointmentId){
+              this.company.appointments[i] = appointment;
+              break;
+            }
+          }
           this.showSuccessModal();
         }
         else{
@@ -126,10 +133,68 @@ export class ListAppointmentsComponent implements OnInit{
       data=>{
         if(data.message == "ok"){
           this.success = "This task has been successfully declined."
+          for(let i = 0; i < this.company.appointments.length; i++){
+            if(this.company.appointments[i].appointmentId == appointment.appointmentId){
+              this.company.appointments[i] = appointment;
+              break;
+            }
+          }
           this.showSuccessModal();
         }
       }
     )
   }
 
+  showUploadButton(datetimeFinished: Date): boolean {
+    const today = new Date();
+    return new Date(datetimeFinished) >= new Date(today.setHours(0, 0, 0, 0));
+  }
+
+  // Function to handle picture upload
+  uploadPictures(appointment: any) {
+    // Trigger file input to upload multiple pictures
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/png, image/jpeg, image/jpg';
+    fileInput.multiple = true;
+  
+    fileInput.onchange = (event: any) => {
+      const files = event.target.files as FileList; // Cast to FileList
+      if (files.length > 0) {
+        const imageBlobs: Blob[] = [];
+        const imageNames: string[] = [];
+  
+        // Convert FileList to Blob array and extract file names
+        Array.from(files).forEach((file: File) => {
+          imageBlobs.push(file);
+          imageNames.push(file.name);
+        });
+  
+        // Call the savePhotos method from the photo service
+        this.photoService.savePhotos(
+          imageBlobs,
+          imageNames,
+          this.company.name,
+          this.user.username,
+          appointment.appointmentId
+        ).subscribe(response => {
+          console.log('Photos uploaded successfully:', response);
+          appointment.photosUploaded = true;
+          this.companyService.updateAppointment(appointment, this.company.name).subscribe(
+            data=>{
+              if(data){
+                this.success = "Photos uploaded successfully.";
+                this.showSuccessModal();
+              }
+            }
+          )
+        }, error => {
+          console.error('Error uploading photos:', error);
+        });
+      }
+    };
+  
+    fileInput.click();
+  }
+  
 }

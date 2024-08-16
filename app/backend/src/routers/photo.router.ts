@@ -12,6 +12,11 @@ photoRouter.route('/savePhoto').post(
     (req, res) => new PhotoController().savePhoto(req, res)
 );
 
+photoRouter.route('/savePhotos').post(
+    upload.array("images"),
+    (req, res) => new PhotoController().savePhotos(req, res)
+);
+
 photoRouter.route('/getUserPhoto').post(
     (req, res) => new PhotoController().getUserPhoto(req, res)
 );

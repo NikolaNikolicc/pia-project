@@ -16,7 +16,8 @@ const appointmentSchema = new Schema(
     datetimeCreated: { type: Date, default: new Date() },
     datetimeLastTimeServiced: { type: Date, default: new Date() },
     garden: { type: gardenSchema, default: () => ({}) }, // Assuming GardenSchema is defined elsewhere
-    maintenanceTasks: { type: [maintenanceTaskSchema], default: [] } // Assuming MaintenanceTaskSchema is defined elsewhere
+    maintenanceTasks: { type: [maintenanceTaskSchema], default: [] }, // Assuming MaintenanceTaskSchema is defined elsewhere
+    photosUploaded: {type: Boolean},
   },
   {
     versionKey: false,

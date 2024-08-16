@@ -15,4 +15,5 @@ export class Appointment{
     datetimeCreated: Date = new Date();
     garden: Garden = new Garden();
     maintenanceTasks: MaintenanceTask[] = [];
+    photosUploaded: boolean = false;
 }

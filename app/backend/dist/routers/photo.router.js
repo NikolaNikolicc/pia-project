@@ -11,5 +11,6 @@ const storage = multer_1.default.memoryStorage();
 const upload = (0, multer_1.default)({ storage: storage });
 photoRouter.route('/savePhoto').post(upload.single('imageBlob'), // This middleware handles the file upload
 (req, res) => new photo_controller_1.PhotoController().savePhoto(req, res));
+photoRouter.route('/savePhotos').post(upload.array("images"), (req, res) => new photo_controller_1.PhotoController().savePhotos(req, res));
 photoRouter.route('/getUserPhoto').post((req, res) => new photo_controller_1.PhotoController().getUserPhoto(req, res));
 exports.default = photoRouter;

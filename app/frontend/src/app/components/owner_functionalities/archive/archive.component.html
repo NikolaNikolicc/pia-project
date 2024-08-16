@@ -1,0 +1,148 @@
+<div class="appointments-page">
+    <!-- Modal for adding comment and rating -->
+    <div class="modal" id="successModal" #successModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Success</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{ this.success }}
+                    <!-- <button (click)="downloadFolder()">preuzmi slike</button> -->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal">
+                        Understand
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="commentRatingModal" #commentRatingModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Add Comment and Rating</h3>
+            </div>
+            <div class="modal-body text-start">
+              <textarea [(ngModel)]="selectedAppointmentComment" placeholder="Enter your comment" class="form-control mb-3"></textarea>
+              <div class="rating mb-3">
+                <i class="bi bi-star" [ngClass]="{'filled': selectedAppointmentRating >= 1}" (click)="setRating(1)"></i>
+                <i class="bi bi-star" [ngClass]="{'filled': selectedAppointmentRating >= 2}" (click)="setRating(2)"></i>
+                <i class="bi bi-star" [ngClass]="{'filled': selectedAppointmentRating >= 3}" (click)="setRating(3)"></i>
+                <i class="bi bi-star" [ngClass]="{'filled': selectedAppointmentRating >= 4}" (click)="setRating(4)"></i>
+                <i class="bi bi-star" [ngClass]="{'filled': selectedAppointmentRating >= 5}" (click)="setRating(5)"></i>
+              </div>
+              <p class="requirement-text">Both the comment and rating fields must be completed in order to proceed.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success orng-btn" (click)="saveCommentAndRating()">
+                Save
+              </button>
+              <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <p class="note-text text-center">
+        <i class="bi bi-info-circle"></i> Note: Sorting is performed based on the date when the task is created.
+    </p>
+      
+    <h2 class="page-title text-center my-4">Current Appointments</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+          <div *ngIf="anyPending()" class="appointments-container">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Scheduled Date</th>
+                  <th>Date Created</th>
+                  <th>Requested Services</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of myAppointments; let i = index">
+                    <div *ngIf="appointment.status == 'pending'">
+                        <td><strong>{{ myCompanyName[i] }}</strong></td>
+                        <td>{{ appointment.datetimeScheduled | date:'short' }}</td>
+                        <td>{{ appointment.datetimeCreated | date:'short' }}</td>
+                        <td>
+                          <ul class="list-unstyled">
+                            <li *ngFor="let service of appointment.garden.services">
+                              {{ service.name }} - {{ service.price | currency:'USD':true }}
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <div *ngIf="canCancelAppointment(appointment)">
+                            <button class="btn btn-sm btn-danger" (click)="cancelAppointment(appointment, myCompanyName[i])">
+                              <i class="bi bi-x-circle"></i> Cancel
+                            </button>
+                          </div>
+                          <p *ngIf="!canCancelAppointment(appointment)" class="text-danger m-0">
+                            <i class="bi bi-exclamation-circle"></i> Cannot cancel within 24 hours
+                          </p>
+                        </td>
+                    </div>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="!anyPending()" class="no-appointments">
+            <p>No current appointments.</p>
+          </div>
+        </div>
+      </div>
+      
+      
+  
+    <p class="note-text text-center">
+        <i class="bi bi-info-circle"></i> Note: Sorting is performed based on the date when the task is created.
+    </p>
+    <h2 class="page-title text-center my-4">Archive of Appointments</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+          <div *ngIf="!anyConfirmed()" class="appointments-container">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Completed on</th>
+                  <th>Comment</th>
+                  <th>Rating</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of myAppointments; let i = index">
+                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)"><strong>{{ myCompanyName[i] }}</strong></td>
+                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.datetimeFinished | date:'short' }}</td>
+                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.ownerComment || 'No comment provided' }}</td>
+                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.score || 'No rating provided' }}</td>
+                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">
+                    <div *ngIf="!appointment.ownerComment || !appointment.score" class="d-flex justify-content-end">
+                      <button class="btn btn-sm btn-primary" (click)="openCommentRatingModal(appointment, myCompanyName[i])">
+                        <i class="bi bi-pencil"></i> Add Comment and Rating
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="anyConfirmed()" class="no-appointments">
+            <p>No archived appointments.</p>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  

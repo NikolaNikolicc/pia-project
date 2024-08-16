@@ -47,6 +47,7 @@
                 <div class="col-sm-12 col-md-6">
                   <h5 class="card-title">Owner ID: <strong>{{appointment.ownerId}}</strong></h5>
                   <p class="card-text"><i class="bi bi-calendar"></i> Scheduled for: {{appointment.datetimeScheduled | date:'short'}}</p>
+                  <p class="text-info"><i class="bi bi-hourglass-split"></i> This job is pending approval.</p>
                 </div>
                 <div class="col-sm-12 col-md-6 d-flex flex-column justify-content-center">
                   <div class="input-group input-group-sm mb-2">
@@ -76,5 +77,52 @@
         </div>
       </div>
     </div>
+    
+
+
+
+
+
+
+
+    <h2 class="page-title text-center my-4">Your (Confirmed) Appointments</h2>
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <div *ngIf="appointments.length" class="appointments-container">
+          <div *ngFor="let appointment of appointments" class="appointment-card card mb-3">
+            <div class="card-body" *ngIf="appointment.status == 'confirmed' && appointment.decoratorID == user.username">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h5 class="card-title">Owner ID: <strong>{{appointment.ownerId}}</strong></h5>
+                  <p class="card-text"><i class="bi bi-calendar"></i> Scheduled for: {{appointment.datetimeScheduled | date:'short'}}</p>
+                  <p *ngIf="showUploadButton(appointment.datetimeFinished); else underConstruction" class="text-success">
+                    <i class="bi bi-check-circle"></i> This job is finished.
+                  </p>
+                  <ng-template #underConstruction>
+                    <p class="text-warning">
+                      <i class="bi bi-exclamation-circle"></i> This project is under construction.
+                    </p>
+                  </ng-template>
+                </div>
+                <div class="col-sm-12 col-md-6 d-flex flex-column justify-content-center">
+                  <div *ngIf="showUploadButton(appointment.datetimeFinished) && !appointment.photosUploaded" class="d-flex justify-content-end">
+                    <button class="btn btn-sm btn-primary" (click)="uploadPictures(appointment)">
+                      <i class="bi bi-upload"></i> Upload Pictures
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="company.appointments.length == 0" class="no-appointments">
+          <p>No confirmed appointments.</p>
+        </div>
+      </div>
+    </div>
+    
+    
+    
   </div>
   
