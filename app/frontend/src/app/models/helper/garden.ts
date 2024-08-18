@@ -10,4 +10,5 @@ export class Garden{
     description: string = "";
     services: Service[] = [];
     design: string = "";
+    numberPoolFountain: number = 0;
 }

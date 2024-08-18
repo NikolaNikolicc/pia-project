@@ -15,6 +15,7 @@ const gardenSchema = new mongoose_1.default.Schema({
     description: { type: String, default: "" },
     services: [service_1.default],
     design: { type: String, default: "" },
+    numberPoolFountain: { type: String, default: 0 },
 }, { versionKey: false,
     _id: false // This prevents Mongoose from creating an _id field for this subdocument
 });

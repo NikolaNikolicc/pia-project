@@ -124,6 +124,10 @@ export class GardenBookingComponent implements OnInit{
         if(this.garden.areaGreen <= 0){
           this.error = "Green area must be positive number."
         }
+        if(this.garden.numberPoolFountain <= 0){
+          let water = (this.garden.gardenType == 'private')?"pools":"fountains";
+          this.error = `Number of ${water} must be positive number.`
+        }
         if(this.garden.areaPoolFountain <= 0){
           this.error = "Pool area must be positive number."
         }
