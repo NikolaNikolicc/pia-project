@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Garden } from 'src/app/models/helper/garden';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 interface BaseShape {
@@ -79,6 +80,7 @@ export class CanvasComponent implements OnInit {
   startY: number = 0;
   error: string = "";
 
+  garden: Garden = new Garden();
   // shapes: GardenShape[] = [];
 
   constructor(public sharedVariableService: SharedVariablesService){
@@ -86,6 +88,10 @@ export class CanvasComponent implements OnInit {
   }
 
   ngOnInit() {
+    let g = localStorage.getItem("garden");
+    if(g != null){
+      this.garden = JSON.parse(g);
+    }
     this.context = this.gardenCanvas.nativeElement.getContext('2d') as CanvasRenderingContext2D;
     this.drawGardenLayout();
   }

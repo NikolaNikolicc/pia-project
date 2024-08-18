@@ -16,4 +16,5 @@ export class Appointment{
     garden: Garden = new Garden();
     maintenanceTasks: MaintenanceTask[] = [];
     photosUploaded: boolean = false;
+    maintenanceScheduled: boolean = false;
 }

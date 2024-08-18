@@ -118,34 +118,44 @@ export class GardenBookingComponent implements OnInit{
         if(this.garden.areaPoolFountain + this.garden.areaGreen + this.garden.areaFurniture != this.garden.squareMeters){
           this.error = "Sum of Areas doesn't match garden area."
         }
-        if(this.garden.areaFurniture <= 0){
-          this.error = "Furniture area must be positive number."
+        if(this.garden.areaFurniture < 0){
+          this.error = "Furniture area must be positive number or zero."
         }
-        if(this.garden.areaGreen <= 0){
-          this.error = "Green area must be positive number."
+        if(this.garden.areaGreen < 0){
+          this.error = "Green area must be positive number or zero."
         }
-        if(this.garden.numberPoolFountain <= 0){
+        if(this.garden.numberPoolFountain < 0){
           let water = (this.garden.gardenType == 'private')?"pools":"fountains";
-          this.error = `Number of ${water} must be positive number.`
+          this.error = `Number of ${water} must be positive number or zero.`
         }
-        if(this.garden.areaPoolFountain <= 0){
-          this.error = "Pool area must be positive number."
+        if(this.garden.areaPoolFountain < 0){
+          this.error = "Pool area must be positive number or zero."
+        }
+        if(this.garden.areaPoolFountain != 0 && this.garden.numberPoolFountain == 0 || 
+          this.garden.areaPoolFountain == 0 && this.garden.numberPoolFountain != 0
+        ){
+          this.error = "Please ensure that both the area and the number of pools are set, or leave both fields as zero."
         }
       }else{
         if(this.garden.areaPoolFountain + this.garden.areaGreen != this.garden.squareMeters){
           this.error = "Sum of Areas doesn't match garden area."
         }
-        if(this.garden.areaFurniture <= 0 && Number.isInteger(this.garden.areaFurniture)){
-          this.error = "Chair count must be positive number."
+        if(this.garden.areaFurniture < 0 && Number.isInteger(this.garden.areaFurniture)){
+          this.error = "Chair count must be positive number or zero."
         }
-        if(this.garden.tableCount <= 0 && Number.isInteger(this.garden.tableCount)){
-          this.error = "Table count must be positive number."
+        if(this.garden.tableCount < 0 && Number.isInteger(this.garden.tableCount)){
+          this.error = "Table count must be positive number or zero."
         }
-        if(this.garden.areaGreen <= 0){
-          this.error = "Green area must be positive number."
+        if(this.garden.areaGreen < 0){
+          this.error = "Green area must be positive number or zero."
         }
-        if(this.garden.areaPoolFountain <= 0){
-          this.error = "Fountain area must be positive number."
+        if(this.garden.areaPoolFountain < 0){
+          this.error = "Fountain area must be positive number or zero."
+        }
+        if(this.garden.areaPoolFountain != 0 && this.garden.numberPoolFountain == 0 || 
+          this.garden.areaPoolFountain == 0 && this.garden.numberPoolFountain != 0
+        ){
+          this.error = "Please ensure that both the area and the number of fountains are set, or leave both fields as zero."
         }
       }
       this.sharedVariablesService.gardenType = this.garden.gardenType;
@@ -156,6 +166,9 @@ export class GardenBookingComponent implements OnInit{
       return;
     }
     if (this.currentStep < 3) {
+      if(this.currentStep == 2){
+        localStorage.setItem("garden", JSON.stringify(this.garden));
+      }
       this.currentStep++;
     }
   }

@@ -40,7 +40,7 @@
   
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10 col-sm-12">
-        <div *ngIf="appointments.length" class="appointments-container">
+        <div *ngIf="anyUnconfirmedAppontment()" class="appointments-container">
           <div *ngFor="let appointment of appointments" class="appointment-card card mb-3">
             <div class="card-body" *ngIf="appointment.status == 'pending'">
               <div class="row">
@@ -72,8 +72,8 @@
             </div>
           </div>
         </div>
-        <div *ngIf="company.appointments.length == 0" class="no-appointments">
-          <p>No pending appointments.</p>
+        <div *ngIf="!anyUnconfirmedAppontment()" class="no-appointments">
+          <p class="alert alert-info">No pending appointments.</p>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
   
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10 col-sm-12">
-        <div *ngIf="appointments.length" class="appointments-container">
+        <div *ngIf="anyMineAppointment()" class="appointments-container">
           <div *ngFor="let appointment of appointments" class="appointment-card card mb-3">
             <div class="card-body" *ngIf="appointment.status == 'confirmed' && appointment.decoratorID == user.username">
               <div class="row">
@@ -116,8 +116,8 @@
             </div>
           </div>
         </div>
-        <div *ngIf="company.appointments.length == 0" class="no-appointments">
-          <p>No confirmed appointments.</p>
+        <div *ngIf="!anyMineAppointment()" class="no-appointments">
+          <p class="alert alert-info">No confirmed appointments.</p>
         </div>
       </div>
     </div>

@@ -65,6 +65,14 @@ export class ListAppointmentsComponent implements OnInit{
       modal.show();
   }
 
+  anyUnconfirmedAppontment(){
+    return this.appointments.some(appointment=>appointment.status == "pending");
+  }
+
+  anyMineAppointment(){
+    return this.appointments.some(appointment=>appointment.decoratorID == this.user.username && appointment.status == "confirmed");
+  }
+
   showErrorModal(){
     const modalNative: HTMLElement = this.modalError.nativeElement;
       const modal = new bootstrap.Modal(modalNative, {

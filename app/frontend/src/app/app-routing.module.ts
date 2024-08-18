@@ -39,7 +39,7 @@ const routes: Routes = [
   {path: 'owner-index', component: OwnerIndexComponent},
   {path: 'list-appointments', component: ListAppointmentsComponent},
   {path: 'archive', component: ArchiveComponent},
-  {path: 'maintenanca', component: GardenMaintenanceComponent}
+  {path: 'maintenance', component: GardenMaintenanceComponent}
 ];
 
 @NgModule({

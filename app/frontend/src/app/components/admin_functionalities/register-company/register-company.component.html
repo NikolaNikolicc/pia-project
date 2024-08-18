@@ -54,7 +54,10 @@
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address:</label>
-                <input type="text" id="address" [(ngModel)]="address" name="address" class="form-control" required (ngModelChange)="changeAddress()" placeholder="Enter company address">
+                <div class="input-group">
+                    <input type="text" id="address" [(ngModel)]="address" name="address" class="form-control" required placeholder="Enter company address">
+                    <button type="button" class="btn btn-primary orng-btn" (click)="confirmAddress()">Confirm Address</button>
+                </div>
             </div>
             <div class="mb-3" *ngIf="sharedVariablesService.address != ''">
                 <app-map-preview></app-map-preview>

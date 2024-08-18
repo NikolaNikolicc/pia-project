@@ -35,6 +35,7 @@ export class RegisterCompanyComponent implements OnInit{
   constructor(private router: Router, private decoratorService: DecoratorService, public sharedVariablesService: SharedVariablesService, private companyService: CompanyService) { }
 
   ngOnInit(): void {
+    this.sharedVariablesService.address = "Kolarceva Zaduzbina";
     this.decoratorService.getAllUnemployedDecorators().subscribe(
       data=>{
         if(data.message){
@@ -66,7 +67,7 @@ export class RegisterCompanyComponent implements OnInit{
       modal.show();
   }
 
-  changeAddress(){
+  confirmAddress(){
     this.sharedVariablesService.address = this.address;
   }
 
@@ -167,6 +168,9 @@ export class RegisterCompanyComponent implements OnInit{
     }
     if(this.contactPersonName == ""){
       this.error = "Contact person field is empty.";
+    }
+    if(this.address != this.sharedVariablesService.address){
+      this.error = "You must confirm company address.";
     }
     if(this.address == ""){
       this.error = "Address field is empty.";

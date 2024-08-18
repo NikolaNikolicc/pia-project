@@ -97,7 +97,7 @@
             </table>
           </div>
           <div *ngIf="!anyPending()" class="no-appointments">
-            <p>No current appointments.</p>
+            <p class="alert alert-info">No current appointments.</p>
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@
             </table>
           </div>
           <div *ngIf="anyConfirmed()" class="no-appointments">
-            <p>No archived appointments.</p>
+            <p class="alert alert-info">No archived appointments.</p>
           </div>
         </div>
       </div>

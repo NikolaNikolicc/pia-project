@@ -1,1 +1,81 @@
-<p>garden-maintenance works!</p>
+<div class="container mt-5">
+    <div class="modal" id="successModal" #successModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Success</h3>
+                </div>
+                <div class="modal-body text-start">
+                    {{ this.success }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completed Jobs -->
+    <h2 class="mb-4 mt-5 text-center">Completed Jobs</h2>
+    <div *ngIf="jobsCompleted.length === 0" class="no-appointments">
+        <p class="alert alert-info">No completed jobs available.</p>
+    </div>
+    <table *ngIf="jobsCompleted.length > 0" class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Garden Completion Date</th>
+                <th scope="col">Number of Pools/Fountains</th>
+                <th scope="col">Company</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of jobsCompleted; let i = index">
+                <td>{{ job.appointment.datetimeFinished | date:'mediumDate' }}</td>
+                <td>{{ job.appointment.garden.numberPoolFountain }}</td>
+                <td>{{ job.companyName }}</td>
+                <td>
+                    <button *ngIf="!job.appointment.maintenanceScheduled && job.needsServicing" class="btn btn-primary btn-sm" (click)="scheduleServicing(job.appointment, job.companyName, i)">
+                        Schedule Servicing
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Maintenance Needed -->
+    <h2 class="mb-4 mt-5 text-center">Maintenance Needed</h2>
+    <div *ngIf="maintenanceNeeded.length === 0" class="no-appointments">
+        <p class="alert alert-info">No maintenance needed at this time.</p>
+    </div>
+    <table *ngIf="maintenanceNeeded.length > 0" class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Garden Completion Date</th>
+                <th scope="col">Number of Pools/Fountains</th>
+                <th scope="col">Company</th>
+                <th scope="col">Maintenance Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of maintenanceNeeded">
+                <td>{{ job.appointment.datetimeFinished | date:'mediumDate' }}</td>
+                <td>{{ job.appointment.garden.numberPoolFountain }}</td>
+                <td>{{ job.companyName }}</td>
+                <td>
+                    <span *ngIf="job.appointment.maintenanceScheduled">
+                        <span *ngIf="job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].status === 'pending'" class="badge bg-warning text-dark">
+                            Pending (Waiting for decorator)
+                        </span>
+                        <span *ngIf="job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].status === 'in-progress'" class="badge bg-info text-white">
+                            In Progress (Estimated completion: {{ job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].estimatedCompletitionTime | date:'mediumDate' }})
+                        </span>
+                        <span *ngIf="job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].status === 'rejected'" class="badge bg-danger">
+                            Rejected (Reason: {{ job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].comment }})
+                        </span>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
