@@ -68,29 +68,27 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let appointment of myAppointments; let i = index">
-                    <div *ngIf="appointment.status == 'pending'">
-                        <td><strong>{{ myCompanyName[i] }}</strong></td>
-                        <td>{{ appointment.datetimeScheduled | date:'short' }}</td>
-                        <td>{{ appointment.datetimeCreated | date:'short' }}</td>
-                        <td>
-                          <ul class="list-unstyled">
-                            <li *ngFor="let service of appointment.garden.services">
-                              {{ service.name }} - {{ service.price | currency:'USD':true }}
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <div *ngIf="canCancelAppointment(appointment)">
-                            <button class="btn btn-sm btn-danger" (click)="cancelAppointment(appointment, myCompanyName[i])">
-                              <i class="bi bi-x-circle"></i> Cancel
-                            </button>
-                          </div>
-                          <p *ngIf="!canCancelAppointment(appointment)" class="text-danger m-0">
-                            <i class="bi bi-exclamation-circle"></i> Cannot cancel within 24 hours
-                          </p>
-                        </td>
+                <tr *ngFor="let appointment of myAppointments; let i = index" [hidden]="currentCheck(appointment)">
+                  <td><strong>{{ myCompanyName[i] }}</strong></td>
+                  <td>{{ appointment.datetimeScheduled | date:'short' }}</td>
+                  <td>{{ appointment.datetimeCreated | date:'short' }}</td>
+                  <td>
+                    <ul class="list-unstyled">
+                      <li *ngFor="let service of appointment.garden.services">
+                        {{ service.name }} - {{ service.price | currency:'USD':true }}
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div *ngIf="canCancelAppointment(appointment)">
+                      <button class="btn btn-sm btn-danger" (click)="cancelAppointment(appointment, myCompanyName[i])">
+                        <i class="bi bi-x-circle"></i> Cancel
+                      </button>
                     </div>
+                    <p *ngIf="!canCancelAppointment(appointment)" class="text-danger m-0">
+                      <i class="bi bi-exclamation-circle"></i> Cannot cancel within 24 hours
+                    </p>
+                  </td>
                   
                 </tr>
               </tbody>
@@ -122,12 +120,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let appointment of myAppointments; let i = index">
-                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)"><strong>{{ myCompanyName[i] }}</strong></td>
-                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.datetimeFinished | date:'yyyy-MM-dd' }}</td>
-                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.ownerComment || 'No comment provided' }}</td>
-                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">{{ appointment.score || 'No rating provided' }}</td>
-                  <td *ngIf="appointment.status == 'confirmed' && validDate(appointment)">
+                <tr *ngFor="let appointment of myAppointments; let i = index" [hidden]="appointment.status != 'confirmed' || !validDate(appointment)">
+                  <td><strong>{{ myCompanyName[i] }}</strong></td>
+                  <td>{{ appointment.datetimeFinished | date:'yyyy-MM-dd' }}</td>
+                  <td>{{ appointment.ownerComment || 'No comment provided' }}</td>
+                  <td>{{ appointment.score || 'No rating provided' }}</td>
+                  <td>
                     <div *ngIf="!appointment.ownerComment || !appointment.score" class="d-flex justify-content-end">
                       <button class="btn btn-sm btn-primary" (click)="openCommentRatingModal(appointment, myCompanyName[i])">
                         <i class="bi bi-pencil"></i> Add Comment and Rating

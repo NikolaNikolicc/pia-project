@@ -114,11 +114,15 @@ export class ArchiveComponent implements OnInit {
     modal.show();
   }
 
+  currentCheck(app: Appointment){
+    return app.status == 'pending' || app.status == 'confirmed' && new Date() <= new Date(app.datetimeFinished)
+  }
+
   anyPending(): boolean {
     if (this.myAppointments.length === 0) return false;
   
     return this.myAppointments.some(app => 
-      app.ownerId === this.user.username && app.status === 'pending'
+      app.ownerId === this.user.username && this.currentCheck(app)
     );
   }
 
