@@ -20,7 +20,7 @@
     <div *ngIf="jobsCompleted.length === 0" class="no-appointments">
         <p class="alert alert-info">No completed jobs available.</p>
     </div>
-    <table *ngIf="jobsCompleted.length > 0" class="table table-striped">
+    <table *ngIf="jobsCompleted.length > 0" class="table table-striped table-hover">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Garden Completion Date</th>
@@ -44,11 +44,11 @@
     </table>
 
     <!-- Maintenance Needed -->
-    <h2 class="mb-4 mt-5 text-center">Maintenance Needed</h2>
+    <h2 class="mb-4 mt-5 text-center">Under the Maintenance</h2>
     <div *ngIf="maintenanceNeeded.length === 0" class="no-appointments">
-        <p class="alert alert-info">No maintenance needed at this time.</p>
+        <p class="alert alert-info">There are no maintenance requests being processed at this time.</p>
     </div>
-    <table *ngIf="maintenanceNeeded.length > 0" class="table table-striped">
+    <table *ngIf="maintenanceNeeded.length > 0" class="table table-striped table-hover">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Garden Completion Date</th>

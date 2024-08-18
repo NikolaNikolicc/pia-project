@@ -18,7 +18,7 @@ const appointmentSchema = new Schema(
     garden: { type: gardenSchema, default: () => ({}) }, // Assuming GardenSchema is defined elsewhere
     maintenanceTasks: { type: [maintenanceTaskSchema], default: [] }, // Assuming MaintenanceTaskSchema is defined elsewhere
     photosUploaded: {type: Boolean},
-    maintenanceScheduled: {type: Boolean, default: false},
+    maintenanceScheduled: {type: Boolean},
   },
   {
     versionKey: false,

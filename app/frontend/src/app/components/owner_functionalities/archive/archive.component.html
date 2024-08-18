@@ -57,8 +57,8 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
           <div *ngIf="anyPending()" class="appointments-container">
-            <table class="table table-striped">
-              <thead>
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
                 <tr>
                   <th>Company</th>
                   <th>Scheduled Date</th>
@@ -109,8 +109,8 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
           <div *ngIf="!anyConfirmed()" class="appointments-container">
-            <table class="table table-striped">
-              <thead>
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
                 <tr>
                   <th>Company</th>
                   <th>Completed on</th>

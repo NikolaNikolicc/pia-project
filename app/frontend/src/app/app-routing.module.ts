@@ -19,6 +19,7 @@ import { OwnerIndexComponent } from './components/owner_functionalities/owner-in
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
 import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
+import { ListMaintenanceComponent } from './components/decorator_functionalities/list-maintenance/list-maintenance.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -39,7 +40,8 @@ const routes: Routes = [
   {path: 'owner-index', component: OwnerIndexComponent},
   {path: 'list-appointments', component: ListAppointmentsComponent},
   {path: 'archive', component: ArchiveComponent},
-  {path: 'maintenance', component: GardenMaintenanceComponent}
+  {path: 'maintenance', component: GardenMaintenanceComponent},
+  {path: 'list-maintenance-requests', component: ListMaintenanceComponent}
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@ const appointmentSchema = new mongoose_1.Schema({
     garden: { type: garden_1.default, default: () => ({}) },
     maintenanceTasks: { type: [maintenance_task_1.default], default: [] },
     photosUploaded: { type: Boolean },
-    maintenanceScheduled: { type: Boolean, default: false },
+    maintenanceScheduled: { type: Boolean },
 }, {
     versionKey: false,
     _id: false // Prevents Mongoose from creating an _id field for this subdocument

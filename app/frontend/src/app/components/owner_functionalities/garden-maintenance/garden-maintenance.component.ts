@@ -14,11 +14,11 @@ declare var bootstrap: any;
 })
 export class GardenMaintenanceComponent implements OnInit {
 
+  @ViewChild('successModal') modalSuccess!: ElementRef;
   jobsCompleted: {appointment: Appointment, companyName: string, needsServicing: boolean}[] = [];
   maintenanceNeeded: {appointment: Appointment, companyName: string, needsServicing: boolean}[] = [];
   user: User = new User();
   success: string = "";
-  @ViewChild('successModal') modalSuccess!: ElementRef;
 
   constructor(private companyService: CompanyService) {}
 
@@ -48,13 +48,14 @@ export class GardenMaintenanceComponent implements OnInit {
                 const sixMonthsAgo = new Date();
                 sixMonthsAgo.setMonth(today.getMonth() - 6);
 
-                const needsServicing = (new Date(appointment.datetimeFinished) <= sixMonthsAgo && new Date(appointment.datetimeLastTimeServiced) <= sixMonthsAgo) && !appointment.maintenanceScheduled;
+                const needsServicing = (new Date(appointment.datetimeFinished) <= sixMonthsAgo || new Date(appointment.datetimeLastTimeServiced) <= sixMonthsAgo) && !appointment.maintenanceScheduled;
 
                 let lastId = appointment.maintenanceTasks.length - 1
-                if (appointment.maintenanceTasks[lastId].status === 'in-progress') {
-                  this.jobsCompleted.push({ appointment, companyName: company.name, needsServicing });
-                } else if (appointment.status === 'confirmed' && today >= new Date(appointment.datetimeFinished)) {
+                if (appointment.maintenanceTasks.length > 0 && (appointment.maintenanceTasks[lastId].status == 'in-progress' || appointment.maintenanceTasks[lastId].status == 'pending')) {
                   this.maintenanceNeeded.push({ appointment, companyName: company.name, needsServicing });
+                } else if (appointment.status === 'confirmed' && today >= new Date(appointment.datetimeFinished)) {
+                  
+                  this.jobsCompleted.push({ appointment, companyName: company.name, needsServicing });
                 }
               }
             });
@@ -70,6 +71,7 @@ export class GardenMaintenanceComponent implements OnInit {
     maintenanceTask.status = 'pending';
     appointment.maintenanceTasks.push(maintenanceTask);
     this.jobsCompleted.splice(index, 1);
+    this.maintenanceNeeded.push({appointment: appointment,companyName: companyName,needsServicing: true});
     this.companyService.updateAppointment(appointment, companyName).subscribe(
       data => {
         if (data.message === "ok") {

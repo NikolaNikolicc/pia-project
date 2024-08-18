@@ -31,6 +31,7 @@ import { CanvasComponent } from './components/owner_functionalities/canvas/canva
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
 import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
+import { ListMaintenanceComponent } from './components/decorator_functionalities/list-maintenance/list-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { GardenMaintenanceComponent } from './components/owner_functionalities/g
     CanvasComponent,
     ListAppointmentsComponent,
     ArchiveComponent,
-    GardenMaintenanceComponent
+    GardenMaintenanceComponent,
+    ListMaintenanceComponent,
   ],
   imports: [
     BrowserModule,
