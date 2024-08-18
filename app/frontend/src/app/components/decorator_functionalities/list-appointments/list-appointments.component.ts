@@ -93,10 +93,14 @@ export class ListAppointmentsComponent implements OnInit{
     let startDate = this.company.vacationPeriodEnd.toString().split("T")[0];
     let endDate = this.company.vacationPeriodEnd.toString().split("T")[0];
     if(dateTimeChosen[0] >= startDate && dateTimeChosen[0] <= endDate){
-      this.error = "Can't book on this date because this is company's vacation period.";
+      this.error = "Can't set this finish date because this is company's vacation period.";
+    }
+    if(appointment.datetimeFinished < appointment.datetimeCreated){
+      this.error = "Task can't be finished before it starts.";
     }
     if(this.error != ""){
       this.showErrorModal();
+      return;
     }
     appointment.decoratorID = this.user.username;
     appointment.datetimeLastTimeServiced = appointment.datetimeFinished;
@@ -155,7 +159,7 @@ export class ListAppointmentsComponent implements OnInit{
 
   showUploadButton(datetimeFinished: Date): boolean {
     const today = new Date();
-    return new Date(datetimeFinished) >= new Date(today.setHours(0, 0, 0, 0));
+    return new Date(datetimeFinished) <= new Date(today.setHours(0, 0, 0, 0));
   }
 
   // Function to handle picture upload
