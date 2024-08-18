@@ -71,6 +71,8 @@ export class SharedVariablesService {
   address$ = this.addressSource.asObservable();
   // canvas variables
   shapes: GardenShape[] = [];
+  gardenType: String = "";
+  numberOfWaterSurfaces: number = 0;
 
   constructor() { }
 

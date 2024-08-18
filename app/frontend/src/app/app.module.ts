@@ -30,6 +30,7 @@ import { OwnerIndexComponent } from './components/owner_functionalities/owner-in
 import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
+import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ArchiveComponent } from './components/owner_functionalities/archive/arc
     OwnerIndexComponent,
     CanvasComponent,
     ListAppointmentsComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    GardenMaintenanceComponent
   ],
   imports: [
     BrowserModule,

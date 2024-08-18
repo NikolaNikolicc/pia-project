@@ -148,6 +148,8 @@ export class GardenBookingComponent implements OnInit{
           this.error = "Fountain area must be positive number."
         }
       }
+      this.sharedVariablesService.gardenType = this.garden.gardenType;
+      this.sharedVariablesService.numberOfWaterSurfaces = this.garden.numberPoolFountain;
     }
     if(this.error != ""){
       this.showErrorModal();

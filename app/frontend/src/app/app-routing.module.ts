@@ -13,13 +13,12 @@ import { RegistrationRequestsComponent } from './components/admin_functionalitie
 import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
 import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
 import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
-import { GardenBookingComponent } from './components/owner_functionalities/garden-booking/garden-booking.component';
 import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
 import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
 import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
-import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
+import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -40,6 +39,7 @@ const routes: Routes = [
   {path: 'owner-index', component: OwnerIndexComponent},
   {path: 'list-appointments', component: ListAppointmentsComponent},
   {path: 'archive', component: ArchiveComponent},
+  {path: 'maintenanca', component: GardenMaintenanceComponent}
 ];
 
 @NgModule({

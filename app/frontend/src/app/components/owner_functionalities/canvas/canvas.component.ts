@@ -81,7 +81,7 @@ export class CanvasComponent implements OnInit {
 
   // shapes: GardenShape[] = [];
 
-  constructor(private sharedVariableService: SharedVariablesService){
+  constructor(public sharedVariableService: SharedVariablesService){
 
   }
 

@@ -23,8 +23,8 @@
         <label for="shape" class="form-label">Select Action Which You Want to Perform:</label>
         <select id="shape" class="form-select" [(ngModel)]="selectedAction">
           <option value="square">Green Square (Greenery)</option>
-          <option value="rectangle">Blue Rectangle (Pool)</option>
-          <option value="circle">Blue Circle (Fountain)</option>
+          <option value="rectangle" *ngIf="sharedVariableService.gardenType == 'private' && sharedVariableService.numberOfWaterSurfaces > 0">Blue Rectangle (Pool)</option>
+          <option value="circle" *ngIf="sharedVariableService.gardenType == 'restaurant' && sharedVariableService.numberOfWaterSurfaces > 0">Blue Circle (Fountain)</option>
           <option value="small-circle">Brown Circle (Table)</option>
           <option value="small-rectangle">Gray Rectangle (Chairs/Loungers)</option>
           <option value="rotate">Rotate Object</option>
