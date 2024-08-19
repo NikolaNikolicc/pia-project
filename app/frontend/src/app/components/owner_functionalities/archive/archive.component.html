@@ -64,11 +64,12 @@
                   <th>Scheduled Date</th>
                   <th>Date Created</th>
                   <th>Requested Services</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let appointment of myAppointments; let i = index" [hidden]="currentCheck(appointment)">
+                <tr *ngFor="let appointment of myAppointments; let i = index" [hidden]="!currentCheck(appointment)">
                   <td><strong>{{ myCompanyName[i] }}</strong></td>
                   <td>{{ appointment.datetimeScheduled | date:'short' }}</td>
                   <td>{{ appointment.datetimeCreated | date:'short' }}</td>
@@ -78,6 +79,10 @@
                         {{ service.name }} - {{ service.price | currency:'USD':true }}
                       </li>
                     </ul>
+                  </td>
+                  <td>
+                    <span *ngIf="appointment.status === 'pending'" class="badge bg-warning text-dark">Pending</span>
+                    <span *ngIf="appointment.status === 'confirmed'" class="badge bg-success">Confirmed</span>
                   </td>
                   <td>
                     <div *ngIf="canCancelAppointment(appointment)">
@@ -116,17 +121,23 @@
                   <th>Completed on</th>
                   <th>Comment</th>
                   <th>Rating</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let appointment of myAppointments; let i = index" [hidden]="appointment.status != 'confirmed' || !validDate(appointment)">
+                <tr *ngFor="let appointment of myAppointments; let i = index" [hidden]="(appointment.status != 'confirmed' || !validDate(appointment)) && appointment.status != 'rejected' && appointment.status != 'canceled'">
                   <td><strong>{{ myCompanyName[i] }}</strong></td>
                   <td>{{ appointment.datetimeFinished | date:'yyyy-MM-dd' }}</td>
                   <td>{{ appointment.ownerComment || 'No comment provided' }}</td>
                   <td>{{ appointment.score || 'No rating provided' }}</td>
                   <td>
-                    <div *ngIf="!appointment.ownerComment || !appointment.score" class="d-flex justify-content-end">
+                    <span *ngIf="appointment.status === 'confirmed'" class="badge bg-success">Confirmed</span>
+                    <span *ngIf="appointment.status === 'rejected'" class="badge bg-danger">Rejected</span>
+                    <span *ngIf="appointment.status === 'canceled'" class="badge bg-secondary">Canceled</span>
+                  </td>
+                  <td>
+                    <div *ngIf="(!appointment.ownerComment || !appointment.score) && appointment.status == 'confirmed'" class="d-flex justify-content-end">
                       <button class="btn btn-sm btn-primary" (click)="openCommentRatingModal(appointment, myCompanyName[i])">
                         <i class="bi bi-pencil"></i> Add Comment and Rating
                       </button>

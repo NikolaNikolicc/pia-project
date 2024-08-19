@@ -130,7 +130,7 @@ export class ArchiveComponent implements OnInit {
     if(this.myAppointments.length === 0)return false;
 
     return this.myAppointments.some(appointment=>{
-      appointment.status == 'confirmed' && this.validDate(appointment)
+      (appointment.status == 'confirmed' && this.validDate(appointment)) || appointment.status == "rejected" || appointment.status == "canceled"
     })
   }
 

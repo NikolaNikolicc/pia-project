@@ -32,6 +32,24 @@ export class ListCompaniesLoggedComponent implements OnInit{
       companies=>{
         if(companies.message){
           this.companies = JSON.parse(companies.message);
+          this.companies.forEach(company=>{
+            if(company.appointments.length > 0){
+              let tmpSum = 0;
+              let tmpCnt = 0;
+              company.appointments.forEach(appointment=>{
+                if(appointment.status == "confirmed" && appointment.score > 0){
+                  tmpSum += appointment.score;
+                  tmpCnt += 1;
+                }
+              })
+              if(tmpSum != 0){
+                company.companyAvgScore = tmpSum / tmpCnt;
+              }else{
+                company.companyAvgScore = 5;
+              }
+            }
+          })
+          
           this.decoratorService.getAllEmployedDecorators().subscribe(
             decorators=>{
               if(decorators.message){

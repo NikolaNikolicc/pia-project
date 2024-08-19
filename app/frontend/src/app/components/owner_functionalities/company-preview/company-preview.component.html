@@ -14,11 +14,11 @@
         </ul>
   
         <h5>Comments</h5>
-        <!-- <ul class="list-group mb-4">
-          <li class="list-group-item" *ngFor="let appointment of company.appointments">
+        <ul class="list-group mb-4">
+          <li class="list-group-item" *ngFor="let appointment of company.appointments" [hidden]="appointment.ownerComment == ''">
             {{ appointment.ownerComment }}
           </li>
-        </ul> -->
+        </ul>
   
         <h5>Location</h5>
         <div class="embed-responsive embed-responsive-16by9 mb-4">

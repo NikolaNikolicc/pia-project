@@ -15,6 +15,33 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  goToPage(requestIndex: number){
+    if(requestIndex == 1){
+      this.router.navigate(["owner-profile-preview"]);
+    }
+    if(requestIndex == 2){
+      this.router.navigate(["list-all-companies-owner"]);
+    }
+    if(requestIndex == 3){
+      this.router.navigate(["archive"]);
+    }
+    if(requestIndex == 4){
+      this.router.navigate(["maintenance"]);
+    }
+    if(requestIndex == 5){
+      this.router.navigate(["owner-profile-preview"]);
+    }
+    if(requestIndex == 6){
+      this.router.navigate(["list-appointments"]);
+    }
+    if(requestIndex == 7){
+      this.router.navigate(["list-maintenance-requests"]);
+    }
+    if(requestIndex == 8){
+      this.router.navigate(["statistics"]);
+    }
+  }
+
   login(){
     this.router.navigate(["login"]);
   }

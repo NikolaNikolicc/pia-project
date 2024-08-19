@@ -5,16 +5,59 @@
             <img src="../../../assets/Logo1.jpg" alt="Mašta Bašta Logo" width="100">
         </a>
         <div class="mx-auto d-none d-md-block">
-            <!-- <h2 class="text-white text-center">Vaša Mašta - Vaša Bašta</h2> -->
-            <h2 class="text-white text-center">Be a Children - Make a Garden</h2>
+            <h2 class="text-white text-center">Be a children - Make a Garden</h2>
         </div>
-        <div *ngIf='sharedVariablesService.sessionID == "0"'>
-            <button class="btn btn-transparent" (click)="login()">Login</button> 
-            / 
-            <button class="btn btn-transparent" (click)="register()">Register</button>
-        </div>
-        <div *ngIf='sharedVariablesService.sessionID != "0"  && sharedVariablesService.sessionID != "-1"'>
-            <button class="btn btn-transparent" (click)="logout()">Logout</button>
+        <div class="d-flex align-items-center">
+            <div *ngIf='sharedVariablesService.sessionID == "0"'>
+                <button class="btn btn-transparent" (click)="login()">Login</button> 
+                / 
+                <button class="btn btn-transparent" (click)="register()">Register</button>
+            </div>
+            <div *ngIf='sharedVariablesService.sessionID != "0"  && sharedVariablesService.sessionID != "-1"'>
+                <button class="btn btn-transparent" (click)="logout()">Logout</button>
+            </div>
+            <!-- Offcanvas toggle button with icon -->
+            <button class="btn btn-transparent ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" *ngIf="sharedVariablesService.sessionID == '2' || sharedVariablesService.sessionID == '3'">
+                <i class="bi bi-list"></i> <!-- Bootstrap icon -->
+            </button>
         </div>
     </div>
 </nav>
+
+<!-- Offcanvas on the right side -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <!-- For sessionID == '2' -->
+      <button *ngIf="sharedVariablesService.sessionID == '2'" class="btn btn-outline-light mb-2" (click)="goToPage(1)">
+        <i class="bi bi-person"></i> Profile
+      </button>
+      <button *ngIf="sharedVariablesService.sessionID == '2'" class="btn btn-outline-light mb-2" (click)="goToPage(2)">
+        <i class="bi bi-building"></i> Companies
+      </button>
+      <button *ngIf="sharedVariablesService.sessionID == '2'" class="btn btn-outline-light mb-2" (click)="goToPage(3)">
+        <i class="bi bi-calendar-check"></i> Appointments
+      </button>
+      <button *ngIf="sharedVariablesService.sessionID == '2'" class="btn btn-outline-light mb-2" (click)="goToPage(4)">
+        <i class="bi bi-wrench"></i> Maintenance
+      </button>
+  
+      <!-- For sessionID == '3' -->
+      <button *ngIf="sharedVariablesService.sessionID == '3'" class="btn btn-outline-light mb-2" (click)="goToPage(5)">
+        <i class="bi bi-person"></i> Profile
+      </button>
+      <button *ngIf="sharedVariablesService.sessionID == '3'" class="btn btn-outline-light mb-2" (click)="goToPage(6)">
+        <i class="bi bi-calendar-check"></i> Appointments
+      </button>
+      <button *ngIf="sharedVariablesService.sessionID == '3'" class="btn btn-outline-light mb-2" (click)="goToPage(7)">
+        <i class="bi bi-wrench"></i> Maintenance
+      </button>
+      <button *ngIf="sharedVariablesService.sessionID == '3'" class="btn btn-outline-light mb-2" (click)="goToPage(8)">
+        <i class="bi bi-bar-chart"></i> Statistics
+      </button>
+    </div>
+  </div>
+  
