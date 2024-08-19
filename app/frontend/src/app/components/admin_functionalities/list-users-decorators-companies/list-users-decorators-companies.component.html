@@ -76,7 +76,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Please provide a reason for deactivating {{ selectedUser?.name }} {{ selectedUser?.surname }}:</p>
+        <p>Please provide a reason for deactivating {{ selectedUser.name }} {{ selectedUser.surname }}:</p>
         <textarea class="form-control" [(ngModel)]="deactivationReason" rows="3"></textarea>
       </div>
       <div class="modal-footer">

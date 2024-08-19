@@ -21,4 +21,8 @@ photoRouter.route('/getUserPhoto').post(
     (req, res) => new PhotoController().getUserPhoto(req, res)
 );
 
+photoRouter.route('/getPhotos').post(
+    (req, res) => new PhotoController().getPhotos(req, res)
+);
+
 export default photoRouter;

@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Gallery</h2>
+
+  <div *ngFor="let photoSet of photosToShow">
+    <h3 class="text-center">{{ photoSet.company }} - Appointment ID: {{ photoSet.appointment.appointmentId }}</h3>
+    
+    <div class="photo-container d-flex justify-content-center flex-wrap">
+      <div *ngFor="let photo of photoSet.photos" class="photo-item text-center">
+        <img [src]="'data:image/jpeg;base64,' + photo.data" [alt]="photo.filename" class="photo" />
+        <p>{{ photo.filename }}</p>
+      </div>
+    </div>
+  </div>
+</div>

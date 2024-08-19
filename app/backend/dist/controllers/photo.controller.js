@@ -50,6 +50,51 @@ class PhotoController {
             });
             res.end(imageBlob, 'binary');
         };
+        this.getPhotos = (req, res) => {
+            const company = req.body.company;
+            const username = req.body.username;
+            const appointmentId = req.body.appointmentId;
+            if (!company || !username || !appointmentId) {
+                console.log('Missing required fields');
+                return res.status(400).json({ message: 'Missing required fields' });
+            }
+            const userDirectory = path.join(PHOTOS_DIRECTORY, 'companies', company, username, appointmentId);
+            if (!fs.existsSync(userDirectory)) {
+                console.log('Directory not found');
+                return res.status(404).json({ message: 'Directory not found' });
+            }
+            fs.readdir(userDirectory, (err, files) => {
+                if (err) {
+                    console.error('Error reading directory:', err);
+                    return res.status(500).json({ message: 'Error reading directory', error: err });
+                }
+                const imageFiles = files.filter(file => /\.(jpg|jpeg|png)$/i.test(file));
+                const imageBlobsPromises = imageFiles.map((file) => {
+                    const filePath = path.join(userDirectory, file);
+                    return new Promise((resolve, reject) => {
+                        fs.readFile(filePath, (err, data) => {
+                            if (err) {
+                                reject(err);
+                            }
+                            else {
+                                resolve({ name: file, blob: data });
+                            }
+                        });
+                    });
+                });
+                Promise.all(imageBlobsPromises)
+                    .then((imageBlobs) => {
+                    const images = imageBlobs.map((imageBlob) => ({
+                        name: imageBlob.name,
+                        blob: imageBlob.blob.toString('base64'), // Convert blob to base64 string
+                    }));
+                    res.json({ images });
+                })
+                    .catch((err) => {
+                    res.status(500).json({ message: 'Error while retrieving images.', error: err });
+                });
+            });
+        };
         this.savePhotos = (req, res) => {
             const imageBlobs = req.files; // Array of files
             const imageNames = JSON.parse(req.body.imageNames);

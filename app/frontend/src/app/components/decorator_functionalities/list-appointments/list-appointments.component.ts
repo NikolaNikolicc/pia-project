@@ -158,8 +158,7 @@ export class ListAppointmentsComponent implements OnInit{
   }
 
   showUploadButton(datetimeFinished: Date): boolean {
-    const today = new Date();
-    return new Date(datetimeFinished) <= new Date(today.setHours(0, 0, 0, 0));
+    return new Date(datetimeFinished) <= new Date();
   }
 
   // Function to handle picture upload

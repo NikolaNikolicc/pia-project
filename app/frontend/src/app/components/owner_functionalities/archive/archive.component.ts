@@ -65,7 +65,7 @@ private async updateAppointmentsStatus(): Promise<void> {
     // Collect all observables for updating appointments
     const updateObservables = this.combinedArray.map(item => {
         let app: Appointment = item.appointment;
-        if (app.status === "pending" && new Date() < new Date(app.datetimeScheduled)) {
+        if (app.status === "pending" && new Date() > new Date(app.datetimeScheduled)) {
             item.appointment.status = "rejected";
             return this.companyService.updateAppointment(item.appointment, item.companyName)
                 .pipe(

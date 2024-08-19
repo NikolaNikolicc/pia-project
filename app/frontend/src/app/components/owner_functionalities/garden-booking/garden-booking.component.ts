@@ -207,7 +207,7 @@ export class GardenBookingComponent implements OnInit{
   }
 
   goToUserIndex(){
-    this.router.navigate(["owner-index"]);
+    this.router.navigate(["owner-profile-preview"]);
   }
 
 }

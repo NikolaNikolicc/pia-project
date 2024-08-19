@@ -17,7 +17,6 @@ import { ChangePasswordComponent } from './components/login_and_registration/cha
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { OwnerProfilePreviewComponent } from './components/owner_functionalities/owner-profile-preview/owner-profile-preview.component';
 import { RegistrationRequestsComponent } from './components/admin_functionalities/registration-requests/registration-requests.component';
-import { CompaniesComponent } from './components/owner_functionalities/companies/companies.component';
 import { RegisterDecoratorComponent } from './components/admin_functionalities/register-decorator/register-decorator.component';
 import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
 import { RegisterCompanyComponent } from './components/admin_functionalities/register-company/register-company.component';
@@ -26,7 +25,6 @@ import { GardenBookingComponent } from './components/owner_functionalities/garde
 import { ListCompaniesComponent } from './components/common/list-companies/list-companies.component';
 import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
 import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
-import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
 import { CanvasComponent } from './components/owner_functionalities/canvas/canvas.component';
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
@@ -39,6 +37,7 @@ import { HistogramChartComponent } from './components/decorator_functionalities/
 import { ListUsersDecoratorsCompaniesComponent } from './components/admin_functionalities/list-users-decorators-companies/list-users-decorators-companies.component';
 import { CompanyPreviewNoBookingComponent } from './components/admin_functionalities/company-preview-no-booking/company-preview-no-booking.component';
 import { GeneralComponent } from './components/common/general/general.component';
+import { PhotoGalleryComponent } from './components/common/photo-gallery/photo-gallery.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +53,6 @@ import { GeneralComponent } from './components/common/general/general.component'
     ChangePasswordComponent,
     OwnerProfilePreviewComponent,
     RegistrationRequestsComponent,
-    CompaniesComponent,
     RegisterDecoratorComponent,
     AssignCompanyToDecoratorComponent,
     RegisterCompanyComponent,
@@ -63,7 +61,6 @@ import { GeneralComponent } from './components/common/general/general.component'
     ListCompaniesComponent,
     ListCompaniesLoggedComponent,
     CompanyPreviewComponent,
-    OwnerIndexComponent,
     CanvasComponent,
     ListAppointmentsComponent,
     ArchiveComponent,
@@ -76,6 +73,7 @@ import { GeneralComponent } from './components/common/general/general.component'
     ListUsersDecoratorsCompaniesComponent,
     CompanyPreviewNoBookingComponent,
     GeneralComponent,
+    PhotoGalleryComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,4 +13,5 @@ photoRouter.route('/savePhoto').post(upload.single('imageBlob'), // This middlew
 (req, res) => new photo_controller_1.PhotoController().savePhoto(req, res));
 photoRouter.route('/savePhotos').post(upload.array("images"), (req, res) => new photo_controller_1.PhotoController().savePhotos(req, res));
 photoRouter.route('/getUserPhoto').post((req, res) => new photo_controller_1.PhotoController().getUserPhoto(req, res));
+photoRouter.route('/getPhotos').post((req, res) => new photo_controller_1.PhotoController().getPhotos(req, res));
 exports.default = photoRouter;

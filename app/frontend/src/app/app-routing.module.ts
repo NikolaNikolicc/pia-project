@@ -15,7 +15,6 @@ import { RegisterCompanyComponent } from './components/admin_functionalities/reg
 import { AssignCompanyToDecoratorComponent } from './components/admin_functionalities/assign-company-to-decorator/assign-company-to-decorator.component';
 import { CompanyPreviewComponent } from './components/owner_functionalities/company-preview/company-preview.component';
 import { ListCompaniesLoggedComponent } from './components/owner_functionalities/list-companies-logged/list-companies-logged.component';
-import { OwnerIndexComponent } from './components/owner_functionalities/owner-index/owner-index.component';
 import { ListAppointmentsComponent } from './components/decorator_functionalities/list-appointments/list-appointments.component';
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
 import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
@@ -40,7 +39,6 @@ const routes: Routes = [
   {path: 'assign-company-decorator', component: AssignCompanyToDecoratorComponent},
   {path: 'company-preview', component: CompanyPreviewComponent},
   {path: 'list-all-companies-owner', component: ListCompaniesLoggedComponent},
-  {path: 'owner-index', component: OwnerIndexComponent},
   {path: 'list-appointments', component: ListAppointmentsComponent},
   {path: 'archive', component: ArchiveComponent},
   {path: 'maintenance', component: GardenMaintenanceComponent},
