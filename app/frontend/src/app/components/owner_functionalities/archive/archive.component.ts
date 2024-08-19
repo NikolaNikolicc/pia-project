@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { catchError, forkJoin, of } from 'rxjs';
 import { Company } from 'src/app/models/company';
 import { Appointment } from 'src/app/models/helper/appointment';
 import { User } from 'src/app/models/user';
@@ -29,35 +30,58 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
     let u = localStorage.getItem("user");
     if (u != null) {
-      this.user = JSON.parse(u);
-      this.companyService.getAllCompanies().subscribe(
-        companies => {
-          if (companies.message) {
-            this.companies = JSON.parse(companies.message);
-            this.companies.forEach(company => {
-              company.appointments.forEach(appointment => {
-                if (appointment.ownerId == this.user.username) {
-                  this.combinedArray.push({
-                    appointment: appointment,
-                    companyName: company.name
-                  });
-                }
-              });
-            });
+        this.user = JSON.parse(u);
+        this.companyService.getAllCompanies().subscribe(async companies => {
+            if (companies.message) {
+                this.companies = JSON.parse(companies.message);
+                this.companies.forEach(company => {
+                    company.appointments.forEach(appointment => {
+                        if (appointment.ownerId === this.user.username) {
+                            this.combinedArray.push({
+                                appointment: appointment,
+                                companyName: company.name
+                            });
+                        }
+                    });
+                });
 
-            // Sort the combined array by datetimeCreated in descending order
-            this.combinedArray.sort((a, b) => {
-              return new Date(b.appointment.datetimeCreated).getTime() - new Date(a.appointment.datetimeCreated).getTime();
-            });
+                // Await the completion of the appointment status updates
+                await this.updateAppointmentsStatus();
 
-            // Separate the sorted combined array back into the two lists
-            this.myAppointments = this.combinedArray.map(item => item.appointment);
-            this.myCompanyName = this.combinedArray.map(item => item.companyName);
-          }
-        }
-      );
+                // Sort the combined array by datetimeCreated in descending order
+                this.combinedArray.sort((a, b) => {
+                    return new Date(b.appointment.datetimeCreated).getTime() - new Date(a.appointment.datetimeCreated).getTime();
+                });
+
+                // Separate the sorted combined array back into the two lists
+                this.myAppointments = this.combinedArray.map(item => item.appointment);
+                this.myCompanyName = this.combinedArray.map(item => item.companyName);
+            }
+        });
     }
-  }
+}
+
+private async updateAppointmentsStatus(): Promise<void> {
+    // Collect all observables for updating appointments
+    const updateObservables = this.combinedArray.map(item => {
+        let app: Appointment = item.appointment;
+        if (app.status === "pending" && new Date() < new Date(app.datetimeScheduled)) {
+            item.appointment.status = "rejected";
+            return this.companyService.updateAppointment(item.appointment, item.companyName)
+                .pipe(
+                    catchError(err => {
+                        console.error('Error updating appointment', err);
+                        return of(null); // Handle error and return null
+                    })
+                );
+        } else {
+            return of(null); // Return a null observable for cases that don't need an update
+        }
+    });
+
+    // Wait for all updates to complete
+    await forkJoin(updateObservables).toPromise();
+}
 
   setRating(rating: number): void {
     this.selectedAppointmentRating = rating;
