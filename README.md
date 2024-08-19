@@ -50,9 +50,12 @@ Uputstvo za preuzimanje:
 Uputstvo za preuzimanje:
 	1) npm i ngx-captcha
 ==========================================================================================================================
-6) 
+6) grafici
 ==========================================================================================================================
 Uputstvo za preuzimanje:
+	1) nom install @types/chart.js
+	2) npm install chart.js
+	3) npm install chartjs-plugin-datalabels
 
 
 

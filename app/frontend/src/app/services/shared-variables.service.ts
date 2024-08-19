@@ -67,14 +67,67 @@ type GardenShape = SmallGreenSquare | LargeBlueRectangle | LargeBlueCircle | Sma
 export class SharedVariablesService {
 
   sessionID: string = "";
+  // address for map
   private addressSource = new BehaviorSubject<string>(''); // Default value can be empty or any initial address
   address$ = this.addressSource.asObservable();
   // canvas variables
   shapes: GardenShape[] = [];
   gardenType: String = "";
   numberOfWaterSurfaces: number = 0;
+  // bar chart
+  private yaxisbarchartSource = new BehaviorSubject<number[]>([]);
+  yaxisbarchart$ = this.yaxisbarchartSource.asObservable();
+  // pie chart
+  pieChartDecoratorsSource = new BehaviorSubject<string[]>([]);
+  pieChartDecorators$ = this.pieChartDecoratorsSource.asObservable();
+  pieChartValuesSource = new BehaviorSubject<number[]>([]);
+  pieChartValues$ = this.pieChartValuesSource.asObservable();
+  histogramDayValuesSource = new BehaviorSubject<string[]>([]);
+  histogramDayValues$ = this.histogramDayValuesSource.asObservable();
+  histogramValuesCountSource = new BehaviorSubject<number[]>([]);
+  histogramValuesCount$ = this.histogramValuesCountSource.asObservable();
 
   constructor() { }
+
+  get histogramValuesCount(): number[] {
+    return this.histogramValuesCountSource.value;
+  }
+
+  set histogramValuesCount(newData: number[]) {
+    this.histogramValuesCountSource.next(newData);
+  }
+
+  get histogramDayValues(): string[] {
+    return this.histogramDayValuesSource.value;
+  }
+
+  set histogramDayValues(newData: string[]) {
+    this.histogramDayValuesSource.next(newData);
+  }
+
+  get pieChartValues(): number[] {
+    return this.pieChartValuesSource.value;
+  }
+
+  set pieChartValues(newData: number[]) {
+    this.pieChartValuesSource.next(newData);
+  }
+  
+  get pieChartDecorators(): string[] {
+    return this.pieChartDecoratorsSource.value;
+  }
+
+  set pieChartDecorators(newData: string[]) {
+    this.pieChartDecoratorsSource.next(newData);
+  }
+
+  get yaxisbarchart(): number[] {
+    return this.yaxisbarchartSource.value;
+  }
+
+  set yaxisbarchart(newData: number[]) {
+    this.yaxisbarchartSource.next(newData);
+  }
 
   get address(): string {
     return this.addressSource.value;

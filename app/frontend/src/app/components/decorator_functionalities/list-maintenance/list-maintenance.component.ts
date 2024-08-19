@@ -114,6 +114,7 @@ export class ListMaintenanceComponent implements OnInit {
     appointment.maintenanceTasks[lastId].decoratorId = this.user.username;
     appointment.maintenanceTasks[lastId].status = 'in-progress';
     appointment.maintenanceTasks[lastId].estimatedCompletionTime = today;
+    appointment.maintenanceTasks[lastId].startDate = new Date();
     appointment.datetimeLastTimeServiced = today;
 
     this.appointmentsMantenanceNeeded.splice(index, 1);

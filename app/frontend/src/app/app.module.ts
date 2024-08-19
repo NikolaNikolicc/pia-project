@@ -33,6 +33,9 @@ import { ArchiveComponent } from './components/owner_functionalities/archive/arc
 import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
 import { ListMaintenanceComponent } from './components/decorator_functionalities/list-maintenance/list-maintenance.component';
 import { StatisticsComponent } from './components/decorator_functionalities/statistics/statistics.component';
+import { BarChartComponent } from './components/decorator_functionalities/bar-chart/bar-chart.component';
+import { PieChartComponent } from './components/decorator_functionalities/pie-chart/pie-chart.component';
+import { HistogramChartComponent } from './components/decorator_functionalities/histogram-chart/histogram-chart.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,9 @@ import { StatisticsComponent } from './components/decorator_functionalities/stat
     GardenMaintenanceComponent,
     ListMaintenanceComponent,
     StatisticsComponent,
+    BarChartComponent,
+    PieChartComponent,
+    HistogramChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,7 @@ import { StatisticsComponent } from './components/decorator_functionalities/stat
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
