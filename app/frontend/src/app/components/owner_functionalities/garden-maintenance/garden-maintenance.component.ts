@@ -43,17 +43,42 @@ export class GardenMaintenanceComponent implements OnInit {
     modal.show();
   }
 
-  ngOnInit(): void {
+  async resetMaintenanceTasks(): Promise<void> {
+    const updatePromises: Promise<any>[] = [];
+  
+    this.companies.forEach(company => {
+      company.appointments.forEach(appointment => {
+        if (appointment.ownerId === this.user.username && new Date(appointment.datetimeLastTimeServiced) <= new Date() && appointment.maintenanceScheduled) {
+          appointment.maintenanceScheduled = false;
+          const updatePromise = this.companyService.updateAppointment(appointment, company.name).toPromise();
+          updatePromises.push(updatePromise);
+        }
+      });
+    });
+  
+    try {
+      await Promise.all(updatePromises);
+      console.log('All maintenance tasks have been reset.');
+    } catch (error) {
+      console.error('An error occurred while resetting maintenance tasks:', error);
+    }
+  }
+  
+
+  async ngOnInit(): Promise<void> {
     const u = localStorage.getItem("user");
     if (u != null) {
       this.user = JSON.parse(u);
     }
 
     this.companyService.getAllCompanies().subscribe(
-      companies => {
+      async companies => {
         if (companies.message) {
           const parsedCompanies: Company[] = JSON.parse(companies.message);
           this.companies = parsedCompanies;
+
+          await this.resetMaintenanceTasks();
+          
           parsedCompanies.forEach(company => {
             company.appointments.forEach(appointment => {
               if (appointment.ownerId === this.user.username) {
@@ -61,7 +86,7 @@ export class GardenMaintenanceComponent implements OnInit {
                 const sixMonthsAgo = new Date();
                 sixMonthsAgo.setMonth(today.getMonth() - 6);
 
-                const needsServicing = (new Date(appointment.datetimeFinished) <= sixMonthsAgo || new Date(appointment.datetimeLastTimeServiced) <= sixMonthsAgo) && !appointment.maintenanceScheduled;
+                const needsServicing = (new Date(appointment.datetimeFinished) <= sixMonthsAgo && new Date(appointment.datetimeLastTimeServiced) <= sixMonthsAgo) && !appointment.maintenanceScheduled;
 
                 let lastId = appointment.maintenanceTasks.length - 1
                 if (appointment.maintenanceScheduled && appointment.maintenanceTasks.length > 0 && (appointment.maintenanceTasks[lastId].status == 'in-progress' || appointment.maintenanceTasks[lastId].status == 'pending')) {
@@ -79,6 +104,8 @@ export class GardenMaintenanceComponent implements OnInit {
   }
 
   scheduleServicing(appointment: Appointment, companyName: string, index: number): void {
+    this.error = "";
+    
     let cmp: Company = this.companies.find(company=>company.name == companyName) as Company;
     let today: Date = new Date();
     if(today <= new Date(cmp.vacationPeriodEnd) && today >= new Date(cmp.vacationPeriodStart)){
@@ -87,6 +114,7 @@ export class GardenMaintenanceComponent implements OnInit {
       return;
     }
     
+    appointment.datetimeLastTimeServiced = new Date();
     appointment.maintenanceScheduled = true;
     const maintenanceTask = new MaintenanceTask();
     maintenanceTask.status = 'pending';

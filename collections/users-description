@@ -63,7 +63,7 @@ companies: {
             {
                 "decoratorId": "ObjectId", // username - decoratorsId
                 "estimatedCompletionTime": "Date",
-                "status": "string", // pending, in-progress, completed, rejected
+                "status": "string", // pending, in-progress, rejected
                 "comment": "string" // decorator description why maintenance request is rejected
             }
     ]

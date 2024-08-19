@@ -41,6 +41,7 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">Garden Completion Date</th>
+                <th scope="col">Last time Serviced</th>
                 <th scope="col">Number of Pools/Fountains</th>
                 <th scope="col">Company</th>
                 <th scope="col">Actions</th>
@@ -49,6 +50,7 @@
         <tbody>
             <tr *ngFor="let job of jobsCompleted; let i = index">
                 <td>{{ job.appointment.datetimeFinished | date:'mediumDate' }}</td>
+                <td>{{ job.appointment.datetimeLastTimeServiced | date:'mediumDate' }}</td>
                 <td>{{ job.appointment.garden.numberPoolFountain }}</td>
                 <td>{{ job.companyName }}</td>
                 <td>
@@ -85,7 +87,7 @@
                             Pending (Waiting for decorator)
                         </span>
                         <span *ngIf="job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].status === 'in-progress'" class="badge bg-info text-white">
-                            In Progress (Estimated completion: {{ job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].estimatedCompletitionTime | date:'mediumDate' }})
+                            In Progress (Estimated completion: {{ job.appointment.datetimeLastTimeServiced | date:'mediumDate' }})
                         </span>
                         <span *ngIf="job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].status === 'rejected'" class="badge bg-danger">
                             Rejected (Reason: {{ job.appointment.maintenanceTasks[job.appointment.maintenanceTasks.length - 1].comment }})

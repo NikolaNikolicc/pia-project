@@ -100,7 +100,8 @@ export class LoginComponent implements OnInit{
                           if (
                             this.isDateDifferenceBiggerThan24h(appointment.datetimeFinished) &&
                             appointment.decoratorID === this.username &&
-                            !appointment.photosUploaded
+                            !appointment.photosUploaded &&
+                            appointment.status == "confirmed"
                           ) {
                             allJobsFinished = false; // If any job is unfinished, mark as false
                           }
@@ -157,7 +158,6 @@ export class LoginComponent implements OnInit{
               // firstly we need to implement check if decorator finished all his jobs on time
               const allJobsFinished = await this.checkIfDecoratorFinishedAllhisJobs();
               if(!allJobsFinished){
-                let user = new User();
                 user.pendingApproval = 0;
                 user.comment = "This decorator hasn't finished all jobs in time(photos aren't uploaded). Contact system admin to reinstantiate your account.";
                 this.userService.updateUserStatus(user).subscribe(

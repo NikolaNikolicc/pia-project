@@ -1,1 +1,76 @@
-<p>list-maintenance works!</p>
+<div class="maintenance-page">
+    <div class="modal" id="successModal" #successModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Success</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{ this.success }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal">
+                        Understand
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="errorModal" #errorModal tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h3>
+                </div>
+
+                <div class="modal-body text-start">
+                    {{this.error}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger orng-btn" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <h2 class="page-title text-center my-4">Pending Maintenance Requests</h2>
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <div *ngIf="appointmentsMantenanceNeeded.length > 0" class="appointments-container">
+          <div *ngFor="let appointment of appointmentsMantenanceNeeded; let i = index" class="appointment-card card shadow-sm mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h5 class="card-title mb-3">Owner ID: <strong>{{appointment.ownerId}}</strong></h5>
+                  <p class="card-text mb-1"><i class="bi bi-calendar"></i> Scheduled for: {{appointment.datetimeLastTimeServiced | date:'short'}}</p>
+                  <p class="text-info"><i class="bi bi-hourglass-split"></i> Maintenance is pending approval.</p>
+                </div>
+                <div class="col-sm-12 col-md-6 d-flex flex-column justify-content-between align-items-end">
+                  <div class="input-group input-group-sm mb-2 w-75">
+                    <label for="finishDate{{appointment.appointmentId}}" class="input-group-text">Estimated Finish Date:</label>
+                    <input id="finishDate{{appointment.appointmentId}}" type="date" class="form-control" [(ngModel)]="appointment.maintenanceTasks[appointment.maintenanceTasks.length - 1].estimatedCompletionTime" [min]="minDate(appointment)">
+                  </div>
+                  <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-sm btn-success me-2" (click)="confirmMaintenance(appointment, appointment.maintenanceTasks[appointment.maintenanceTasks.length - 1].estimatedCompletionTime, i)">
+                      <i class="bi bi-check-circle"></i> Confirm
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="rejectMaintenance(appointment)">
+                      <i class="bi bi-x-circle"></i> Reject
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="appointmentsMantenanceNeeded.length === 0" class="no-appointments">
+          <p class="alert alert-info text-center">No pending maintenance requests.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

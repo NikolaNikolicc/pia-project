@@ -32,6 +32,7 @@ import { ListAppointmentsComponent } from './components/decorator_functionalitie
 import { ArchiveComponent } from './components/owner_functionalities/archive/archive.component';
 import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
 import { ListMaintenanceComponent } from './components/decorator_functionalities/list-maintenance/list-maintenance.component';
+import { StatisticsComponent } from './components/decorator_functionalities/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ListMaintenanceComponent } from './components/decorator_functionalities
     ArchiveComponent,
     GardenMaintenanceComponent,
     ListMaintenanceComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
