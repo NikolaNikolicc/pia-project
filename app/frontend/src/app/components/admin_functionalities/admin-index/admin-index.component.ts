@@ -13,6 +13,10 @@ export class AdminIndexComponent implements OnInit{
 
   }
 
+
+  goToListAndDeactivate(){
+    this.router.navigate(["admin-list-users-companies"]);
+  }
   goToRegisterNewDecorator(){
     this.router.navigate(["register-decorator"]);
   }

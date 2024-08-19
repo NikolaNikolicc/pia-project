@@ -75,6 +75,10 @@ export class ListUsersDecoratorsCompaniesComponent implements OnInit {
     // Handle the selection change if needed
   }
 
+  goToAdminIndex(){
+    this.router.navigate(["admin-index"]);
+  }
+  
   openDeactivateModalDecorator(user: Decorator) {
     for (let i = 0; i < this.decorators.length; i++) {
       if (this.decorators[i].username === user.userId) {
