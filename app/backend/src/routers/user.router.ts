@@ -27,6 +27,14 @@ userRouter.route('/getAllPendingUsers').post(
     (req, res)=> new UserController().getAllPendingUsers(req, res)
 );
 
+userRouter.route('/getAllOwners').post(
+    (req, res)=> new UserController().getAllOwners(req, res)
+);
+
+userRouter.route('/getAllDecorators').post(
+    (req, res)=> new UserController().getAllDecorators(req, res)
+);
+
 userRouter.route('/updateUserStatus').post(
     (req, res)=> new UserController().updateUserStatus(req, res)
 );

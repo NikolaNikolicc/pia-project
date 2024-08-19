@@ -22,6 +22,12 @@ export class UserService {
   getAllPendingUsers(){
     return this.http.post<Message>(`${this.apiUrl}/getAllPendingUsers`, null);
   }
+  getAllOwners(){
+    return this.http.post<Message>(`${this.apiUrl}/getAllOwners`, null);
+  }
+  getAllDecorators(){
+    return this.http.post<Message>(`${this.apiUrl}/getAllDecorators`, null);
+  }
   changePassword(user: User) {
     return this.http.post<Message>(`${this.apiUrl}/changePassword`, user);
   }

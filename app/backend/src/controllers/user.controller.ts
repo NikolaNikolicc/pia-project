@@ -9,6 +9,18 @@ export class UserController{
         )
     }
 
+    getAllOwners = (req: express.Request, res: express.Response)=> {
+        UserM.find({pendingApproval: 1, userType: 0}).then(
+            ok=>res.json({message: JSON.stringify(ok)})
+        )
+    }
+
+    getAllDecorators = (req: express.Request, res: express.Response)=> {
+        UserM.find({pendingApproval: 1, userType: 2}).then(
+            ok=>res.json({message: JSON.stringify(ok)})
+        )
+    }
+
     updateUserStatus = (req: express.Request, res: express.Response)=> {
         const user = JSON.parse(req.body.user);
         UserM.updateOne({username: user.username},

@@ -20,6 +20,12 @@ class UserController {
         this.getAllPendingUsers = (req, res) => {
             user_1.default.find({ pendingApproval: 0 }).then(ok => res.json({ message: JSON.stringify(ok) }));
         };
+        this.getAllOwners = (req, res) => {
+            user_1.default.find({ pendingApproval: 1, userType: 0 }).then(ok => res.json({ message: JSON.stringify(ok) }));
+        };
+        this.getAllDecorators = (req, res) => {
+            user_1.default.find({ pendingApproval: 1, userType: 2 }).then(ok => res.json({ message: JSON.stringify(ok) }));
+        };
         this.updateUserStatus = (req, res) => {
             const user = JSON.parse(req.body.user);
             user_1.default.updateOne({ username: user.username }, { $set: { pendingApproval: user.pendingApproval, comment: user.comment } }).then(ok => res.json({ message: "ok" })).catch(err => {

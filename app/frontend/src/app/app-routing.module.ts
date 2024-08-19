@@ -21,6 +21,8 @@ import { ArchiveComponent } from './components/owner_functionalities/archive/arc
 import { GardenMaintenanceComponent } from './components/owner_functionalities/garden-maintenance/garden-maintenance.component';
 import { ListMaintenanceComponent } from './components/decorator_functionalities/list-maintenance/list-maintenance.component';
 import { StatisticsComponent } from './components/decorator_functionalities/statistics/statistics.component';
+import { ListUsersDecoratorsCompaniesComponent } from './components/admin_functionalities/list-users-decorators-companies/list-users-decorators-companies.component';
+import { CompanyPreviewNoBookingComponent } from './components/admin_functionalities/company-preview-no-booking/company-preview-no-booking.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -44,6 +46,8 @@ const routes: Routes = [
   {path: 'maintenance', component: GardenMaintenanceComponent},
   {path: 'list-maintenance-requests', component: ListMaintenanceComponent},
   {path: 'statistics', component: StatisticsComponent},
+  {path: 'admin-list-users-companies', component: ListUsersDecoratorsCompaniesComponent},
+  {path: 'admin-company-preview', component: CompanyPreviewNoBookingComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+/* Add more space between the buttons and align them better */
+.btn-outline-warning,
+.btn-outline-primary {
+    min-width: 120px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 15px 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+.modal-body textarea {
+    resize: none;
+}
+
+h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
