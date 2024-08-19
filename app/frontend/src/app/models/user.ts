@@ -16,4 +16,5 @@ export class User{
     pendingApproval: number = 0;
     comment: string = "";
     imgPath: SafeUrl = "";
+    blockingAppointment: number = 0;
 }

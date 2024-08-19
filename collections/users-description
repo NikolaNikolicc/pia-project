@@ -13,6 +13,7 @@ users: {
     userType: number = 0; // 0 - owner, 1 - admin, 2 - decorator
     pendingApproval: number = 0; // 0 - we are waiting for admin to approve our registration request, 1 - admin approved our request, 2 - admin suspended our request
     comment: string = ""; // accounts status description, this field is used in case admin suspended your accountor dismissed your request
+    blockingAppointment: number = 0; // for this appointment user hasn't submitted pictures
 }
 
 companies: {

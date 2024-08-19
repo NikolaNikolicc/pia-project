@@ -18,6 +18,7 @@ const userSchema = new mongoose_1.default.Schema({
     userType: Number,
     pendingApproval: Number,
     comment: String,
+    blockingAppointment: Number,
 }, {
     versionKey: false
 });

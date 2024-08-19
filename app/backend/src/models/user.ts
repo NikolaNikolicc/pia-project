@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
         userType: Number,
         pendingApproval: Number,
         comment: String,
+        blockingAppointment: Number,
     },{
         versionKey:false  
     }

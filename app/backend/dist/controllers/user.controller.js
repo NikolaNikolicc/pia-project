@@ -28,7 +28,7 @@ class UserController {
         };
         this.updateUserStatus = (req, res) => {
             const user = JSON.parse(req.body.user);
-            user_1.default.updateOne({ username: user.username }, { $set: { pendingApproval: user.pendingApproval, comment: user.comment } }).then(ok => res.json({ message: "ok" })).catch(err => {
+            user_1.default.updateOne({ username: user.username }, { $set: { pendingApproval: user.pendingApproval, comment: user.comment, blockingAppointment: user.blockingAppointment } }).then(ok => res.json({ message: "ok" })).catch(err => {
                 console.log(err);
                 res.json({ message: "error" });
             });

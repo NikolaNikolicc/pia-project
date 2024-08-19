@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit{
   showPassword: boolean = false;
   company: Company = new Company();
   decorator: Decorator = new Decorator();
+  blockingAppointment: number = 0;
 
   constructor(private router: Router, public sharedVariablesService: SharedVariablesService, private userService: UserService, private decoratorService: DecoratorService, private companyService: CompanyService){
 
@@ -103,6 +104,7 @@ export class LoginComponent implements OnInit{
                             !appointment.photosUploaded &&
                             appointment.status == "confirmed"
                           ) {
+                            this.blockingAppointment = appointment.appointmentId;
                             allJobsFinished = false; // If any job is unfinished, mark as false
                           }
                         });
@@ -159,6 +161,7 @@ export class LoginComponent implements OnInit{
               const allJobsFinished = await this.checkIfDecoratorFinishedAllhisJobs();
               if(!allJobsFinished){
                 user.pendingApproval = 0;
+                user.blockingAppointment = this.blockingAppointment;
                 user.comment = "This decorator hasn't finished all jobs in time(photos aren't uploaded). Contact system admin to reinstantiate your account.";
                 this.userService.updateUserStatus(user).subscribe(
                   data=>{
