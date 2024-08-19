@@ -46,8 +46,9 @@ companies: {
             "datetimeScheduled": "Date",
             "decoratorID": "string", // username - decorator
             "datetimeFinished": "Date",
-            "datetimeLastTimeServiced": "Date",
+            "datetimeLastTimeServiced": "Date",// if maintenance is scheduled that mean the value in datetimeLastTimeServiced is when job is created
             "datetimeCreated" : "Date",
+            "maintenanceScheduled": "Boolean"
             "garden": {
                 "gardenId": "ObjectId",
                 "squareMeters": "number",

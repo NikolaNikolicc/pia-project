@@ -38,6 +38,7 @@ import { PieChartComponent } from './components/decorator_functionalities/pie-ch
 import { HistogramChartComponent } from './components/decorator_functionalities/histogram-chart/histogram-chart.component';
 import { ListUsersDecoratorsCompaniesComponent } from './components/admin_functionalities/list-users-decorators-companies/list-users-decorators-companies.component';
 import { CompanyPreviewNoBookingComponent } from './components/admin_functionalities/company-preview-no-booking/company-preview-no-booking.component';
+import { GeneralComponent } from './components/common/general/general.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { CompanyPreviewNoBookingComponent } from './components/admin_functionali
     HistogramChartComponent,
     ListUsersDecoratorsCompaniesComponent,
     CompanyPreviewNoBookingComponent,
+    GeneralComponent,
   ],
   imports: [
     BrowserModule,
