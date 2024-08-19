@@ -38,6 +38,7 @@ import { ListUsersDecoratorsCompaniesComponent } from './components/admin_functi
 import { CompanyPreviewNoBookingComponent } from './components/admin_functionalities/company-preview-no-booking/company-preview-no-booking.component';
 import { GeneralComponent } from './components/common/general/general.component';
 import { PhotoGalleryComponent } from './components/common/photo-gallery/photo-gallery.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { PhotoGalleryComponent } from './components/common/photo-gallery/photo-g
     CompanyPreviewNoBookingComponent,
     GeneralComponent,
     PhotoGalleryComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
