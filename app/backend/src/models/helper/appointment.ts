@@ -19,6 +19,7 @@ const appointmentSchema = new Schema(
     maintenanceTasks: { type: [maintenanceTaskSchema], default: [] }, // Assuming MaintenanceTaskSchema is defined elsewhere
     photosUploaded: {type: Boolean},
     maintenanceScheduled: {type: Boolean},
+    datetimeOriginalFinish: {type: Date, default: new Date()}
   },
   {
     versionKey: false,

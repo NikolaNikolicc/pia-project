@@ -27,6 +27,10 @@ export class CompanyService {
     return this.http.post<Message>(`${this.apiUrl}/updateAppointment`,
       {appointment: JSON.stringify(app), company: comp});
   }
+  updateVacation(company: Company){
+    return this.http.post<Message>(`${this.apiUrl}/updateVacation`,
+      {company: JSON.stringify(company)})
+  }
 
   constructor(private http: HttpClient) { }
 }

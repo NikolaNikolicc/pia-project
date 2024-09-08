@@ -13,7 +13,9 @@ export class AdminIndexComponent implements OnInit{
 
   }
 
-
+  goToSetCompanyVacation(){
+    this.router.navigate(["vacation"])
+  }
   goToListAndDeactivate(){
     this.router.navigate(["admin-list-users-companies"]);
   }

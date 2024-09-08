@@ -17,4 +17,5 @@ export class Appointment{
     maintenanceTasks: MaintenanceTask[] = [];
     photosUploaded: boolean = false;
     maintenanceScheduled: boolean = false;
+    datetimeOriginalFinish: Date = new Date();
 }

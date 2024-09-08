@@ -132,7 +132,7 @@
                   <td>{{ appointment.ownerComment || 'No comment provided' }}</td>
                   <td>{{ appointment.score || 'No rating provided' }}</td>
                   <td>
-                    <span *ngIf="appointment.status === 'confirmed'" class="badge bg-success">Confirmed</span>
+                    <span *ngIf="appointment.status === 'confirmed'" class="badge bg-success">Completed</span>
                     <span *ngIf="appointment.status === 'rejected'" class="badge bg-danger">Rejected</span>
                     <span *ngIf="appointment.status === 'canceled'" class="badge bg-secondary">Canceled</span>
                   </td>

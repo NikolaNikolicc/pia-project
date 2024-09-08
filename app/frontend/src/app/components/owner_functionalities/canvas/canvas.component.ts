@@ -79,6 +79,8 @@ export class CanvasComponent implements OnInit {
   startX: number = 0;
   startY: number = 0;
   error: string = "";
+  chairNum: number = 0;
+  tableNum: number = 0;
 
   garden: Garden = new Garden();
   // shapes: GardenShape[] = [];
@@ -88,6 +90,7 @@ export class CanvasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sharedVariableService.shapes = [];
     let g = localStorage.getItem("garden");
     if(g != null){
       this.garden = JSON.parse(g);
@@ -108,17 +111,40 @@ export class CanvasComponent implements OnInit {
   drawGardenLayout() {
     this.context.clearRect(0, 0, this.gardenCanvas.nativeElement.width, this.gardenCanvas.nativeElement.height);
 
+    let countWaterSurfaces = 0;
+    this.chairNum = 0
+    this.tableNum = 0
     this.sharedVariableService.shapes.forEach(shape => {
       switch (shape.type) {
         case 'square':
         case 'rectangle':
+          if(shape.color == 'gray'){
+            if(this.chairNum == this.garden.areaFurniture && this.garden.gardenType == 'restaurant'){
+              return;
+            }
+            this.chairNum++;
+          }
+          if(shape.color == 'blue'){
+            countWaterSurfaces++;
+          }
           this.drawRectangle(shape.x, shape.y, shape.width, shape.height, shape.color);
           break;
         case 'circle':
+          if(shape.color == 'brown'){
+            if(this.garden.tableCount == this.tableNum && this.garden.gardenType == 'restaurant'){
+              return;
+            }
+            this.tableNum++;
+          }
+          if(shape.color == 'blue'){
+            countWaterSurfaces++;
+          }
           this.drawCircle(shape.x, shape.y, shape.radius, shape.color);
           break;
       }
     });
+    this.garden.numberPoolFountain = countWaterSurfaces;
+    localStorage.setItem("garden", JSON.stringify(this.garden))
   }
 
   drawRectangle(x: number, y: number, width: number, height: number, color: string) {

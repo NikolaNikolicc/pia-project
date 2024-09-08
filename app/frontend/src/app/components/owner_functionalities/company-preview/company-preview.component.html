@@ -27,6 +27,15 @@
 
       </div>
     </div>
+    <div *ngIf="!allEmployeesAreNotSuspended">
+      <br>
+      <div class="alert alert-info" role="alert">
+        All employees have been suspended or blocked, unfortunately you can't book at this company.
+      </div>
+    </div>
   </div>
   
-<app-garden-booking></app-garden-booking>
+
+<div *ngIf="allEmployeesAreNotSuspended">
+  <app-garden-booking></app-garden-booking>
+</div>

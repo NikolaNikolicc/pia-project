@@ -48,7 +48,8 @@ companies: {
             "datetimeFinished": "Date",
             "datetimeLastTimeServiced": "Date",// if maintenance is scheduled that mean the value in datetimeLastTimeServiced is when job is created
             "datetimeCreated" : "Date",
-            "maintenanceScheduled": "Boolean"
+            "maintenanceScheduled": "Boolean",
+            'datetimeOriginalFinish': 'Date' // we save this because we override datetimeFinished and we need this date for most recent 3 projects in gallery
             "garden": {
                 "gardenId": "ObjectId",
                 "squareMeters": "number",
@@ -59,12 +60,14 @@ companies: {
                 "tablesCount": "number", // if (gardenType == restaurant) then (count = quantity of tables) else NONE
                 "description": "string",
                 "services": [] // service names
-                "design": "string" // JSON file for garden design, how you will implement it?
+                "design": "string" // JSON file for garden design
+                'numberPoolFountain': 'number' // tells us how much water surfaces we have added on canvas
             },
             "maintenanceTasks": [
             {
                 "decoratorId": "ObjectId", // username - decoratorsId
                 "estimatedCompletionTime": "Date",
+                'startDate':"Date", // date when this started
                 "status": "string", // pending, in-progress, rejected
                 "comment": "string" // decorator description why maintenance request is rejected
             }

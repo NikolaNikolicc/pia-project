@@ -35,9 +35,9 @@ Uputstvo za preuzimanje:
 				"src/styles.css"
             ]
 ==========================================================================================================================
-3) ukljuci algoritam za enkripciju
+3) ukljuci algoritam za enkripciju (u frontu)
 ==========================================================================================================================
-Uputstvo za preuzimanje:
+Uputstvo za preuzimanje: 
 	1) npm install @types/crypto-js
 	2) npm install crypto-js
 ==========================================================================================================================
@@ -45,18 +45,18 @@ Uputstvo za preuzimanje:
 ==========================================================================================================================
 Uputstvo za preuzimanje (locirajte se u backend folder):
 	1) npm install @types/multer
-	2) nom install multer
+	2) npm install multer
 
 ==========================================================================================================================
-5) reCaptcha
+5) reCaptcha (na frontu)
 ==========================================================================================================================
 Uputstvo za preuzimanje:
 	1) npm i ngx-captcha
 ==========================================================================================================================
-6) grafici
+6) grafici (na frontu)
 ==========================================================================================================================
 Uputstvo za preuzimanje:
-	1) nom install @types/chart.js
+	1) npm install @types/chart.js
 	2) npm install chart.js
 	3) npm install chartjs-plugin-datalabels
 

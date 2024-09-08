@@ -90,12 +90,12 @@ export class ListAppointmentsComponent implements OnInit{
       return;
     }
     let dateTimeChosen: string[] = appointment.datetimeFinished.toString().split("T");
-    let startDate = this.company.vacationPeriodEnd.toString().split("T")[0];
+    let startDate = this.company.vacationPeriodStart.toString().split("T")[0];
     let endDate = this.company.vacationPeriodEnd.toString().split("T")[0];
     if(dateTimeChosen[0] >= startDate && dateTimeChosen[0] <= endDate){
       this.error = "Can't set this finish date because this is company's vacation period.";
     }
-    if(appointment.datetimeFinished < appointment.datetimeCreated){
+    if(new Date(appointment.datetimeFinished).setHours(0,0,0,0) < new Date(appointment.datetimeScheduled).setHours(0,0,0,0)){
       this.error = "Task can't be finished before it starts.";
     }
     if(this.error != ""){
@@ -104,6 +104,7 @@ export class ListAppointmentsComponent implements OnInit{
     }
     appointment.decoratorID = this.user.username;
     appointment.datetimeLastTimeServiced = appointment.datetimeFinished;
+    appointment.datetimeOriginalFinish = appointment.datetimeFinished;
     appointment.status = 'confirmed';
     appointment.decoratorID = this.user.username;
     // Call service to update appointment in backend

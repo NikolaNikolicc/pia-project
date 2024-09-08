@@ -129,14 +129,15 @@ export class StatisticsComponent implements OnInit {
 
   isDateInLast24Months(dateToCheck: Date): boolean {
     const currentDate = new Date();
+    
+    // Create a new date for 24 months ago
     const pastDate = new Date();
-
-    // Subtract 24 months from the current date
-    pastDate.setMonth(currentDate.getMonth() - 24);
-
+    pastDate.setMonth(pastDate.getMonth() - 24);
+  
     // Compare the given date with the past date
-    return dateToCheck >= pastDate && dateToCheck <= currentDate;
-}
+    return dateToCheck.getTime() >= pastDate.getTime() && dateToCheck.getTime() <= currentDate.getTime();
+  }
+  
 
   incrementValueHistogram(dayName: string){
     for(let i = 0; i < this.histogramDayValues.length; i++){
@@ -161,8 +162,8 @@ export class StatisticsComponent implements OnInit {
     this.company.appointments.forEach(appointment=>{
       if(
         appointment.status == "confirmed" && 
-        this.isDateInLast24Months(new Date(appointment.datetimeScheduled)) ||
-        !this.isDateInLast24Months(new Date(appointment.datetimeScheduled)) && this.isDateInLast24Months(new Date(appointment.datetimeFinished))
+        (this.isDateInLast24Months(new Date(appointment.datetimeScheduled)) ||
+        this.isDateInLast24Months(new Date(appointment.datetimeFinished)))
       ){
         let startDate = (new Date(appointment.datetimeScheduled) <= pastDate) ? pastDate : new Date(appointment.datetimeScheduled);
         let endDate = (new Date(appointment.datetimeFinished) >= currentDate) ? currentDate : new Date(appointment.datetimeFinished);
@@ -171,8 +172,8 @@ export class StatisticsComponent implements OnInit {
       if(appointment.maintenanceTasks.length > 0){
         appointment.maintenanceTasks.forEach(task => {
           if(task.status == "in-progress" &&
-            this.isDateInLast24Months(new Date(task.startDate)) ||
-            !this.isDateInLast24Months(new Date(task.startDate)) && this.isDateInLast24Months(new Date(task.estimatedCompletionTime))
+            (this.isDateInLast24Months(new Date(task.startDate)) ||
+            this.isDateInLast24Months(new Date(task.estimatedCompletionTime)))
           ){
             let startDate = (new Date(task.startDate) <= pastDate) ? pastDate : new Date(task.startDate);
             let endDate = (new Date(task.estimatedCompletionTime) >= currentDate) ? currentDate : new Date(task.estimatedCompletionTime);

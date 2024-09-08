@@ -39,6 +39,7 @@ import { CompanyPreviewNoBookingComponent } from './components/admin_functionali
 import { GeneralComponent } from './components/common/general/general.component';
 import { PhotoGalleryComponent } from './components/common/photo-gallery/photo-gallery.component';
 import { FooterComponent } from './components/common/footer/footer.component';
+import { SetVacationComponent } from './components/admin_functionalities/set-vacation/set-vacation.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { FooterComponent } from './components/common/footer/footer.component';
     GeneralComponent,
     PhotoGalleryComponent,
     FooterComponent,
+    SetVacationComponent,
   ],
   imports: [
     BrowserModule,

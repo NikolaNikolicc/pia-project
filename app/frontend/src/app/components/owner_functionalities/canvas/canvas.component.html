@@ -23,10 +23,10 @@
         <label for="shape" class="form-label">Select Action Which You Want to Perform:</label>
         <select id="shape" class="form-select" [(ngModel)]="selectedAction">
           <option *ngIf="garden.areaGreen != 0" value="square">Green Square (Greenery)</option>
-          <option value="rectangle" *ngIf="garden.areaPoolFountain != 0 && garden.gardenType == 'private' && sharedVariableService.numberOfWaterSurfaces > 0">Blue Rectangle (Pool)</option>
-          <option value="circle" *ngIf="garden.areaPoolFountain != 0 && garden.gardenType == 'restaurant' && sharedVariableService.numberOfWaterSurfaces > 0">Blue Circle (Fountain)</option>
-          <option value="small-circle">Brown Circle (Table)</option>
-          <option value="small-rectangle">Gray Rectangle (Chairs/Loungers)</option>
+          <option value="rectangle" *ngIf="garden.areaPoolFountain != 0 && garden.gardenType == 'private'">Blue Rectangle (Pool)</option>
+          <option value="circle" *ngIf="garden.areaPoolFountain != 0 && garden.gardenType == 'restaurant'">Blue Circle (Fountain)</option>
+          <option value="small-circle" *ngIf="(garden.gardenType== 'restaurant' && tableNum < garden.tableCount) || (garden.gardenType == 'private' && garden.areaFurniture > 0)">Brown Circle (Table)</option>
+          <option value="small-rectangle" *ngIf="(garden.gardenType == 'restaurant' && chairNum < garden.areaFurniture) || (garden.gardenType == 'private' && garden.areaFurniture > 0)">Gray Rectangle (Chairs/Loungers)</option>
           <option value="rotate">Rotate Object</option>
           <option value="remove">Remove Object</option>
         </select>

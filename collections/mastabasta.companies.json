@@ -1,0 +1,819 @@
+[{
+  "_id": {
+    "$oid": "66dcdd5fbf1b70f54e5dca71"
+  },
+  "name": "Transfera",
+  "address": "Savski nasip 7 Beograd",
+  "contactPerson": {
+    "name": "Duca ",
+    "phone": "0621235124"
+  },
+  "vacationPeriodStart": {
+    "$date": "2024-09-15T00:00:00.000Z"
+  },
+  "vacationPeriodEnd": {
+    "$date": "2024-09-25T00:00:00.000Z"
+  },
+  "companyAvgScore": 0,
+  "services": [
+    {
+      "name": "LED lights (per meter)",
+      "price": 15
+    },
+    {
+      "name": "Ambiental Lights (per unit)",
+      "price": 30
+    },
+    {
+      "name": "Lights in pool",
+      "price": 50
+    },
+    {
+      "name": "Bonsai trees (per unit)",
+      "price": 10
+    }
+  ],
+  "appointments": [
+    {
+      "appointmentId": 1,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "janacko",
+      "datetimeScheduled": {
+        "$date": "2024-09-05T00:52:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-07T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-09-04T00:52:05.450Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-07T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 30,
+        "areaGreen": 20,
+        "areaFurniture": 50,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "Bonsai trees (per unit)",
+            "price": 10
+          }
+        ],
+        "design": "[{\"type\":\"rectangle\",\"x\":67,\"y\":59,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"rectangle\",\"x\":467,\"y\":121,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"rectangle\",\"x\":222,\"y\":290,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"circle\",\"x\":95,\"y\":273,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":372,\"y\":218,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":625,\"y\":327,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":287,\"y\":474,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":494,\"y\":497,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":541,\"y\":368,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":610,\"y\":530,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":659,\"y\":459,\"radius\":25,\"color\":\"brown\"},{\"type\":\"square\",\"x\":47,\"y\":420,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":121,\"y\":504,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":212,\"y\":540,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":346,\"y\":531,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":460,\"y\":538,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":694,\"y\":528,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":750,\"y\":431,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":719,\"y\":341,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":741,\"y\":262,\"width\":50,\"height\":50,\"color\":\"green\"}]",
+        "numberPoolFountain": "3"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": true,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-07T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 2,
+      "ownerId": "dzoni",
+      "status": "canceled",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "",
+      "datetimeScheduled": {
+        "$date": "2024-09-26T01:07:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-08T01:07:29.009Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-09-08T01:07:29.009Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-08T01:07:29.009Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "restaurant",
+        "areaPoolFountain": 20,
+        "areaGreen": 80,
+        "areaFurniture": 5,
+        "tableCount": 2,
+        "description": "",
+        "services": [],
+        "design": "[{\"type\":\"circle\",\"x\":250,\"y\":153,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":424,\"y\":199,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":586,\"y\":180,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":547,\"y\":103,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":385,\"y\":282,\"radius\":25,\"color\":\"brown\"},{\"type\":\"rectangle\",\"x\":192,\"y\":295,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":327,\"y\":359,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":470,\"y\":303,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":239,\"y\":220,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":102,\"y\":214,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":151,\"y\":71,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"circle\",\"x\":145,\"y\":492,\"radius\":100,\"color\":\"blue\"},{\"type\":\"circle\",\"x\":542,\"y\":475,\"radius\":100,\"color\":\"blue\"},{\"type\":\"square\",\"x\":387,\"y\":81,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":617,\"y\":178,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":632,\"y\":111,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":99,\"y\":88,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":310,\"y\":33,\"width\":50,\"height\":50,\"color\":\"green\"}]",
+        "numberPoolFountain": "2"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-08T01:07:29.009Z"
+      }
+    },
+    {
+      "appointmentId": 3,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "janacko",
+      "datetimeScheduled": {
+        "$date": "2024-07-09T01:42:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-26T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-08-11T01:42:09.307Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-26T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 20,
+        "areaGreen": 60,
+        "areaFurniture": 20,
+        "tableCount": 0,
+        "description": "",
+        "services": [],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-26T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 4,
+      "ownerId": "dzoni",
+      "status": "pending",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "janacko",
+      "datetimeScheduled": {
+        "$date": "2024-09-28T01:51:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-14T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-09-08T01:50:59.976Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-14T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 20,
+        "areaGreen": 50,
+        "areaFurniture": 30,
+        "tableCount": 0,
+        "description": "",
+        "services": [],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-14T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 5,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "I like the work!",
+      "score": 5,
+      "decoratorID": "vuk",
+      "datetimeScheduled": {
+        "$date": "2024-08-27T07:50:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-08T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-08-08T07:50:09.195Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-08T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 200,
+        "gardenType": "restaurant",
+        "areaPoolFountain": 50,
+        "areaGreen": 150,
+        "areaFurniture": 25,
+        "tableCount": 4,
+        "description": "",
+        "services": [
+          {
+            "name": "Ambiental Lights (per unit)",
+            "price": 30
+          },
+          {
+            "name": "Lights in pool",
+            "price": 50
+          }
+        ],
+        "design": "[{\"type\":\"circle\",\"x\":400,\"y\":274,\"radius\":100,\"color\":\"blue\"},{\"type\":\"square\",\"x\":43,\"y\":31,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":139,\"y\":34,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":252,\"y\":39,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":387,\"y\":32,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":520,\"y\":25,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":633,\"y\":24,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":720,\"y\":25,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":35,\"y\":130,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":29,\"y\":222,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":21,\"y\":318,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":16,\"y\":432,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":11,\"y\":531,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":108,\"y\":530,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":221,\"y\":525,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":321,\"y\":524,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":411,\"y\":525,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":492,\"y\":531,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":589,\"y\":517,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":682,\"y\":522,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":742,\"y\":508,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":738,\"y\":417,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":740,\"y\":349,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":735,\"y\":275,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":735,\"y\":213,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":732,\"y\":154,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":729,\"y\":92,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"circle\",\"x\":210,\"y\":198,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":206,\"y\":411,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":596,\"y\":398,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":623,\"y\":179,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":565,\"y\":266,\"radius\":25,\"color\":\"brown\"},{\"type\":\"circle\",\"x\":552,\"y\":316,\"radius\":25,\"color\":\"brown\"},{\"type\":\"rectangle\",\"x\":130,\"y\":465,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":146,\"y\":130,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":162,\"y\":236,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":96,\"y\":360,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":539,\"y\":439,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":631,\"y\":437,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":556,\"y\":121,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":648,\"y\":124,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":654,\"y\":203,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":628,\"y\":346,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":232,\"y\":130,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":230,\"y\":451,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":234,\"y\":347,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":236,\"y\":228,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":544,\"y\":208,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":517,\"y\":353,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":93,\"y\":411,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":264,\"y\":397,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":499,\"y\":398,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":661,\"y\":387,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":530,\"y\":150,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":678,\"y\":159,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":260,\"y\":185,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":118,\"y\":181,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":164,\"y\":325,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":94,\"y\":231,\"width\":50,\"height\":25,\"color\":\"gray\"}]",
+        "numberPoolFountain": "1"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": true,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-08T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 6,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "Good job, but not excellent!",
+      "score": 4,
+      "decoratorID": "vuk",
+      "datetimeScheduled": {
+        "$date": "2024-01-14T08:34:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-02-26T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-01-08T08:34:16.817Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-02-26T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 0,
+        "areaGreen": 50,
+        "areaFurniture": 50,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "LED lights (per meter)",
+            "price": 15
+          }
+        ],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": true,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-02-26T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 7,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "janacko",
+      "datetimeScheduled": {
+        "$date": "2024-08-13T09:52:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-29T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-08-08T09:52:01.231Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-29T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 50,
+        "gardenType": "private",
+        "areaPoolFountain": 0,
+        "areaGreen": 25,
+        "areaFurniture": 25,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "Bonsai trees (per unit)",
+            "price": 10
+          }
+        ],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-29T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 8,
+      "ownerId": "daki",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "vuk",
+      "datetimeScheduled": {
+        "$date": "2024-08-14T10:08:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-30T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-08-08T10:08:45.445Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-30T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 150,
+        "gardenType": "private",
+        "areaPoolFountain": 50,
+        "areaGreen": 50,
+        "areaFurniture": 50,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "LED lights (per meter)",
+            "price": 15
+          },
+          {
+            "name": "Lights in pool",
+            "price": 50
+          },
+          {
+            "name": "Bonsai trees (per unit)",
+            "price": 10
+          }
+        ],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-30T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 9,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "janacko",
+      "datetimeScheduled": {
+        "$date": "2023-09-13T13:28:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2023-09-14T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2023-09-08T13:28:47.605Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-02-10T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 100,
+        "areaGreen": 0,
+        "areaFurniture": 0,
+        "tableCount": 0,
+        "description": "",
+        "services": [],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [
+        {
+          "decoratorId": "vuk",
+          "estimatedCompletionTime": {
+            "$date": "2024-02-10T00:00:00.000Z"
+          },
+          "startDate": {
+            "$date": "2024-02-08T13:34:44.979Z"
+          },
+          "status": "in-progress",
+          "comment": ""
+        }
+      ],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2023-09-14T00:00:00.000Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66dcde1abf1b70f54e5dca78"
+  },
+  "name": "Imagine",
+  "address": "East Lansing, MI",
+  "contactPerson": {
+    "name": "Mateja",
+    "phone": "+1 255 255 127"
+  },
+  "vacationPeriodStart": {
+    "$date": "2024-12-25T00:00:00.000Z"
+  },
+  "vacationPeriodEnd": {
+    "$date": "2025-01-11T00:00:00.000Z"
+  },
+  "companyAvgScore": 0,
+  "services": [
+    {
+      "name": "Robotic servant",
+      "price": 1000
+    },
+    {
+      "name": "AI garden maintenance",
+      "price": 499
+    },
+    {
+      "name": "Smart water surface cleaning",
+      "price": 499
+    }
+  ],
+  "appointments": [
+    {
+      "appointmentId": 1,
+      "ownerId": "dzoni",
+      "status": "rejected",
+      "decoratorComment": "Too challenging",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "paja",
+      "datetimeScheduled": {
+        "$date": "2024-09-19T01:15:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-09-08T01:15:47.151Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-09-08T01:15:47.151Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-08T01:15:47.151Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 80,
+        "areaGreen": 20,
+        "areaFurniture": 0,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "Robotic servant",
+            "price": 1000
+          },
+          {
+            "name": "AI garden maintenance",
+            "price": 499
+          }
+        ],
+        "design": "[{\"type\":\"rectangle\",\"x\":169,\"y\":80,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"rectangle\",\"x\":372,\"y\":327,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"square\",\"x\":69,\"y\":46,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":249,\"y\":13,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":443,\"y\":26,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":659,\"y\":32,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":739,\"y\":110,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":745,\"y\":264,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":722,\"y\":364,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":645,\"y\":475,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":537,\"y\":522,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":393,\"y\":529,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":181,\"y\":504,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":104,\"y\":464,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":24,\"y\":317,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":36,\"y\":188,\"width\":50,\"height\":50,\"color\":\"green\"}]",
+        "numberPoolFountain": "2"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-09-08T01:15:47.151Z"
+      }
+    },
+    {
+      "appointmentId": 2,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "paja",
+      "datetimeScheduled": {
+        "$date": "2024-09-17T01:18:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-10-03T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-09-08T01:18:36.719Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-10-03T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 200,
+        "gardenType": "private",
+        "areaPoolFountain": 50,
+        "areaGreen": 100,
+        "areaFurniture": 50,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "Smart water surface cleaning",
+            "price": 499
+          }
+        ],
+        "design": "[{\"type\":\"circle\",\"x\":188,\"y\":131,\"radius\":25,\"color\":\"brown\"},{\"type\":\"rectangle\",\"x\":115,\"y\":181,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":262,\"y\":165,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":231,\"y\":86,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":114,\"y\":80,\"width\":50,\"height\":25,\"color\":\"gray\"},{\"type\":\"rectangle\",\"x\":37,\"y\":391,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"rectangle\",\"x\":365,\"y\":401,\"width\":200,\"height\":100,\"color\":\"blue\"},{\"type\":\"square\",\"x\":589,\"y\":47,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":678,\"y\":146,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":520,\"y\":175,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":526,\"y\":280,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":622,\"y\":287,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":676,\"y\":417,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":613,\"y\":456,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":593,\"y\":532,\"width\":50,\"height\":50,\"color\":\"green\"},{\"type\":\"square\",\"x\":684,\"y\":534,\"width\":50,\"height\":50,\"color\":\"green\"}]",
+        "numberPoolFountain": "2"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-10-03T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 3,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "Great job, fast, no mess and done with high level of profficiency!",
+      "score": 5,
+      "decoratorID": "vlajko",
+      "datetimeScheduled": {
+        "$date": "2024-02-21T07:45:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-03-01T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-02-08T07:45:16.361Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-09-08T11:18:33.740Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 20,
+        "areaGreen": 20,
+        "areaFurniture": 60,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "Robotic servant",
+            "price": 1000
+          },
+          {
+            "name": "Smart water surface cleaning",
+            "price": 499
+          }
+        ],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [
+        {
+          "decoratorId": "",
+          "estimatedCompletionTime": {
+            "$date": "2024-09-08T11:18:33.740Z"
+          },
+          "startDate": {
+            "$date": "2024-09-08T11:18:33.740Z"
+          },
+          "status": "pending",
+          "comment": ""
+        }
+      ],
+      "photosUploaded": true,
+      "maintenanceScheduled": true,
+      "datetimeOriginalFinish": {
+        "$date": "2024-03-01T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 4,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "saki",
+      "datetimeScheduled": {
+        "$date": "2024-08-15T09:01:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2024-08-16T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2024-08-13T09:01:27.633Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-08-16T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 30,
+        "areaGreen": 20,
+        "areaFurniture": 50,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "AI garden maintenance",
+            "price": 499
+          }
+        ],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [],
+      "photosUploaded": false,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2024-08-16T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 5,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "Excellent!",
+      "score": 5,
+      "decoratorID": "paja",
+      "datetimeScheduled": {
+        "$date": "2023-09-22T11:45:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2023-09-24T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2023-09-08T11:45:55.771Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2024-10-08T12:15:15.739Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 20,
+        "areaGreen": 30,
+        "areaFurniture": 50,
+        "tableCount": 0,
+        "description": "",
+        "services": [
+          {
+            "name": "Robotic servant",
+            "price": 1000
+          }
+        ],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [
+        {
+          "decoratorId": "paja",
+          "estimatedCompletionTime": {
+            "$date": "2024-10-08T12:15:15.739Z"
+          },
+          "startDate": {
+            "$date": "2024-09-08T12:15:47.661Z"
+          },
+          "status": "in-progress",
+          "comment": ""
+        }
+      ],
+      "photosUploaded": true,
+      "maintenanceScheduled": true,
+      "datetimeOriginalFinish": {
+        "$date": "2023-09-24T00:00:00.000Z"
+      }
+    },
+    {
+      "appointmentId": 6,
+      "ownerId": "dzoni",
+      "status": "confirmed",
+      "decoratorComment": "",
+      "ownerComment": "",
+      "score": 0,
+      "decoratorID": "vlajko",
+      "datetimeScheduled": {
+        "$date": "2023-09-21T13:10:00.000Z"
+      },
+      "datetimeFinished": {
+        "$date": "2023-09-24T00:00:00.000Z"
+      },
+      "datetimeCreated": {
+        "$date": "2023-09-08T13:10:05.342Z"
+      },
+      "datetimeLastTimeServiced": {
+        "$date": "2023-09-24T00:00:00.000Z"
+      },
+      "garden": {
+        "squareMeters": 100,
+        "gardenType": "private",
+        "areaPoolFountain": 20,
+        "areaGreen": 20,
+        "areaFurniture": 60,
+        "tableCount": 0,
+        "description": "",
+        "services": [],
+        "design": "[]",
+        "numberPoolFountain": "0"
+      },
+      "maintenanceTasks": [
+        {
+          "decoratorId": "paja",
+          "estimatedCompletionTime": {
+            "$date": "2024-09-08T13:15:47.266Z"
+          },
+          "startDate": {
+            "$date": "2024-09-08T13:15:47.266Z"
+          },
+          "status": "rejected",
+          "comment": ""
+        },
+        {
+          "decoratorId": "paja",
+          "estimatedCompletionTime": {
+            "$date": "2024-09-08T13:21:28.755Z"
+          },
+          "startDate": {
+            "$date": "2024-09-08T13:21:28.755Z"
+          },
+          "status": "rejected",
+          "comment": ""
+        }
+      ],
+      "photosUploaded": true,
+      "maintenanceScheduled": false,
+      "datetimeOriginalFinish": {
+        "$date": "2023-09-24T00:00:00.000Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66dce50b01cf60036963bd31"
+  },
+  "name": "Korak napred",
+  "address": "Bulevar Peka Dapcevica 277",
+  "contactPerson": {
+    "name": "Elca",
+    "phone": "064521212121"
+  },
+  "vacationPeriodStart": {
+    "$date": "2024-10-25T00:00:00.000Z"
+  },
+  "vacationPeriodEnd": {
+    "$date": "2024-10-30T00:00:00.000Z"
+  },
+  "companyAvgScore": 0,
+  "services": [
+    {
+      "name": "Fence painting (per sq meter)",
+      "price": 12
+    },
+    {
+      "name": "Mural on wall (per sq meter)",
+      "price": 12
+    },
+    {
+      "name": "Greenhouse",
+      "price": 3500
+    }
+  ],
+  "appointments": []
+}]

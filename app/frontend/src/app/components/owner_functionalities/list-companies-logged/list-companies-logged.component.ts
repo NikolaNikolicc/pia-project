@@ -45,7 +45,7 @@ export class ListCompaniesLoggedComponent implements OnInit{
               if(tmpSum != 0){
                 company.companyAvgScore = tmpSum / tmpCnt;
               }else{
-                company.companyAvgScore = 5;
+                company.companyAvgScore = 0;
               }
             }
           })

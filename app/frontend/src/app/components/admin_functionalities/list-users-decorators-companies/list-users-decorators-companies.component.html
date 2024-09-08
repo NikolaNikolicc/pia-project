@@ -1,16 +1,16 @@
+
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-4">
       <label for="selection" class="form-label">Select What Do You Want to Preview:</label>
-      <select id="selection" class="form-select" [(ngModel)]="selectedOption" (change)="onSelectionChange()">
-        <option value="owners">Owners</option>
-        <option value="decorators">Decorators</option>
-        <option value="companies">Companies</option>
+      <select id="selection" class="form-select" [(ngModel)]="selectedOption">
+        <option value="owners" [disabled]="owners.length == 0">Owners</option>
+        <option value="decorators" [disabled]="decorators.length == 0">Decorators</option>
+        <option value="companies" [disabled]="companies.length == 0">Companies</option>
       </select>
     </div>
   </div>
-
-  <div class="row mt-4" *ngIf="selectedOption === 'owners'">
+  <div class="row mt-4" *ngIf="selectedOption == 'owners' && owners.length > 0">
     <h3>Owners</h3>
     <div class="col-md-12" *ngFor="let owner of owners">
       <div class="card mb-3">
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="row mt-4" *ngIf="selectedOption === 'decorators'">
+  <div class="row mt-4" *ngIf="selectedOption == 'decorators' && decoratorCompanies.length > 0">
     <h3>Decorators</h3>
     <div class="col-md-12" *ngFor="let decorator of decoratorCompanies">
       <div class="card mb-3">
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <div class="row mt-4" *ngIf="selectedOption === 'companies'">
+  <div class="row mt-4" *ngIf="selectedOption == 'companies' && companies.length > 0">
     <h3>Companies</h3>
     <div class="col-md-12" *ngFor="let company of companies">
       <div class="card mb-3">
@@ -65,9 +65,13 @@
       </div>
     </div>
   </div>
+
+  <div class="text-center d-flex justify-content-center">
+    <button type="button" class="btn orng-btn flex-fill mx-1" (click)="goToAdminIndex()">Back to Admin</button>
+  </div> 
+  <br>
 </div>
 
-<!-- Deactivate Modal -->
 <div class="modal fade" id="deactivateModal" tabindex="-1" aria-labelledby="deactivateModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -86,9 +90,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="container mt-4">
-  <div class="text-center d-flex justify-content-center">
-    <button type="button" class="btn orng-btn flex-fill mx-1" (click)="goToAdminIndex()">Back to Admin</button>
-  </div> 
 </div>

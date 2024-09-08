@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "66dcdbfdbf1b70f54e5dca57"
+  },
+  "userId": "vlajko",
+  "companyId": "Imagine"
+},
+{
+  "_id": {
+    "$oid": "66dcdc25bf1b70f54e5dca5d"
+  },
+  "userId": "paja",
+  "companyId": "Imagine"
+},
+{
+  "_id": {
+    "$oid": "66dcdc6ebf1b70f54e5dca65"
+  },
+  "userId": "janacko",
+  "companyId": "Transfera"
+},
+{
+  "_id": {
+    "$oid": "66dcdc99bf1b70f54e5dca6b"
+  },
+  "userId": "vuk",
+  "companyId": "Transfera"
+},
+{
+  "_id": {
+    "$oid": "66dce44801cf60036963bd25"
+  },
+  "userId": "zare",
+  "companyId": "Korak napred"
+},
+{
+  "_id": {
+    "$oid": "66dce46a01cf60036963bd2b"
+  },
+  "userId": "dule",
+  "companyId": "Korak napred"
+},
+{
+  "_id": {
+    "$oid": "66dd676201cf60036963c127"
+  },
+  "userId": "saki",
+  "companyId": "Imagine"
+}]

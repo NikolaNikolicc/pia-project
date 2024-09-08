@@ -1,0 +1,189 @@
+[{
+  "_id": {
+    "$oid": "66dcbef57cf143a012a32d1f"
+  },
+  "username": "admin",
+  "password": "c068fb95b8e64b1d775313ed5902efbe32d207e4de7876f8caf838fec6f8d18a",
+  "name": "Admin",
+  "surname": "",
+  "gender": "",
+  "address": "",
+  "phone": "",
+  "email": "",
+  "profilePicture": false,
+  "creditCard": "",
+  "userType": 1,
+  "pendingApproval": 1,
+  "comment": ""
+},
+{
+  "_id": {
+    "$oid": "66dcdb4cbf1b70f54e5dca3d"
+  },
+  "username": "dzoni",
+  "password": "ae27450a96c58301717e71f22a98d47f5bcc7b6900b1d2b696bff0a318f601d3",
+  "name": "Nikola",
+  "surname": "Nikolic",
+  "gender": "male",
+  "address": "Izvorska 13",
+  "phone": "0669023515",
+  "email": "posta.nikolan@gmail.com",
+  "profilePicture": true,
+  "creditCard": "4556123456789452",
+  "userType": 0,
+  "pendingApproval": 1,
+  "comment": "All rights reserved.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dcdbfdbf1b70f54e5dca55"
+  },
+  "username": "vlajko",
+  "password": "6896eca8ecd6ed25d21dc2c9c022dae3a967d711f63b7eeec2a5cd0ad439ca69",
+  "name": "Vladimirrr",
+  "surname": "Aleksic",
+  "gender": "male",
+  "address": "Paje Adamova 32",
+  "phone": "0655344218",
+  "email": "vladza.aleksic@gmail.com",
+  "profilePicture": true,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 1,
+  "comment": "All rights reserved.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dcdc25bf1b70f54e5dca5b"
+  },
+  "username": "paja",
+  "password": "e6f0603358779f059f23a07061af53138cf74ede51c53a937b2f241606bf7a6f",
+  "name": "Pavle",
+  "surname": "Sarenac",
+  "gender": "male",
+  "address": "Kragujevacka 24, Zvezdara",
+  "phone": "069586421",
+  "email": "sarenac.pavle@gmail.com",
+  "profilePicture": true,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 1,
+  "comment": "All rights reserved.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dcdc6ebf1b70f54e5dca63"
+  },
+  "username": "janacko",
+  "password": "df4e762273ea7da3561da0eb9591141dd12b0e1e69225aeff30c36553b1201a2",
+  "name": "Nikola",
+  "surname": "Janackovic",
+  "gender": "male",
+  "address": "Bulevar Kralja Aleksandra 255",
+  "phone": "0642134211114",
+  "email": "nikola.janackovic@gmail.com",
+  "profilePicture": false,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 1,
+  "comment": "All rights reserved.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dcdc99bf1b70f54e5dca69"
+  },
+  "username": "vuk",
+  "password": "3d1a6a769fbc4507b373c3ccd45dbbe8b09c79605ebcbf4d134d7c67367167fd",
+  "name": "Vuk",
+  "surname": "Radovic",
+  "gender": "male",
+  "address": "Voje Ilica 31",
+  "phone": "06520010821",
+  "email": "vuk.radovic@gmail.com",
+  "profilePicture": false,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 1,
+  "comment": "All rights reserved.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dce44801cf60036963bd23"
+  },
+  "username": "zare",
+  "password": "c520be5a5db5e19303ab68fc70a03b9f50d4617d99b9d306cb342ee7944d02c7",
+  "name": "Zarko",
+  "surname": "Bulic",
+  "gender": "male",
+  "address": "Zemun 12",
+  "phone": "+381 544 1234521",
+  "email": "zare.bulic@gmail.com",
+  "profilePicture": false,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 0,
+  "comment": "Too lazy.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dce46a01cf60036963bd29"
+  },
+  "username": "dule",
+  "password": "7c2bc9b8a7a0203e4dd8740f00f052409e54d620af414f0c6b332f5b38e9e997",
+  "name": "Dusan",
+  "surname": "Pesic",
+  "gender": "male",
+  "address": "Zemun 12",
+  "phone": "+2 222 3333 210",
+  "email": "dusan.pesic@gmail.com",
+  "profilePicture": false,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 0,
+  "comment": "He was asking too many questions.",
+  "blockingAppointment": 0
+},
+{
+  "_id": {
+    "$oid": "66dd676201cf60036963c125"
+  },
+  "username": "saki",
+  "password": "ef9e99c8aad3f92735535c07b4f071d78217e007a368023ee9ffc0f1bd1640df",
+  "name": "Aleksandar",
+  "surname": "Sarac",
+  "gender": "male",
+  "address": "Pozarevacka 23",
+  "phone": "0665453296",
+  "email": "aleksandar.sarac@gmail.com",
+  "profilePicture": false,
+  "creditCard": "",
+  "userType": 2,
+  "pendingApproval": 0,
+  "comment": "This decorator hasn't finished all jobs in time(photos aren't uploaded). Contact system admin to reinstantiate your account.",
+  "blockingAppointment": 4
+},
+{
+  "_id": {
+    "$oid": "66dd778101cf60036963c1fe"
+  },
+  "username": "daki",
+  "password": "297d0239b8fcf98729596b7c45ff95815be184c32bcecc34cb10bd54090a19c9",
+  "name": "Danijela",
+  "surname": "Riboskic",
+  "gender": "male",
+  "address": "Izvorksa 7",
+  "phone": "0621552123",
+  "email": "daki.r94@hotmail.com",
+  "profilePicture": false,
+  "creditCard": "5122211155232185",
+  "userType": 0,
+  "pendingApproval": 1,
+  "comment": "All rights reserved.",
+  "blockingAppointment": 0
+}]

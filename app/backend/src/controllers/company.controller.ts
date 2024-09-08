@@ -13,6 +13,13 @@ export class CompanyController{
                 console.log(err);
             })
     }
+    updateVacation = (req: express.Request, res: express.Response)=> {
+        const company = JSON.parse(req.body.company)
+        
+        CompanyM.updateOne({name: company.name}, {vacationPeriodEnd: company.vacationPeriodEnd, vacationPeriodStart: company.vacationPeriodStart}).then(
+            ok=>res.json({message: "ok"})
+        ).catch(err=>console.log(err))
+    }
 
     getAllCompanies = (req: express.Request, res: express.Response)=>{
         CompanyM.find().then(
@@ -33,7 +40,7 @@ export class CompanyController{
                         company.appointments[index - 1] = appointment;
     
                         // Save the updated company
-                        company.save().then(
+                        CompanyM.updateOne({name: companyName}, {appointments: company.appointments}).then(
                             () => res.json({ message: "ok" })
                         ).catch(err => {
                             console.error("Error saving company:", err);

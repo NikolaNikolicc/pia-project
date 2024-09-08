@@ -22,6 +22,7 @@ import { ListMaintenanceComponent } from './components/decorator_functionalities
 import { StatisticsComponent } from './components/decorator_functionalities/statistics/statistics.component';
 import { ListUsersDecoratorsCompaniesComponent } from './components/admin_functionalities/list-users-decorators-companies/list-users-decorators-companies.component';
 import { CompanyPreviewNoBookingComponent } from './components/admin_functionalities/company-preview-no-booking/company-preview-no-booking.component';
+import { SetVacationComponent } from './components/admin_functionalities/set-vacation/set-vacation.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path: 'statistics', component: StatisticsComponent},
   {path: 'admin-list-users-companies', component: ListUsersDecoratorsCompaniesComponent},
   {path: 'admin-company-preview', component: CompanyPreviewNoBookingComponent},
+  {path: 'vacation', component: SetVacationComponent}
 ];
 
 @NgModule({

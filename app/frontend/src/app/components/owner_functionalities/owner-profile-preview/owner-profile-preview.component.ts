@@ -237,10 +237,18 @@ export class OwnerProfilePreviewComponent implements OnInit{
   }
 
   triggerFileInputClick() {
-    let fileInput = document.getElementById("photo-input") as HTMLInputElement;
-    if (fileInput) {
-      fileInput.click();
-    }
+    this.usr.profilePicture = true;
+    this.userService.updateUserStatus(this.usr).subscribe(
+      ok=>{
+        if(ok.message == 'ok'){
+          let fileInput = document.getElementById("photo-input") as HTMLInputElement;
+          if (fileInput) {
+            fileInput.click();
+          }
+        }
+      }
+    )
+
   }
 
   onFilesSelected(event: Event) {

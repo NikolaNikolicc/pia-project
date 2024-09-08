@@ -23,7 +23,7 @@ export class ListUsersDecoratorsCompaniesComponent implements OnInit {
   companies: Company[] = [];
 
   selectedOption: string = 'owners';
-  selectedUser!: User;
+  selectedUser: User = new User();
   deactivationReason: string = '';
 
   constructor(
@@ -34,41 +34,89 @@ export class ListUsersDecoratorsCompaniesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    forkJoin({
-      companies: this.companyService.getAllCompanies(),
-      owners: this.userService.getAllOwners(),
-      decorators: this.userService.getAllDecorators(),
-      employedDecorators: this.decoratorService.getAllEmployedDecorators(),
-      unemployedDecorators: this.decoratorService.getAllUnemployedDecorators()
-    }).subscribe({
-      next: (responses) => {
-        if (responses.companies.message) {
-          this.companies = JSON.parse(responses.companies.message);
+    this.companyService.getAllCompanies().subscribe(
+      companies=>{
+        if(companies.message){
+          this.companies = JSON.parse(companies.message)
+          this.userService.getAllOwners().subscribe(
+            users=>{
+              if(users.message){
+                this.owners = JSON.parse(users.message)
+                this.userService.getAllDecorators().subscribe(
+                  decorators=>{
+                    if(decorators.message){
+                      this.decorators = JSON.parse(decorators.message);
+                      this.decoratorService.getAllEmployedDecorators().subscribe(
+                        employedDecorators=>{
+                          if(employedDecorators.message){
+                            this.decoratorCompanies = JSON.parse(employedDecorators.message);
+                            if(this.decorators.length > 0){
+                              this.decoratorCompanies = this.decoratorCompanies.filter(decorator => {
+                                return this.decorators.some(dec => dec.username === decorator.userId);
+                              });
+                            }
+                            this.decoratorService.getAllUnemployedDecorators().subscribe(
+                              unemployedDecorators=>{
+                                if(unemployedDecorators.message){
+                                  const d: Decorator[] = JSON.parse(unemployedDecorators.message);
+                                  if(d.length > 0){
+                                    d.forEach(decorator => {
+                                      this.decoratorCompanies.push(decorator);
+                                    });
+                                  }
+                                }
+                              }
+                            )
+                          }
+                        }
+                      )
+                    }
+                  }
+                )
+              }
+            }
+          )
         }
-        if (responses.owners.message) {
-          this.owners = JSON.parse(responses.owners.message);
-        }
-        if (responses.decorators.message) {
-          this.decorators = JSON.parse(responses.decorators.message);
-        }
-        if (responses.employedDecorators.message) {
-          this.decoratorCompanies = JSON.parse(responses.employedDecorators.message);
-        }
-        if (responses.unemployedDecorators.message) {
-          const d: Decorator[] = JSON.parse(responses.unemployedDecorators.message);
-          d.forEach(decorator => {
-            this.decoratorCompanies.push(decorator);
-          });
-        }
-        // filter suspended decorators
-        this.decoratorCompanies = this.decoratorCompanies.filter(decorator => {
-          return this.decorators.some(dec => dec.username === decorator.userId);
-        });
-      },
-      error: (error) => {
-        console.error('Error loading data', error);
       }
-    });
+    )
+
+    // forkJoin({
+    //   companies: this.companyService.getAllCompanies(),
+    //   owners: this.userService.getAllOwners(),
+    //   decorators: this.userService.getAllDecorators(),
+    //   employedDecorators: this.decoratorService.getAllEmployedDecorators(),
+    //   unemployedDecorators: this.decoratorService.getAllUnemployedDecorators()
+    // }).subscribe({
+    //   next: (responses) => {
+    //     if (responses.companies.message) {
+    //       this.companies = JSON.parse(responses.companies.message);
+    //     }
+    //     if (responses.owners.message) {
+    //       this.owners = JSON.parse(responses.owners.message);
+    //     }
+    //     if (responses.decorators.message) {
+    //       this.decorators = JSON.parse(responses.decorators.message);
+    //       if(this.decorators.length > 0){
+    //         this.decoratorCompanies = this.decoratorCompanies.filter(decorator => {
+    //           return this.decorators.some(dec => dec.username === decorator.userId);
+    //         });
+    //       }
+    //     }
+    //     if (responses.employedDecorators.message) {
+    //       this.decoratorCompanies = JSON.parse(responses.employedDecorators.message);
+    //     }
+    //     if (responses.unemployedDecorators.message) {
+    //       const d: Decorator[] = JSON.parse(responses.unemployedDecorators.message);
+    //       d.forEach(decorator => {
+    //         this.decoratorCompanies.push(decorator);
+    //       });
+    //     }
+    //     // filter suspended decorators
+    //     // this.decoratorCompanies = this.decoratorCompanies.filter(decorator => {
+    //     //   return this.decorators.some(dec => dec.username === decorator.userId);
+    //     // });
+    //   },
+    // });
   }
 
   onSelectionChange() {

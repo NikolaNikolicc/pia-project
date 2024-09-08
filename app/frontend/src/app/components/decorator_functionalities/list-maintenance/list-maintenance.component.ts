@@ -93,7 +93,10 @@ export class ListMaintenanceComponent implements OnInit {
   confirmMaintenance(appointment: Appointment, estimatedCompletionDate: Date, index: number): void {
     this.error = "";
 
-    if(!estimatedCompletionDate){
+    let t = new Date().getTime();
+    let time = estimatedCompletionDate.toString();
+    let tt = new Date(time).getTime();
+    if(!estimatedCompletionDate || tt <= t){
       this.error = "Finish date must be set.";
       this.showErrorModal()
       return;
@@ -153,6 +156,8 @@ export class ListMaintenanceComponent implements OnInit {
     this.companyService.updateAppointment(appointment, this.company.name).subscribe(
       data => {
         if (data.message === "ok") {
+          let index = this.appointmentsMantenanceNeeded.findIndex(a=>(a.appointmentId == appointment.appointmentId))
+          this.appointmentsMantenanceNeeded.splice(index, 1);
           this.success = "Maintenance request rejected successfully!";
           this.showSuccessModal();
         } else {

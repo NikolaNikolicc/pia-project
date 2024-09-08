@@ -43,12 +43,13 @@ export class GardenMaintenanceComponent implements OnInit {
     modal.show();
   }
 
+  // this function is used to automatically reset maintenance flag after maintenance finish date expires
   async resetMaintenanceTasks(): Promise<void> {
     const updatePromises: Promise<any>[] = [];
   
     this.companies.forEach(company => {
       company.appointments.forEach(appointment => {
-        if (appointment.ownerId === this.user.username && new Date(appointment.datetimeLastTimeServiced) <= new Date() && appointment.maintenanceScheduled) {
+        if (appointment.ownerId === this.user.username && new Date(appointment.datetimeLastTimeServiced) <= new Date() && appointment.maintenanceScheduled && appointment.maintenanceTasks[appointment.maintenanceTasks.length - 1].status == 'in-progress') {
           appointment.maintenanceScheduled = false;
           const updatePromise = this.companyService.updateAppointment(appointment, company.name).toPromise();
           updatePromises.push(updatePromise);
@@ -89,7 +90,11 @@ export class GardenMaintenanceComponent implements OnInit {
                 const needsServicing = (new Date(appointment.datetimeFinished) <= sixMonthsAgo && new Date(appointment.datetimeLastTimeServiced) <= sixMonthsAgo) && !appointment.maintenanceScheduled;
 
                 let lastId = appointment.maintenanceTasks.length - 1
-                if (appointment.maintenanceScheduled && appointment.maintenanceTasks.length > 0 && (appointment.maintenanceTasks[lastId].status == 'in-progress' || appointment.maintenanceTasks[lastId].status == 'pending')) {
+                if (
+                  appointment.maintenanceScheduled && 
+                  appointment.maintenanceTasks.length > 0 && 
+                  (appointment.maintenanceTasks[lastId].status == 'in-progress' || 
+                    appointment.maintenanceTasks[lastId].status == 'pending')) {
                   this.maintenanceNeeded.push({ appointment, companyName: company.name, needsServicing });
                 } else if (appointment.status === 'confirmed' && today >= new Date(appointment.datetimeFinished)) {
                   

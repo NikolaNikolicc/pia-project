@@ -15,5 +15,8 @@ companyRouter.route('/getAllCompanies').post(
 companyRouter.route('/updateAppointment').post(
     (req, res)=> new CompanyController().updateAppointment(req, res)
 );
+companyRouter.route('/updateVacation').post(
+    (req, res)=> new CompanyController().updateVacation(req, res)
+);
 
 export default companyRouter;

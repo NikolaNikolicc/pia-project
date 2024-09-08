@@ -59,16 +59,16 @@ export class GeneralComponent implements OnInit{
   }
 
   isDateDifferenceBiggerThanChosen(date: Date){
-    const today = new Date();
-    let pastDate = new Date();
+    const today = new Date().getTime();
+    let pastDate = new Date().getTime();
     if(this.displayOption == "24h"){
-      pastDate.setDate(today.getDate() - 1);
+      pastDate -= 24*60*60*1000;
     }else if(this.displayOption == "7d"){
-      pastDate.setDate(today.getDate() - 7);
+      pastDate -= 7*24*60*60*1000;
     }else{
-      pastDate.setDate(today.getDate() - 30);
+      pastDate -= 30*24*60*60*1000;
     }
-    return date < pastDate;
+    return date.getTime() < pastDate;
   }
 
   calculateNumberOfCreatedJobs(){

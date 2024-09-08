@@ -103,10 +103,11 @@ export class GardenBookingComponent implements OnInit{
           this.error = "Date and Time field is empty or chosen date and time are in the past.";
         }
       }
-      let startDate = this.company.vacationPeriodEnd.toString().split("T")[0];
-      let endDate = this.company.vacationPeriodEnd.toString().split("T")[0];
-      if(dateTimeChosen[0] >= startDate && dateTimeChosen[0] <= endDate){
-        this.error = "Can't book on this date because this is company's vacation period.";
+      let startDate = new Date(this.company.vacationPeriodStart).setHours(0,0,0,0);
+      let endDate = new Date(this.company.vacationPeriodEnd).setHours(0,0,0,0);
+      let chosenTime = new Date(this.appointment.datetimeScheduled).setHours(0,0,0,0)
+      if(chosenTime >= startDate && chosenTime <= endDate){
+        this.error = "Can't book on this date because this is company's vacation period." + `Company vacation period start: ${this.company.vacationPeriodStart.toString().split("T")[0]}, company vacation period end: ${this.company.vacationPeriodEnd.toString().split("T")[0]}.`;
       }
       // garden area check
       if(this.garden.squareMeters <= 0){
@@ -124,17 +125,8 @@ export class GardenBookingComponent implements OnInit{
         if(this.garden.areaGreen < 0){
           this.error = "Green area must be positive number or zero."
         }
-        if(this.garden.numberPoolFountain < 0){
-          let water = (this.garden.gardenType == 'private')?"pools":"fountains";
-          this.error = `Number of ${water} must be positive number or zero.`
-        }
         if(this.garden.areaPoolFountain < 0){
           this.error = "Pool area must be positive number or zero."
-        }
-        if(this.garden.areaPoolFountain != 0 && this.garden.numberPoolFountain == 0 || 
-          this.garden.areaPoolFountain == 0 && this.garden.numberPoolFountain != 0
-        ){
-          this.error = "Please ensure that both the area and the number of pools are set, or leave both fields as zero."
         }
       }else{
         if(this.garden.areaPoolFountain + this.garden.areaGreen != this.garden.squareMeters){
@@ -152,14 +144,8 @@ export class GardenBookingComponent implements OnInit{
         if(this.garden.areaPoolFountain < 0){
           this.error = "Fountain area must be positive number or zero."
         }
-        if(this.garden.areaPoolFountain != 0 && this.garden.numberPoolFountain == 0 || 
-          this.garden.areaPoolFountain == 0 && this.garden.numberPoolFountain != 0
-        ){
-          this.error = "Please ensure that both the area and the number of fountains are set, or leave both fields as zero."
-        }
       }
       this.sharedVariablesService.gardenType = this.garden.gardenType;
-      this.sharedVariablesService.numberOfWaterSurfaces = this.garden.numberPoolFountain;
     }
     if(this.error != ""){
       this.showErrorModal();
@@ -180,6 +166,10 @@ export class GardenBookingComponent implements OnInit{
   }
 
   onSubmit() {
+    const g = localStorage.getItem("garden")
+    if(g != null){
+      this.garden = JSON.parse(g)
+    }
     this.company.services.forEach(service=>{
       if(service.selected){
         this.garden.services.push(service);
@@ -195,6 +185,7 @@ export class GardenBookingComponent implements OnInit{
       user = JSON.parse(u);
     }
     this.appointment.ownerId = user.username;
+    this.appointment.datetimeOriginalFinish = this.appointment.datetimeFinished;
 
     this.ownerService.createAppointment(this.appointment, this.company.name).subscribe(
       data=>{

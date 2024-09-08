@@ -24,7 +24,7 @@ export class UserController{
     updateUserStatus = (req: express.Request, res: express.Response)=> {
         const user = JSON.parse(req.body.user);
         UserM.updateOne({username: user.username},
-            {$set: {pendingApproval: user.pendingApproval, comment: user.comment, blockingAppointment: user.blockingAppointment}}
+            {$set: {pendingApproval: user.pendingApproval, comment: user.comment, blockingAppointment: user.blockingAppointment, profilePicture: user.profilePicture}}
         ).then(
             ok=>res.json({message: "ok"})
         ).catch(err=>{
