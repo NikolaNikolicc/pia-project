@@ -30,10 +30,9 @@
         }
     </style>
 </head>
+<br>
 <body>
-
     <h1>Project Setup Instructions</h1>
-
     <section>
         <h2>1) Bootstrap (Frontend)</h2>
         <p>Instructions for download:</p>
@@ -50,7 +49,6 @@
                     "node_modules/bootstrap-icons/font/bootstrap-icons.css",
                     "src/styles.css"
                 ]
-                
                 "projects" -> "frontend" -> "architect" -> "build" -> "options" -> "scripts" should look like:
                 "scripts": [
                     "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -58,7 +56,6 @@
             </pre>
         </ol>
     </section>
-
     <section>
         <h2>2) Icons for Cards (Frontend)</h2>
         <p>Instructions for download:</p>
@@ -78,7 +75,6 @@
             </pre>
         </ol>
     </section>
-
     <section>
         <h2>3) Include Encryption Algorithm (Frontend)</h2>
         <p>Instructions for download:</p>
@@ -87,7 +83,6 @@
             <li>Run the command: <code>npm install crypto-js</code></li>
         </ol>
     </section>
-
     <section>
         <h2>4) Include Multer for Reading Blobs from FormData Field (Backend)</h2>
         <p>Instructions for download:</p>
@@ -96,7 +91,6 @@
             <li>Run the command: <code>npm install multer</code></li>
         </ol>
     </section>
-
     <section>
         <h2>5) reCaptcha (Frontend)</h2>
         <p>Instructions for download:</p>
@@ -104,7 +98,6 @@
             <li>Run the command: <code>npm i ngx-captcha</code></li>
         </ol>
     </section>
-
     <section>
         <h2>6) Graphs (Frontend)</h2>
         <p>Instructions for download:</p>
